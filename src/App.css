@@ -1,0 +1,72 @@
+/* 全局背景和字体设定，营造80年代复古风格 */
+body, html {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #ff0099, #493240);
+  font-family: 'Courier New', Courier, monospace;
+  color: #fff;
+  height: 100%;
+}
+
+/* 主容器居中显示 */
+.App {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* 复古风格的内部容器 */
+.container {
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.6);
+  border: 3px solid #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 20px #ff0099;
+}
+
+/* 页面标题 */
+.title {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 4px #000;
+}
+
+/* 启动按钮样式 */
+.start-button {
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  background-color: #ff0099;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0 0 10px #ff0099;
+  margin-bottom: 20px;
+}
+
+.start-button:hover {
+  background-color: #d60083;
+}
+
+/* 视频与预览 canvas 的容器 */
+.video-container {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* 预览 canvas 样式 */
+.preview-canvas {
+  width: 100%;
+  border: 2px solid #ff0099;
+  border-radius: 5px;
+}
+
+/* 错误提示 */
+.error {
+  color: #ff3333;
+  margin-bottom: 20px;
+}
