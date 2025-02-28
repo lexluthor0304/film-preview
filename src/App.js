@@ -9,7 +9,7 @@ function App() {
   const [isCameraStarted, setIsCameraStarted] = useState(false);
 
   /**
-   * 点击“开始预览”后，获取摄像头流（仅使用最基本的 { video: true }）
+   * 点击“开始预览”后，获取摄像头流（只使用最简单的 { video: true }）
    */
   const initCamera = async () => {
     try {
@@ -38,7 +38,7 @@ function App() {
   };
 
   /**
-   * 在视频成功播放后，每帧将其绘制到 canvas 上并交换 R / B 通道
+   * 在视频成功播放后，每帧将其绘制到 canvas 上（不做任何RGB翻转）
    */
   useEffect(() => {
     if (!isCameraStarted) return;
@@ -47,7 +47,7 @@ function App() {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
 
-    // 当视频的元数据加载完成后，可读取视频宽高
+    // 当视频元数据加载完成后，可读取视频宽高
     const handleLoadedMetadata = () => {
       console.log('loadedmetadata:', video.videoWidth, 'x', video.videoHeight);
     };
@@ -70,18 +70,8 @@ function App() {
       canvas.width = video.videoWidth;
       canvas.height = video.videoHeight;
 
-      // 绘制当前视频帧
+      // 仅仅将视频帧绘制到 canvas
       ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-
-      // 获取像素数据并交换 R / B
-      const frame = ctx.getImageData(0, 0, canvas.width, canvas.height);
-      const data = frame.data;
-      for (let i = 0; i < data.length; i += 4) {
-        const temp = data[i];       // R
-        data[i] = data[i + 2];      // B -> R
-        data[i + 2] = temp;         // R -> B
-      }
-      ctx.putImageData(frame, 0, 0);
 
       frameId = requestAnimationFrame(processFrame);
     };
@@ -107,7 +97,7 @@ function App() {
           </button>
         ) : (
           <div className="video-container">
-            {/* 让 video 可见，方便确认是否真正有图像 */}
+            {/* 让 video 可见，以确认是否真正有图像 */}
             <video
               ref={videoRef}
               className="debug-video"
@@ -115,6 +105,7 @@ function App() {
               muted
               autoPlay
             />
+            {/* 仅仅显示原始画面，未做任何通道翻转 */}
             <canvas ref={canvasRef} className="preview-canvas" />
           </div>
         )}
