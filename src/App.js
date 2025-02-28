@@ -1,6 +1,5 @@
 import { useRef, useState, useEffect } from 'react';
 import './App.css';
-import Adsense from './Adsense';
 
 function CameraControls({ track, onUpdate }) {
   const [exposure, setExposure] = useState(0);
