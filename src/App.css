@@ -1,72 +1,56 @@
-body, html {
-  margin: 0;
-  padding: 0;
-  background: linear-gradient(135deg, #ff0099, #493240);
-  font-family: 'Courier New', Courier, monospace;
-  color: #fff;
-  height: 100%;
+/* 复古配色方案 */
+:root {
+  --neon-pink: #ff44cc;
+  --electric-blue: #00f3ff;
+  --radioactive-green: #39ff14;
+  --vhs-bg: #0a0a2e;
 }
 
-.App {
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+/* CRT显示器效果 */
+.retro-container {
+  background: linear-gradient(
+    45deg,
+    var(--vhs-bg) 0%,
+    #000033 100%
+  );
   min-height: 100vh;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
 }
 
-.container {
-  padding: 20px;
-  background: rgba(0, 0, 0, 0.6);
-  border: 3px solid #fff;
-  border-radius: 10px;
-  box-shadow: 0 0 20px #ff0099;
-}
-
-.title {
-  font-size: 2rem;
-  margin-bottom: 20px;
-  text-shadow: 2px 2px 4px #000;
-}
-
-.start-button {
-  padding: 10px 20px;
-  font-size: 1.2rem;
-  background-color: #ff0099;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  box-shadow: 0 0 10px #ff0099;
-  margin-bottom: 20px;
-}
-
-.start-button:hover {
-  background-color: #d60083;
-}
-
-.video-container {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+.crt-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
-  max-width: 600px;
-  margin: 0 auto;
+  height: 100%;
+  background: 
+    repeating-linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.15) 0px,
+      rgba(0, 0, 0, 0.15) 1px,
+      transparent 1px,
+      transparent 2px
+    );
+  pointer-events: none;
+  z-index: 999;
 }
 
-.debug-video {
+.scanline {
   width: 100%;
-  border: 2px solid #fff;
-  background: black;
+  height: 4px;
+  background: rgba(0, 255, 0, 0.1);
+  animation: scan 4s linear infinite;
 }
 
-.preview-canvas {
-  width: 100%;
-  border: 2px solid #ff0099;
-  border-radius: 5px;
+@keyframes scan {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
 }
 
-.error {
-  color: #ff3333;
-  margin-bottom: 20px;
-}
+/* 霓虹文字效果 */
+.neon-text {
+  color: var(--neon-pink);
+  text-shadow: 0 0 10px var(--neon-pink),
+               0 0 20px var(--ne

@@ -1,114 +1,77 @@
-import React, { useState, useRef, useEffect } from 'react';
-import './App.css';
+import { useEffect, useRef, useState } from 'react';
+import './App.css'; // 我们将在这里添加复古样式
 
 function App() {
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
+  const [isCameraOn, setIsCameraOn] = useState(false);
 
-  const [error, setError] = useState('');
-  const [isCameraStarted, setIsCameraStarted] = useState(false);
-
-  /**
-   * 点击“开始预览”后，获取摄像头流（只使用最简单的 { video: true }）
-   */
-  const initCamera = async () => {
+  // 初始化摄像头
+  const startCamera = async () => {
     try {
-      console.log('尝试获取摄像头流: { video: true, audio: false }');
       const stream = await navigator.mediaDevices.getUserMedia({
-        video: true,
-        audio: false,
+        video: { facingMode: "environment" }
       });
-      // 检查是否存在 video track
-      const tracks = stream.getVideoTracks();
-      if (!tracks.length) {
-        throw new Error('没有可用的视频轨道');
-      }
-      console.log('成功获取摄像头流');
-
-      // 将流设置给 video
+      
       if (videoRef.current) {
         videoRef.current.srcObject = stream;
-        await videoRef.current.play();
+        videoRef.current.play();
+        setIsCameraOn(true);
+        requestAnimationFrame(processVideo);
       }
-      setIsCameraStarted(true);
     } catch (err) {
-      console.error('摄像头访问失败:', err);
-      setError('无法访问摄像头，请检查浏览器权限或是否在 HTTPS/localhost 环境下。');
+      console.error("摄像头访问错误:", err);
     }
   };
 
-  /**
-   * 在视频成功播放后，每帧将其绘制到 canvas 上（不做任何RGB翻转）
-   */
-  useEffect(() => {
-    if (!isCameraStarted) return;
+  // 视频处理（RGB翻转+复古滤镜）
+  const processVideo = () => {
+    if (!videoRef.current || !canvasRef.current) return;
 
-    const video = videoRef.current;
-    const canvas = canvasRef.current;
-    const ctx = canvas.getContext('2d');
+    const ctx = canvasRef.current.getContext('2d');
+    ctx.drawImage(videoRef.current, 0, 0);
+    
+    // 获取像素数据
+    const imageData = ctx.getImageData(0, 0, canvasRef.current.width, canvasRef.current.height);
+    const data = imageData.data;
 
-    // 当视频元数据加载完成后，可读取视频宽高
-    const handleLoadedMetadata = () => {
-      console.log('loadedmetadata:', video.videoWidth, 'x', video.videoHeight);
-    };
-    video.addEventListener('loadedmetadata', handleLoadedMetadata);
+    // RGB通道翻转
+    for (let i = 0; i < data.length; i += 4) {
+      [data[i], data[i+2]] = [data[i+2], data[i]]; // 交换R和B通道
+    }
 
-    // 帧处理循环
-    let frameId;
-    const processFrame = () => {
-      if (video.paused || video.ended) {
-        frameId = requestAnimationFrame(processFrame);
-        return;
-      }
-      // 如果视频宽高还没准备好，就等下一帧
-      if (video.videoWidth === 0 || video.videoHeight === 0) {
-        frameId = requestAnimationFrame(processFrame);
-        return;
-      }
-
-      // 同步 canvas 尺寸
-      canvas.width = video.videoWidth;
-      canvas.height = video.videoHeight;
-
-      // 仅仅将视频帧绘制到 canvas
-      ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-
-      frameId = requestAnimationFrame(processFrame);
-    };
-
-    // 在用户点击并 play 成功后，开始动画帧循环
-    frameId = requestAnimationFrame(processFrame);
-
-    // 卸载时清理
-    return () => {
-      video.removeEventListener('loadedmetadata', handleLoadedMetadata);
-      cancelAnimationFrame(frameId);
-    };
-  }, [isCameraStarted]);
+    ctx.putImageData(imageData, 0, 0);
+    requestAnimationFrame(processVideo);
+  };
 
   return (
-    <div className="App">
-      <div className="container">
-        <h1 className="title">80年代胶片预览器</h1>
-        {error && <div className="error">{error}</div>}
-        {!isCameraStarted ? (
-          <button className="start-button" onClick={initCamera}>
-            开始预览
-          </button>
-        ) : (
-          <div className="video-container">
-            {/* 让 video 可见，以确认是否真正有图像 */}
-            <video
-              ref={videoRef}
-              className="debug-video"
-              playsInline
-              muted
-              autoPlay
-            />
-            {/* 仅仅显示原始画面，未做任何通道翻转 */}
-            <canvas ref={canvasRef} className="preview-canvas" />
-          </div>
-        )}
+    <div className="retro-container">
+      {/* CRT显示器效果 */}
+      <div className="crt-overlay">
+        <div className="scanline"></div>
+        <div className="crt-glow"></div>
+      </div>
+
+      {/* 主内容区域 */}
+      <div className="vhs-sticker">
+        <h1 className="neon-text">FILM PREVIEW 3000</h1>
+        
+        <div className="camera-viewport">
+          <video ref={videoRef} className="hidden-video" />
+          <canvas 
+            ref={canvasRef} 
+            width="640" 
+            height="480"
+            className="film-preview"
+          />
+        </div>
+
+        <button 
+          onClick={startCamera}
+          className="retro-button"
+        >
+          {isCameraOn ? '◼ RECORDING' : '● START PREVIEW'}
+        </button>
       </div>
     </div>
   );
