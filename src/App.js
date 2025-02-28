@@ -183,9 +183,6 @@ function App() {
       <button onClick={startCamera} className="retro-button">
         Start Camera
       </button>
-      <div className="ads-container">
-        <Adsense />
-      </div>
     </div>
   );
 }
