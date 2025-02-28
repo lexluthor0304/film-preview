@@ -7,6 +7,7 @@ function App() {
   const [error, setError] = useState('');
   const [isCameraStarted, setIsCameraStarted] = useState(false);
 
+  // 用户点击后初始化摄像头
   const initCamera = async () => {
     try {
       const stream = await navigator.mediaDevices.getUserMedia({
@@ -49,53 +50,56 @@ function App() {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
 
-    const processFrame = () => {
-      if (video.paused || video.ended) {
-        // 如果视频暂停，则等待下一帧
-        requestAnimationFrame(processFrame);
-        return;
-      }
-      
-      // 同步 canvas 尺寸为视频尺寸
-      canvas.width = video.videoWidth;
-      canvas.height = video.videoHeight;
-      if (video.videoWidth === 0 || video.videoHeight === 0) {
-        console.warn("视频数据未加载完成", video.readyState);
-        requestAnimationFrame(processFrame);
-        return;
-      }
-      
-      // 输出当前视频尺寸便于调试
-      console.log(`视频尺寸：${video.videoWidth} x ${video.videoHeight}`);
+    // 确保视频数据加载完成后再开始处理帧
+    const onLoadedData = () => {
+      console.log("视频元数据加载完成：", video.videoWidth, video.videoHeight);
+      startFrameProcessing();
+    };
 
-      // 绘制视频帧
-      ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-      
-      // 获取像素数据并交换 R 与 B 通道
-      try {
-        const frame = ctx.getImageData(0, 0, canvas.width, canvas.height);
-        const data = frame.data;
-        for (let i = 0; i < data.length; i += 4) {
-          let temp = data[i];       
-          data[i] = data[i + 2];      
-          data[i + 2] = temp;         
+    const startFrameProcessing = () => {
+      const processFrame = () => {
+        // 确保视频处于播放状态
+        if (video.paused || video.ended) {
+          requestAnimationFrame(processFrame);
+          return;
         }
-        ctx.putImageData(frame, 0, 0);
-      } catch (error) {
-        console.error("获取或处理图像数据失败:", error);
-      }
-      
+
+        // 更新 canvas 尺寸
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+        if (video.videoWidth === 0 || video.videoHeight === 0) {
+          console.warn("视频数据未加载完成", video.readyState);
+          requestAnimationFrame(processFrame);
+          return;
+        }
+        // 输出当前视频尺寸调试
+        console.log(`视频尺寸：${video.videoWidth} x ${video.videoHeight}`);
+
+        // 绘制视频帧到 canvas
+        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+        // 获取像素数据并交换 R 与 B 通道
+        try {
+          const frame = ctx.getImageData(0, 0, canvas.width, canvas.height);
+          const data = frame.data;
+          for (let i = 0; i < data.length; i += 4) {
+            let temp = data[i];      
+            data[i] = data[i + 2];     
+            data[i + 2] = temp;        
+          }
+          ctx.putImageData(frame, 0, 0);
+        } catch (error) {
+          console.error("处理图像数据时出错:", error);
+        }
+        requestAnimationFrame(processFrame);
+      };
+
       requestAnimationFrame(processFrame);
     };
 
-    const onPlay = () => {
-      console.log("视频开始播放");
-      requestAnimationFrame(processFrame);
-    };
-
-    video.addEventListener('playing', onPlay); // 使用 'playing' 事件更可靠
+    // 监听 loadeddata 事件，确保视频数据加载完毕
+    video.addEventListener('loadeddata', onLoadedData);
     return () => {
-      video.removeEventListener('playing', onPlay);
+      video.removeEventListener('loadeddata', onLoadedData);
     };
   }, [isCameraStarted]);
 
@@ -110,12 +114,16 @@ function App() {
           </button>
         ) : (
           <div className="video-container">
+            {/* 暂时显示 video 元素用于调试，查看摄像头原始画面 */}
             <video
               ref={videoRef}
-              style={{ display: 'none' }}
+              className="debug-video"
               playsInline
               muted
+              autoPlay
+              style={{ maxWidth: '300px', marginBottom: '10px', border: '2px solid #fff' }}
             />
+            {/* 显示经过处理的 canvas */}
             <canvas ref={canvasRef} className="preview-canvas" />
           </div>
         )}
