@@ -1,4 +1,4 @@
-/* 复古配色方案 */
+/* 修复后的完整样式 */
 :root {
   --neon-pink: #ff44cc;
   --electric-blue: #00f3ff;
@@ -6,7 +6,6 @@
   --vhs-bg: #0a0a2e;
 }
 
-/* CRT显示器效果 */
 .retro-container {
   background: linear-gradient(
     45deg,
@@ -25,14 +24,13 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: 
-    repeating-linear-gradient(
-      0deg,
-      rgba(0, 0, 0, 0.15) 0px,
-      rgba(0, 0, 0, 0.15) 1px,
-      transparent 1px,
-      transparent 2px
-    );
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.15) 0px,
+    rgba(0, 0, 0, 0.15) 1px,
+    transparent 1px,
+    transparent 2px
+  ); /* 修复这里的分号 */
   pointer-events: none;
   z-index: 999;
 }
@@ -47,9 +45,8 @@
 @keyframes scan {
   0% { transform: translateY(-100%); }
   100% { transform: translateY(100vh); }
-}
+} /* 确保动画定义闭合 */
 
-/* 霓虹文字效果 */
 .neon-text {
   color: var(--neon-pink);
   text-shadow: 0 0 10px var(--neon-pink),
@@ -60,7 +57,6 @@
   letter-spacing: 0.2em;
 }
 
-/* 复古按钮样式 */
 .retro-button {
   background: var(--electric-blue);
   border: 3px solid var(--radioactive-green);
@@ -69,7 +65,7 @@
   font-family: 'Arial Black', sans-serif;
   text-shadow: 2px 2px 0 var(--radioactive-green);
   transition: all 0.3s ease;
-}
+} /* 确保按钮样式闭合 */
 
 .retro-button:hover {
   background: var(--radioactive-green);
@@ -77,29 +73,64 @@
   transform: skew(-10deg);
 }
 
-/* 摄像头预览样式 */
 .camera-viewport {
   border: 8px solid #ff44cc;
-  border-image: 
-    linear-gradient(
-      45deg,
-      var(--neon-pink),
-      var(--electric-blue)
-    ) 1;
+  border-image: linear-gradient(
+    45deg,
+    var(--neon-pink),
+    var(--electric-blue)
+  ) 1;
   margin: 2rem 0;
   position: relative;
   overflow: hidden;
-}
+} /* 修复渐变语法 */
 
 .film-preview {
-  filter: 
-    contrast(1.2)
-    sepia(0.3)
-    saturate(1.5);
+  filter: contrast(1.2)
+          sepia(0.3)
+          saturate(1.5);
   width: 100%;
   background: black;
 }
 
 .hidden-video {
   display: none;
+}
+
+/* 新增胶片边框效果 */
+.film-viewport {
+  border: 15px solid #2a2a2a;
+  background: 
+    repeating-linear-gradient(
+      45deg,
+      #000 0px,
+      #000 10px,
+      #333 10px,
+      #333 20px
+    );
+  box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+  margin: 1rem;
+  position: relative;
+}
+
+/* 负片预览特效 */
+.negative-preview {
+  filter: 
+    contrast(1.8) 
+    brightness(0.7) 
+    saturate(1.2);
+  mix-blend-mode: multiply;
+}
+
+/* 添加胶片颗粒效果 */
+.film-viewport::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.15;
+  pointer-events: none;
 }
