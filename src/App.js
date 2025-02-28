@@ -160,7 +160,12 @@ function App() {
 
   return (
     <div className="retro-container">
-      {/* 原有界面元素保持不变 */}
+      <div className="crt-overlay">
+        <div className="scanline"></div>
+        <div className="crt-glow"></div>
+      </div>
+      <div className="vhs-sticker"></div>
+      <h1 className="neon-text">FILM NEGATIVE VIEWER</h1>
       <div className="camera-viewport">
         <video ref={videoRef} className="hidden-video" playsInline muted />
         <canvas ref={canvasRef} className="negative-preview" />
