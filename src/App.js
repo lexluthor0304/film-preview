@@ -115,7 +115,6 @@ function App() {
       if (videoRef.current.videoWidth > 0) {
         canvasRef.current.width = videoRef.current.videoWidth;
         canvasRef.current.height = videoRef.current.videoHeight;
-        const ctx = canvasRef.current.getContext('2d');
         processVideo();
       } else {
         requestAnimationFrame(checkVideoSize);
@@ -125,12 +124,17 @@ function App() {
   };
 
   // 视频处理循环
-  const processVideo = (ctx) => {
+  const processVideo = () => {
     if (!videoRef.current || !canvasRef.current) return;
+
+    const ctx = canvasRef.current.getContext('2d', { 
+      willReadFrequently: true 
+    });
+    
     ctx.drawImage(videoRef.current, 0, 0);
     const imageData = ctx.getImageData(0, 0, canvasRef.current.width, canvasRef.current.height);
     ctx.putImageData(invertColors(imageData), 0, 0);
-    requestAnimationFrame(() => processVideo(ctx));
+    requestAnimationFrame(processVideo);
   };
 
   // 负片转换
