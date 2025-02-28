@@ -91,43 +91,49 @@ function App() {
 
   return (
     <>
-    <Helmet>
-      <title>Negative Viewer</title>
-    </Helmet>
-    <GoogleAnalytics trackingId="G-P62PGR2LDG" />
-    <GoogleTag trackingId="G-P62PGR2LDG" />
-    <AutoAdSense client="ca-pub-1069480025527043" />
-    <div className="retro-container">
-      <div className="crt-overlay">
-        <div className="scanline"></div>
-        <div className="crt-glow"></div>
-      </div>
+      <Helmet>
+        <title>Negative Viewer</title>
+      </Helmet>
+      <GoogleAnalytics trackingId="G-P62PGR2LDG" />
+      <GoogleTag trackingId="G-P62PGR2LDG" />
+      <AutoAdSense client="ca-pub-1069480025527043" />
+      <div className="retro-container">
+        <header className="app-header">
+          <h1 className="neon-text">NEGATIVE VIEWER</h1>
+        </header>
 
-      <div className="vhs-sticker">
-        <h1 className="neon-text">NEGATIVE VIEWER</h1>
-        
-        <div className="film-viewport">
-          <video 
-            ref={videoRef} 
-            className="hidden-video" 
-            playsInline 
-            muted 
-          />
-          <canvas 
-            ref={canvasRef}
-            className="negative-preview"
-          />
-        </div>
+        <main className="app-main">
+          <div className="crt-overlay">
+            <div className="scanline"></div>
+            <div className="crt-glow"></div>
+          </div>
+          <section className="film-section">
+            <video 
+              ref={videoRef} 
+              className="hidden-video" 
+              playsInline 
+              muted 
+            />
+            <canvas 
+              ref={canvasRef}
+              className="negative-preview"
+            />
+          </section>
+          <section className="controls">
+            <button 
+              onClick={startCamera}
+              className="retro-button"
+              disabled={isCameraOn}
+            >
+              {isCameraOn ? '◼ PREVIEWING' : '▶ START CAMERA'}
+            </button>
+          </section>
+        </main>
 
-        <button 
-          onClick={startCamera}
-          className="retro-button"
-          disabled={isCameraOn}
-        >
-          {isCameraOn ? '◼ PREVIEWING' : '▶ START CAMERA'}
-        </button>
+        <footer className="app-footer">
+          <p>© {new Date().getFullYear()} Negative Viewer. All rights reserved.</p>
+        </footer>
       </div>
-    </div>
     </>
   );
 }
