@@ -53,4 +53,53 @@
 .neon-text {
   color: var(--neon-pink);
   text-shadow: 0 0 10px var(--neon-pink),
-               0 0 20px var(--ne
+               0 0 20px var(--neon-pink),
+               0 0 30px var(--neon-pink);
+  font-family: 'Courier New', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+}
+
+/* 复古按钮样式 */
+.retro-button {
+  background: var(--electric-blue);
+  border: 3px solid var(--radioactive-green);
+  color: black;
+  padding: 1rem 2rem;
+  font-family: 'Arial Black', sans-serif;
+  text-shadow: 2px 2px 0 var(--radioactive-green);
+  transition: all 0.3s ease;
+}
+
+.retro-button:hover {
+  background: var(--radioactive-green);
+  border-color: var(--electric-blue);
+  transform: skew(-10deg);
+}
+
+/* 摄像头预览样式 */
+.camera-viewport {
+  border: 8px solid #ff44cc;
+  border-image: 
+    linear-gradient(
+      45deg,
+      var(--neon-pink),
+      var(--electric-blue)
+    ) 1;
+  margin: 2rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.film-preview {
+  filter: 
+    contrast(1.2)
+    sepia(0.3)
+    saturate(1.5);
+  width: 100%;
+  background: black;
+}
+
+.hidden-video {
+  display: none;
+}
