@@ -91,8 +91,8 @@ function App() {
   return (
     <>
       {/* React 19 直接支持 <title> 和 <meta> */}
-      <title>Negative Viewer</title>
-      <meta name="description" content="A powerful negative film viewer that inverts colors in real-time using your webcam." />
+      <title>Real-Time Online Negative Film Viewer | Convert Film to Digital Instantly</title>
+      <meta name="description" content="Convert negative film into digital images instantly with this real-time color inverter. Use your webcam to preview and enhance your negatives online." />
 
       {/* Google Services */}
       <GoogleAnalytics trackingId="G-P62PGR2LDG" />
@@ -116,11 +116,13 @@ function App() {
                 className="hidden-video" 
                 playsInline 
                 muted 
+                aria-label="Live camera feed for negative film conversion"
               />
               
               <canvas 
                 ref={canvasRef}
                 className="negative-preview"
+                aria-label="Processed image preview after negative color inversion"
               />
             </div>
           </section>
