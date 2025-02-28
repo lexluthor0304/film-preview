@@ -103,10 +103,7 @@
 }
 
 .hidden-video {
-  position: absolute;
-  top: -10000px;
-  left: -10000px;
-  opacity: 0;
+  display: none;
 }
 
 .film-viewport::after {
