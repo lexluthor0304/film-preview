@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import './App.css';
 import { Helmet } from "react-helmet";
 import AutoAdSense from "./AutoAdSense";
+import GoogleTag from "./GoogleTag";
 
 function App() {
   const videoRef = useRef(null);
@@ -92,6 +93,7 @@ function App() {
     <Helmet>
       <title>Negative Viewer</title>
     </Helmet>
+    <GoogleTag trackingId="G-P62PGR2LDG" />
     <AutoAdSense client="ca-pub-1069480025527043" />
     <div className="retro-container">
       <div className="crt-overlay">
