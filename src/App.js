@@ -79,12 +79,13 @@ function App() {
 
   // 清理资源
   useEffect(() => {
+    const videoEl = videoRef.current;
     return () => {
       if (animationFrameRef.current) {
         cancelAnimationFrame(animationFrameRef.current);
       }
-      if (videoRef.current?.srcObject) {
-        videoRef.current.srcObject.getTracks().forEach(track => track.stop());
+      if (videoEl?.srcObject) {
+        videoEl.srcObject.getTracks().forEach(track => track.stop());
       }
     };
   }, []);
