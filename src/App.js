@@ -139,9 +139,12 @@ function App() {
 
   // 负片转换
   const invertColors = (imageData) => {
-    const data = new Uint32Array(imageData.data.buffer);
-    for (let i = 0; i < data.length; i++) {
-      data[i] = (~data[i] & 0x00ffffff) | (data[i] & 0xff000000);
+    const d = imageData.data;
+    for (let i = 0; i < d.length; i += 4) {
+      d[i] = 255 - d[i];       // Red
+      d[i + 1] = 255 - d[i + 1]; // Green
+      d[i + 2] = 255 - d[i + 2]; // Blue
+      // d[i+3] 为 Alpha，不变
     }
     return imageData;
   };
