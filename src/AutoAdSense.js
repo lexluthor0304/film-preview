@@ -1,15 +1,16 @@
+// AutoAdSense.js
 import { useEffect } from "react";
 import { Helmet } from "react-helmet";
 
 const AutoAdSense = ({ client }) => {
   useEffect(() => {
-    // 确保 Google Ads 代码已经加载
-    try {
-      if (window.adsbygoogle) {
+    if (window.adsbygoogle && !window.adsbygoogle.__hasPushed) {
+      try {
         window.adsbygoogle.push({});
+        window.adsbygoogle.__hasPushed = true;
+      } catch (e) {
+        console.error("AdSense error:", e);
       }
-    } catch (e) {
-      console.error("AdSense error:", e);
     }
   }, []);
 
