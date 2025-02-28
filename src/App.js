@@ -109,16 +109,19 @@ function App() {
             <div className="crt-glow"></div>
           </div>
           <section className="film-section">
+          <div className="film-viewport">
             <video 
               ref={videoRef} 
               className="hidden-video" 
               playsInline 
               muted 
             />
+            
             <canvas 
               ref={canvasRef}
               className="negative-preview"
             />
+            </div>
           </section>
           <section className="controls">
             <button 
