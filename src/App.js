@@ -5,6 +5,8 @@ import { Helmet } from "react-helmet";
 import AutoAdSense from "./AutoAdSense";
 import GoogleTag from "./GoogleTag";
 import GoogleAnalytics from "./GoogleAnalytics";
+import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 
 function App() {
   const videoRef = useRef(null);
@@ -97,6 +99,8 @@ function App() {
     <GoogleAnalytics trackingId="G-P62PGR2LDG" />
     <GoogleTag trackingId="G-P62PGR2LDG" />
     <AutoAdSense client="ca-pub-1069480025527043" />
+    <Analytics />
+    <SpeedInsights />
     <div className="retro-container">
       <div className="crt-overlay">
         <div className="scanline"></div>
