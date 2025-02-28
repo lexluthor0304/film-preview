@@ -10,11 +10,11 @@ function App() {
 
   // 负片转换核心逻辑
   const invertColors = (imageData) => {
-    const data = imageData.data;
-    const uint32 = new Uint32Array(data.buffer);
-    
-    for (let i = 0; i < uint32.length; i++) {
-      uint32[i] = (~uint32[i] & 0x00ffffff) | (uint32[i] & 0xff000000);
+    const d = imageData.data;
+    for (let i = 0; i < d.length; i += 4) {
+      d[i] = 255 - d[i];       // Red
+      d[i + 1] = 255 - d[i + 1]; // Green
+      d[i + 2] = 255 - d[i + 2]; // Blue
     }
     return imageData;
   };
