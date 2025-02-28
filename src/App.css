@@ -1,4 +1,4 @@
-/* 修复后的完整样式 */
+/* src/App.css */
 :root {
   --neon-pink: #ff44cc;
   --electric-blue: #00f3ff;
@@ -7,13 +7,9 @@
 }
 
 .retro-container {
-  background: linear-gradient(
-    45deg,
-    var(--vhs-bg) 0%,
-    #000033 100%
-  );
+  background: linear-gradient(45deg, var(--vhs-bg) 0%, #000033 100%);
   min-height: 100vh;
-  padding: 2rem;
+  padding: 1rem;
   position: relative;
   overflow: hidden;
 }
@@ -30,22 +26,22 @@
     rgba(0, 0, 0, 0.15) 1px,
     transparent 1px,
     transparent 2px
-  ); /* 修复这里的分号 */
+  );
   pointer-events: none;
   z-index: 999;
 }
 
 .scanline {
   width: 100%;
-  height: 4px;
+  height: 2px;
   background: rgba(0, 255, 0, 0.1);
-  animation: scan 4s linear infinite;
+  animation: scan 3s linear infinite;
 }
 
 @keyframes scan {
   0% { transform: translateY(-100%); }
   100% { transform: translateY(100vh); }
-} /* 确保动画定义闭合 */
+}
 
 .neon-text {
   color: var(--neon-pink);
@@ -55,6 +51,8 @@
   font-family: 'Courier New', monospace;
   text-transform: uppercase;
   letter-spacing: 0.2em;
+  text-align: center;
+  margin: 1rem 0;
 }
 
 .retro-button {
@@ -63,66 +61,51 @@
   color: black;
   padding: 1rem 2rem;
   font-family: 'Arial Black', sans-serif;
-  text-shadow: 2px 2px 0 var(--radioactive-green);
+  text-shadow: 1px 1px 0 var(--radioactive-green);
   transition: all 0.3s ease;
-} /* 确保按钮样式闭合 */
+  display: block;
+  margin: 1rem auto;
+  cursor: pointer;
+}
 
 .retro-button:hover {
   background: var(--radioactive-green);
   border-color: var(--electric-blue);
-  transform: skew(-10deg);
+  transform: skew(-5deg);
 }
 
-.camera-viewport {
-  border: 8px solid #ff44cc;
-  border-image: linear-gradient(
+.retro-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.film-viewport {
+  border: 15px solid #2a2a2a;
+  background: repeating-linear-gradient(
     45deg,
-    var(--neon-pink),
-    var(--electric-blue)
-  ) 1;
-  margin: 2rem 0;
+    #000 0px,
+    #000 10px,
+    #333 10px,
+    #333 20px
+  );
+  box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+  margin: 1rem auto;
+  max-width: 90%;
   position: relative;
   overflow: hidden;
-} /* 修复渐变语法 */
+}
 
-.film-preview {
-  filter: contrast(1.2)
-          sepia(0.3)
-          saturate(1.5);
+.negative-preview {
+  filter: contrast(1.8) brightness(0.7) saturate(1.2);
+  mix-blend-mode: multiply;
   width: 100%;
-  background: black;
+  display: block;
 }
 
 .hidden-video {
   display: none;
 }
 
-/* 新增胶片边框效果 */
-.film-viewport {
-  border: 15px solid #2a2a2a;
-  background: 
-    repeating-linear-gradient(
-      45deg,
-      #000 0px,
-      #000 10px,
-      #333 10px,
-      #333 20px
-    );
-  box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
-  margin: 1rem;
-  position: relative;
-}
-
-/* 负片预览特效 */
-.negative-preview {
-  filter: 
-    contrast(1.8) 
-    brightness(0.7) 
-    saturate(1.2);
-  mix-blend-mode: multiply;
-}
-
-/* 添加胶片颗粒效果 */
 .film-viewport::after {
   content: "";
   position: absolute;
@@ -133,4 +116,19 @@
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
   opacity: 0.15;
   pointer-events: none;
+}
+
+.crt-glow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(0,255,0,0.1) 0%, transparent 70%);
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from { opacity: 0.3; }
+  to { opacity: 0.7; }
 }
