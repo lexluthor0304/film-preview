@@ -4,50 +4,31 @@ import './App.css';
 function App() {
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
+
   const [error, setError] = useState('');
   const [isCameraStarted, setIsCameraStarted] = useState(false);
 
   /**
-   * 多重回退：先尝试 environment -> 再尝试 user -> 再尝试 default
+   * 点击“开始预览”后，获取摄像头流（仅使用最基本的 { video: true }）
    */
-  const getCameraStream = async () => {
-    // 尝试顺序
-    const constraintsList = [
-      { video: { facingMode: 'environment' }, audio: false },
-      { video: { facingMode: 'user' }, audio: false },
-      { video: true, audio: false },
-    ];
-
-    for (let i = 0; i < constraintsList.length; i++) {
-      const constraints = constraintsList[i];
-      try {
-        console.log('尝试 getUserMedia: ', constraints);
-        const stream = await navigator.mediaDevices.getUserMedia(constraints);
-        // 检查是否有可用的视频轨道
-        const tracks = stream.getVideoTracks();
-        if (!tracks.length) {
-          console.warn('没有找到 video track，继续回退...');
-          continue; // 尝试下一个约束
-        }
-        // 如果拿到有效 track，就返回 stream
-        console.log('成功获取摄像头流: ', constraints);
-        return stream;
-      } catch (err) {
-        console.warn(`获取摄像头流失败 (${JSON.stringify(constraints)}): `, err);
-        // 继续下一个约束
-      }
-    }
-
-    // 所有约束都失败，抛出错误
-    throw new Error('无法获取任何可用的摄像头流');
-  };
-
   const initCamera = async () => {
     try {
-      const stream = await getCameraStream();
+      console.log('尝试获取摄像头流: { video: true, audio: false }');
+      const stream = await navigator.mediaDevices.getUserMedia({
+        video: true,
+        audio: false,
+      });
+      // 检查是否存在 video track
+      const tracks = stream.getVideoTracks();
+      if (!tracks.length) {
+        throw new Error('没有可用的视频轨道');
+      }
+      console.log('成功获取摄像头流');
+
+      // 将流设置给 video
       if (videoRef.current) {
         videoRef.current.srcObject = stream;
-        await videoRef.current.play(); // 尝试播放
+        await videoRef.current.play();
       }
       setIsCameraStarted(true);
     } catch (err) {
@@ -57,7 +38,7 @@ function App() {
   };
 
   /**
-   * 视频就绪后，开始帧处理
+   * 在视频成功播放后，每帧将其绘制到 canvas 上并交换 R / B 通道
    */
   useEffect(() => {
     if (!isCameraStarted) return;
@@ -66,38 +47,25 @@ function App() {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
 
-    // 调试用事件监听
-    const onLoadedMetadata = () => {
-      console.log(
-        'loadedmetadata: videoWidth =',
-        video.videoWidth,
-        ', videoHeight =',
-        video.videoHeight
-      );
+    // 当视频的元数据加载完成后，可读取视频宽高
+    const handleLoadedMetadata = () => {
+      console.log('loadedmetadata:', video.videoWidth, 'x', video.videoHeight);
     };
-    const onLoadedData = () => {
-      console.log('loadeddata: 视频数据加载完毕');
-    };
-    const onPlaying = () => {
-      console.log('playing: 视频开始播放');
-    };
+    video.addEventListener('loadedmetadata', handleLoadedMetadata);
 
-    video.addEventListener('loadedmetadata', onLoadedMetadata);
-    video.addEventListener('loadeddata', onLoadedData);
-    video.addEventListener('playing', onPlaying);
-
-    // 帧循环处理
+    // 帧处理循环
     let frameId;
     const processFrame = () => {
       if (video.paused || video.ended) {
         frameId = requestAnimationFrame(processFrame);
         return;
       }
-      // 若视频宽高尚未准备好，先等待下一帧
+      // 如果视频宽高还没准备好，就等下一帧
       if (video.videoWidth === 0 || video.videoHeight === 0) {
         frameId = requestAnimationFrame(processFrame);
         return;
       }
+
       // 同步 canvas 尺寸
       canvas.width = video.videoWidth;
       canvas.height = video.videoHeight;
@@ -109,23 +77,21 @@ function App() {
       const frame = ctx.getImageData(0, 0, canvas.width, canvas.height);
       const data = frame.data;
       for (let i = 0; i < data.length; i += 4) {
-        const temp = data[i];
-        data[i] = data[i + 2];
-        data[i + 2] = temp;
+        const temp = data[i];       // R
+        data[i] = data[i + 2];      // B -> R
+        data[i + 2] = temp;         // R -> B
       }
       ctx.putImageData(frame, 0, 0);
 
       frameId = requestAnimationFrame(processFrame);
     };
 
-    // 启动帧循环
+    // 在用户点击并 play 成功后，开始动画帧循环
     frameId = requestAnimationFrame(processFrame);
 
-    // 卸载时清理事件与帧循环
+    // 卸载时清理
     return () => {
-      video.removeEventListener('loadedmetadata', onLoadedMetadata);
-      video.removeEventListener('loadeddata', onLoadedData);
-      video.removeEventListener('playing', onPlaying);
+      video.removeEventListener('loadedmetadata', handleLoadedMetadata);
       cancelAnimationFrame(frameId);
     };
   }, [isCameraStarted]);
@@ -141,7 +107,7 @@ function App() {
           </button>
         ) : (
           <div className="video-container">
-            {/* 调试时让 video 可见，以确认摄像头画面确实捕获到 */}
+            {/* 让 video 可见，方便确认是否真正有图像 */}
             <video
               ref={videoRef}
               className="debug-video"
@@ -149,7 +115,6 @@ function App() {
               muted
               autoPlay
             />
-            {/* 显示处理后的 canvas */}
             <canvas ref={canvasRef} className="preview-canvas" />
           </div>
         )}
