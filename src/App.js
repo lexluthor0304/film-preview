@@ -167,7 +167,7 @@ function App() {
       <div className="vhs-sticker"></div>
       <h1 className="neon-text">NEGATIVE VIEWER</h1>
       <div className="camera-viewport">
-        <video ref={videoRef} className="hidden-video" playsInline muted />
+        <video ref={videoRef} className="hidden-video" playsInline muted crossOrigin="anonymous"/>
         <canvas ref={canvasRef} className="negative-preview" />
       </div>
 
