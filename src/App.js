@@ -4,6 +4,7 @@ import './App.css';
 import { Helmet } from "react-helmet";
 import AutoAdSense from "./AutoAdSense";
 import GoogleTag from "./GoogleTag";
+import GoogleAnalytics from "./GoogleAnalytics";
 
 function App() {
   const videoRef = useRef(null);
@@ -93,6 +94,7 @@ function App() {
     <Helmet>
       <title>Negative Viewer</title>
     </Helmet>
+    <GoogleAnalytics trackingId="G-P62PGR2LDG" />
     <GoogleTag trackingId="G-P62PGR2LDG" />
     <AutoAdSense client="ca-pub-1069480025527043" />
     <div className="retro-container">
