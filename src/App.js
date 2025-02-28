@@ -100,8 +100,10 @@ function App() {
 
       if (videoRef.current) {
         videoRef.current.srcObject = stream;
-        await videoRef.current.play();
-        initializeCanvas();
+        videoRef.current.onloadedmetadata = async () => {
+          await videoRef.current.play();
+          initializeCanvas();
+        };
       }
     } catch (err) {
       console.error('Camera initialization failed:', err);
