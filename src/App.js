@@ -1,5 +1,6 @@
 import { useRef, useState, useEffect } from 'react';
 import './App.css';
+import Adsense from './Adsense';
 
 function CameraControls({ track, onUpdate }) {
   const [exposure, setExposure] = useState(0);
@@ -182,6 +183,9 @@ function App() {
       <button onClick={startCamera} className="retro-button">
         Start Camera
       </button>
+      <div className="ads-container">
+        <Adsense />
+      </div>
     </div>
   );
 }
