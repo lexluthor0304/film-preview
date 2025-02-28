@@ -1,70 +1,66 @@
-# Getting Started with Create React App
+# Negative Viewer
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Negative Viewer is a web-based application that uses a webcam to display a live negative filter effect in real-time. It also provides controls for adjusting exposure and toggling between manual and continuous focus modes.
 
-## Available Scripts
+## Features
+- **Live Negative Effect**: Applies a real-time negative filter to the video stream.
+- **Exposure Control**: Adjusts exposure compensation dynamically.
+- **Focus Mode Switching**: Switch between manual and continuous focus.
+- **Retro Aesthetic UI**: Styled with CRT overlay and VHS sticker for a vintage feel.
+- **Adsense Integration**: Includes ad placement for monetization.
 
-In the project directory, you can run:
+## Demo
+A live demo of the application can be set up by running the project locally.
 
-### `npm start`
+## Installation
+### Prerequisites
+- Node.js and npm installed
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Steps
+1. Clone the repository:
+   ```sh
+   git clone https://github.com/yourusername/negative-viewer.git
+   cd negative-viewer
+   ```
+2. Install dependencies:
+   ```sh
+   npm install
+   ```
+3. Start the application:
+   ```sh
+   npm start
+   ```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Usage
+1. Click the **Start Camera** button to initialize the webcam.
+2. Adjust exposure using the slider.
+3. Toggle between **Manual Focus** and **Auto Focus**.
+4. View the negative effect in real-time on the canvas.
 
-### `npm test`
+## Technologies Used
+- **React**: Component-based UI.
+- **WebRTC API**: Accessing camera input.
+- **CSS**: Styled for a retro visual aesthetic.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## File Structure
+```
+📂 negative-viewer
+├── 📁 src
+│   ├── 📄 App.js          # Main application logic
+│   ├── 📄 CameraControls.js # Camera control component
+│   ├── 📄 Adsense.js      # Ad integration
+│   ├── 📄 App.css         # Styling
+│   └── ...other files
+├── 📄 package.json        # Dependencies and scripts
+└── 📄 README.md           # Documentation
+```
 
-### `npm run build`
+## Contributing
+Feel free to fork the project and submit pull requests for improvements.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## License
+This project is licensed under the MIT License.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Author
+[Your Name](https://github.com/yourusername)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
