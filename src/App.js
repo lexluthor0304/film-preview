@@ -2,6 +2,7 @@
 import { useEffect, useRef, useState } from 'react';
 import './App.css';
 import { Helmet } from "react-helmet";
+import AutoAdSense from "./AutoAdSense";
 
 function App() {
   const videoRef = useRef(null);
@@ -90,9 +91,8 @@ function App() {
     <>
     <Helmet>
       <title>Negative Viewer</title>
-      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1069480025527043"
-     crossorigin="anonymous"></script>
     </Helmet>
+    <AutoAdSense client="ca-pub-1069480025527043" />
     <div className="retro-container">
       <div className="crt-overlay">
         <div className="scanline"></div>
