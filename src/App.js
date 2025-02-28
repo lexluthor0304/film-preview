@@ -94,6 +94,7 @@ function App() {
     <>
       <Helmet>
         <title>Negative Viewer</title>
+        <meta name="description" content="A powerful negative film viewer that inverts colors in real-time using your webcam."></meta>
       </Helmet>
       <GoogleAnalytics trackingId="G-P62PGR2LDG" />
       <GoogleTag trackingId="G-P62PGR2LDG" />
@@ -135,7 +136,7 @@ function App() {
         </main>
 
         <footer className="app-footer">
-          <p>© {new Date().getFullYear()} Negative Viewer. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Negative Viewer. tokugai.com All rights reserved.</p>
         </footer>
       </div>
     </>
