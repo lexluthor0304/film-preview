@@ -1,7 +1,5 @@
-// src/App.js
 import { useEffect, useRef, useState } from 'react';
 import './App.css';
-import { Helmet } from "react-helmet";
 import AutoAdSense from "./AutoAdSense";
 import GoogleTag from "./GoogleTag";
 import GoogleAnalytics from "./GoogleAnalytics";
@@ -92,13 +90,15 @@ function App() {
 
   return (
     <>
-      <Helmet>
-        <title>Negative Viewer</title>
-        <meta name="description" content="A powerful negative film viewer that inverts colors in real-time using your webcam."></meta>
-      </Helmet>
+      {/* React 19 直接支持 <title> 和 <meta> */}
+      <title>Negative Viewer</title>
+      <meta name="description" content="A powerful negative film viewer that inverts colors in real-time using your webcam." />
+
+      {/* Google Services */}
       <GoogleAnalytics trackingId="G-P62PGR2LDG" />
       <GoogleTag trackingId="G-P62PGR2LDG" />
       <AutoAdSense client="ca-pub-1069480025527043" />
+
       <div className="retro-container">
         <header className="app-header">
           <h1 className="neon-text">NEGATIVE VIEWER</h1>
@@ -110,18 +110,18 @@ function App() {
             <div className="crt-glow"></div>
           </div>
           <section className="film-section">
-          <div className="film-viewport">
-            <video 
-              ref={videoRef} 
-              className="hidden-video" 
-              playsInline 
-              muted 
-            />
-            
-            <canvas 
-              ref={canvasRef}
-              className="negative-preview"
-            />
+            <div className="film-viewport">
+              <video 
+                ref={videoRef} 
+                className="hidden-video" 
+                playsInline 
+                muted 
+              />
+              
+              <canvas 
+                ref={canvasRef}
+                className="negative-preview"
+              />
             </div>
           </section>
           <section className="controls">

@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import { Helmet } from "react-helmet";
 
 const AutoAdSense = ({ client }) => {
   useEffect(() => {
@@ -15,9 +14,10 @@ const AutoAdSense = ({ client }) => {
   }, [client]);
 
   return (
-    <Helmet>
-      <script async data-ad-client={client}></script>
-    </Helmet>
+    <>
+      {/* React 19 直接支持 <meta> 等 HTML 元数据 */}
+      <meta name="google-adsense-client" content={client} />
+    </>
   );
 };
 
