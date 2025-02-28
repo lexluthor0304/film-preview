@@ -10,7 +10,7 @@ function App() {
   // 用户点击按钮后初始化摄像头
   const initCamera = async () => {
     try {
-      // 尝试使用后置摄像头（部分浏览器如 Safari 可能不支持此约束）
+      // 尝试使用后置摄像头
       const stream = await navigator.mediaDevices.getUserMedia({
         video: { facingMode: "environment" },
         audio: false,
@@ -44,40 +44,47 @@ function App() {
     }
   };
 
-  // 摄像头启动后实时处理视频帧，交换 R 与 B 通道
+  // 在摄像头启动且 video 播放后开始处理视频帧
   useEffect(() => {
     if (!isCameraStarted) return;
-
-    let animationFrameId;
+    const video = videoRef.current;
+    const canvas = canvasRef.current;
+    const ctx = canvas.getContext('2d');
+    
+    // 帧处理函数
     const processFrame = () => {
-      const video = videoRef.current;
-      const canvas = canvasRef.current;
-      if (video && canvas && video.readyState === video.HAVE_ENOUGH_DATA) {
-        const ctx = canvas.getContext('2d');
-        // 同步 canvas 尺寸为视频尺寸
-        canvas.width = video.videoWidth;
-        canvas.height = video.videoHeight;
-        // 绘制视频帧到 canvas
-        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-        // 获取当前帧数据
-        const frame = ctx.getImageData(0, 0, canvas.width, canvas.height);
-        const data = frame.data;
-
-        // 交换 R 与 B 通道
-        for (let i = 0; i < data.length; i += 4) {
-          let temp = data[i];       // 保存 R 通道
-          data[i] = data[i + 2];      // 将 B 赋给 R
-          data[i + 2] = temp;         // 将原 R 赋给 B
-          // G 通道保持不变
-        }
-        // 写回处理后的图像数据
-        ctx.putImageData(frame, 0, 0);
+      if (video.paused || video.ended) return;
+      
+      // 同步 canvas 尺寸为视频实际尺寸
+      canvas.width = video.videoWidth;
+      canvas.height = video.videoHeight;
+      
+      // 绘制视频帧
+      ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+      
+      // 获取像素数据并交换 R 与 B 通道
+      const frame = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      const data = frame.data;
+      for (let i = 0; i < data.length; i += 4) {
+        let temp = data[i];       // 保存 R 通道数据
+        data[i] = data[i + 2];      // 将 B 赋值给 R
+        data[i + 2] = temp;         // 将原 R 赋值给 B
       }
-      animationFrameId = requestAnimationFrame(processFrame);
+      ctx.putImageData(frame, 0, 0);
+      
+      requestAnimationFrame(processFrame);
     };
 
-    animationFrameId = requestAnimationFrame(processFrame);
-    return () => cancelAnimationFrame(animationFrameId);
+    // 当 video 开始播放后启动帧处理
+    const onPlay = () => {
+      requestAnimationFrame(processFrame);
+    };
+    video.addEventListener('play', onPlay);
+
+    // 清理事件监听器
+    return () => {
+      video.removeEventListener('play', onPlay);
+    };
   }, [isCameraStarted]);
 
   return (
@@ -92,14 +99,14 @@ function App() {
           </button>
         ) : (
           <div className="video-container">
-            {/* 隐藏的 video 元素仅作为数据源 */}
+            {/* 隐藏的 video 元素仅作数据源 */}
             <video
               ref={videoRef}
               style={{ display: 'none' }}
               playsInline
               muted
             />
-            {/* 显示经过处理的 canvas */}
+            {/* 用于显示处理后图像的 canvas */}
             <canvas ref={canvasRef} className="preview-canvas" />
           </div>
         )}
