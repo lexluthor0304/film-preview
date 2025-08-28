@@ -101,19 +101,15 @@ function App() {
 
       <div className="retro-container">
         <header className="app-header">
-          <h1 className="neon-text">NEGATIVE VIEWER</h1>
+          <h1>NEGATIVE VIEWER</h1>
         </header>
 
         <main className="app-main">
-          <div className="crt-overlay">
-            <div className="scanline"></div>
-            <div className="crt-glow"></div>
-          </div>
           <section className="film-section">
             <div className="film-viewport">
-              <video 
-                ref={videoRef} 
-                className="hidden-video" 
+              <video
+                ref={videoRef}
+                className="hidden-video"
                 playsInline 
                 muted 
                 aria-label="Live camera feed for negative film conversion"
@@ -127,9 +123,8 @@ function App() {
             </div>
           </section>
           <section className="controls">
-            <button 
+            <button
               onClick={startCamera}
-              className="retro-button"
               disabled={isCameraOn}
             >
               {isCameraOn ? '◼ PREVIEWING' : '▶ START CAMERA'}

@@ -1,121 +1,40 @@
 :root {
-  --neon-pink: #ff44cc;
-  --electric-blue: #00f3ff;
-  --radioactive-green: #39ff14;
-  --vhs-bg: #0a0a2e;
+  --bg-color: #f5f5f5;
+  --text-color: #333;
+  --primary-color: #007bff;
 }
 
 .retro-container {
-  background: linear-gradient(45deg, var(--vhs-bg) 0%, #000033 100%);
   min-height: 100vh;
-  padding: 1rem;
-  position: relative;
-  overflow: hidden;
+  background: var(--bg-color);
+  color: var(--text-color);
+  display: flex;
+  flex-direction: column;
 }
 
-.crt-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: repeating-linear-gradient(
-    0deg,
-    rgba(0, 0, 0, 0.15) 0px,
-    rgba(0, 0, 0, 0.15) 1px,
-    transparent 1px,
-    transparent 2px
-  );
-  pointer-events: none;
-  z-index: 999;
-}
-
-.scanline {
-  width: 100%;
-  height: 2px;
-  background: rgba(0, 255, 0, 0.1);
-  animation: scan 3s linear infinite;
-}
-
-@keyframes scan {
-  0% { transform: translateY(-100%); }
-  100% { transform: translateY(100vh); }
-}
-
-.neon-text {
-  color: var(--neon-pink);
-  text-shadow: 0 0 10px var(--neon-pink),
-               0 0 20px var(--neon-pink),
-               0 0 30px var(--neon-pink);
-  font-family: 'Courier New', monospace;
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
+.app-header,
+.app-footer {
   text-align: center;
-  margin: 1rem 0;
+  padding: 1rem 0;
 }
 
-.retro-button {
-  background: var(--electric-blue);
-  border: 3px solid var(--radioactive-green);
-  color: black;
-  padding: 1rem 2rem;
-  font-family: 'Arial Black', sans-serif;
-  text-shadow: 1px 1px 0 var(--radioactive-green);
-  transition: all 0.3s ease;
-  display: block;
-  margin: 1rem auto;
-  cursor: pointer;
-}
-
-.retro-button:hover {
-  background: var(--radioactive-green);
-  border-color: var(--electric-blue);
-  transform: skew(-5deg);
-}
-
-.retro-button:disabled {
-  opacity: 0.7;
-  cursor: not-allowed;
+.app-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
 }
 
 .film-viewport {
-  border: 15px solid #2a2a2a;
-  margin: 1rem auto;
-  max-width: 90%;
-  position: relative; /* 保持定位，创建堆叠上下文 */
-  overflow: hidden;
-  background: #000; /* 黑色背景 */
-}
-
-/* film-viewport 伪元素，设置 z-index 较低 */
-.film-viewport::before,
-.film-viewport::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
-  height: 100%;
-  z-index: 1; /* 低于 canvas 的 z-index */
-  pointer-events: none;
+  max-width: 600px;
+  margin: 1rem 0;
+  border: 2px solid #ccc;
+  background: #000;
 }
 
-.film-viewport::before {
-  /* 利用 SVG 滤镜生成静态噪点图像 */
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-  opacity: 0.2;
-}
-
-.film-viewport::after {
-  /* 利用 SVG 滤镜生成静态噪点图像 */
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-  opacity: 0.15;
-}
-
-/* 确保摄像头画面（canvas）处于上层 */
 .negative-preview {
-  position: relative;
-  z-index: 2;
   width: 100%;
   display: block;
 }
@@ -124,26 +43,14 @@
   display: none;
 }
 
-.crt-glow {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(circle, rgba(0,255,0,0.1) 0%, transparent 70%);
-  animation: glow 2s ease-in-out infinite alternate;
+.controls button {
+  padding: 0.5rem 1rem;
+  border: 1px solid #ccc;
+  background: #eee;
+  cursor: pointer;
 }
 
-@keyframes glow {
-  from { opacity: 0.3; }
-  to { opacity: 0.7; }
-}
-
-/* 新增 footer 样式，确保其位于 overlay 上方 */
-.app-footer {
-  position: relative;
-  z-index: 1000;
-  text-align: center;
-  padding: 1rem 0;
-  color: white;
+.controls button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
