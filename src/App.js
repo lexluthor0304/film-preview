@@ -10,6 +10,16 @@ function App() {
   const [isCameraOn, setIsCameraOn] = useState(false);
   const animationFrameRef = useRef();
 
+  const capturePhoto = () => {
+    if (!canvasRef.current) return;
+    const dataURL = canvasRef.current.toDataURL('image/png');
+    const link = document.createElement('a');
+    link.href = dataURL;
+    link.download = 'photo.png';
+    link.click();
+    alert('Photo saved!');
+  };
+
   // 负片转换核心逻辑
   const invertColors = (imageData) => {
     const d = imageData.data;
@@ -128,6 +138,12 @@ function App() {
               disabled={isCameraOn}
             >
               {isCameraOn ? '◼ PREVIEWING' : '▶ START CAMERA'}
+            </button>
+            <button
+              onClick={capturePhoto}
+              disabled={!isCameraOn}
+            >
+              📸 TAKE PHOTO
             </button>
           </section>
         </main>
