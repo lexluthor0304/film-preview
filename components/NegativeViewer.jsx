@@ -26,6 +26,21 @@ export default function NegativeViewer() {
   const [gains, setGains] = useState(IDENTITY_GAINS);
   const [sampleSource, setSampleSource] = useState("none"); // "none" | "auto" | "manual"
   const [armSample, setArmSample] = useState(false);
+  const [isFullscreen, setIsFullscreen] = useState(false);
+
+  useEffect(() => {
+    if (!isFullscreen) return;
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const onKey = (e) => {
+      if (e.key === "Escape") setIsFullscreen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => {
+      document.body.style.overflow = prevOverflow;
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [isFullscreen]);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -185,7 +200,7 @@ export default function NegativeViewer() {
   if (sampleSource === "manual") statusLabel = "Color cast: corrected (sampled)";
 
   return (
-    <div className="viewer">
+    <div className={`viewer${isFullscreen ? " viewer--fullscreen" : ""}`}>
       {insecureContext && (
         <p className="viewer__notice" role="status">
           <strong>Camera access requires HTTPS.</strong> Open this page over HTTPS
@@ -250,6 +265,14 @@ export default function NegativeViewer() {
             Reset color cast
           </button>
         )}
+        <button
+          type="button"
+          onClick={() => setIsFullscreen((v) => !v)}
+          className="btn"
+          aria-pressed={isFullscreen}
+        >
+          {isFullscreen ? "Exit fullscreen" : "Fullscreen"}
+        </button>
       </div>
       {showColorControls && (
         <p className="viewer__status" role="status">
