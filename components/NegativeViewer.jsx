@@ -8,6 +8,17 @@ export default function NegativeViewer() {
   const animationFrameRef = useRef(0);
   const [isCameraOn, setIsCameraOn] = useState(false);
   const [error, setError] = useState("");
+  const [insecureContext, setInsecureContext] = useState(false);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const host = window.location.hostname;
+    const isLocalHost =
+      host === "localhost" || host === "127.0.0.1" || host === "::1";
+    if (!window.isSecureContext && !isLocalHost) {
+      setInsecureContext(true);
+    }
+  }, []);
 
   const invertColors = (imageData) => {
     const d = imageData.data;
@@ -94,6 +105,15 @@ export default function NegativeViewer() {
 
   return (
     <div className="viewer">
+      {insecureContext && (
+        <p className="viewer__notice" role="status">
+          <strong>Camera access requires HTTPS.</strong> Open this page over HTTPS
+          (or via <code>localhost</code>) to use the live viewer. The deployed site
+          at <code>negativeviewer.tokugai.com</code> already uses HTTPS — this notice
+          only appears when the page is served over plain HTTP from a non-localhost
+          host (typically a LAN dev server).
+        </p>
+      )}
       <div className="viewer__viewport">
         <video
           ref={videoRef}
@@ -120,7 +140,7 @@ export default function NegativeViewer() {
         <button
           type="button"
           onClick={startCamera}
-          disabled={isCameraOn}
+          disabled={isCameraOn || insecureContext}
           className="btn btn--primary"
         >
           {isCameraOn ? "● Live" : "▶ Start camera"}
