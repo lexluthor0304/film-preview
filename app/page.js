@@ -77,13 +77,13 @@ export default function HomePage() {
       <section className="hero container">
         <p className="hero__eyebrow">Free · Browser-based · No upload</p>
         <h1>Online film negative viewer that turns negatives into positives in real time</h1>
+        <NegativeViewer />
         <p className="hero__lede">
           Hold a film negative in front of your phone or laptop camera. Negative Viewer
           inverts the colors live, so you can preview 35mm, 120, and 4×5 negatives
           instantly — no scanner, no app to install, and no images uploaded anywhere.
         </p>
-        <NegativeViewer />
-        <p style={{ marginTop: "1rem", color: "var(--ink-soft)", fontSize: "0.95rem" }}>
+        <p className="hero__after-lede">
           New here? Read the{" "}
           <Link href="/how-to-use">30-second how-to guide</Link> or jump to the{" "}
           <Link href="/faq">FAQ</Link>.
