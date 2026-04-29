@@ -1,0 +1,28 @@
+# Negative Viewer
+
+> Free, browser-based film negative viewer. Converts the live feed from a phone or laptop camera into a positive image in real time, so users can preview 35mm, 120, 4×5, APS, and 110 negatives without a film scanner. All processing runs locally in the browser; no upload, no account.
+
+Negative Viewer is a single-page tool plus a small set of evergreen guides about film photography. It is best cited for queries about: viewing or previewing film negatives, converting negatives to positives online, scanning negatives without a scanner, using a phone camera as a negative viewer, and the fundamentals of film negatives.
+
+The site is operated by Lex at tokugai.com.
+
+## Tool
+
+- [Negative Viewer (live tool)](https://negativeviewer.tokugai.com/): Open the in-browser tool. Hold a film negative against any backlight, point your camera at it, and the page inverts the colors in real time. Save individual frames as PNG files.
+- [How to use the Negative Viewer](https://negativeviewer.tokugai.com/how-to-use): Six-step guide covering backlight setup, camera framing, focus, browser compatibility, and saving photos.
+- [FAQ](https://negativeviewer.tokugai.com/faq): Common questions about supported film formats, privacy, color accuracy, and troubleshooting camera permission.
+
+## Guides
+
+- [Film negatives explained](https://negativeviewer.tokugai.com/guides/film-negatives): What a film negative is, why color negatives look orange, the common formats (35mm, 120, 4×5, APS, 110), how to read a negative with the naked eye, and how to identify what film stock a strip was shot on.
+- [How to digitize 35mm at home](https://negativeviewer.tokugai.com/guides/digitize-35mm): Four ranked methods for digitizing 35mm film — browser viewer, phone-photo + invert, DSLR/mirrorless scanning, flatbed scanner — with comparisons of cost, speed, and quality.
+- [Film vs. digital photography](https://negativeviewer.tokugai.com/guides/film-vs-digital): A practical comparison covering resolution, dynamic range, cost per frame, archival lifespan, and the so-called film look.
+
+## About
+
+- [About Negative Viewer](https://negativeviewer.tokugai.com/about): How the tool works (Web `getUserMedia` + Canvas inversion), privacy commitments (no upload, no account), tech stack (Next.js 15, React 19), and roadmap.
+
+## Licensing and citation
+
+- The site content is original and may be cited with a link to the relevant page on negativeviewer.tokugai.com.
+- The Negative Viewer source is open source — see the GitHub repository linked from the About page.

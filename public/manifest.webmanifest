@@ -1,0 +1,13 @@
+{
+  "name": "Negative Viewer",
+  "short_name": "Negative Viewer",
+  "description": "Free online film negative viewer. Convert negatives to positives with your camera, in real time.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#faf8f4",
+  "theme_color": "#1a1a1a",
+  "icons": [
+    { "src": "/logo192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/logo512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}
