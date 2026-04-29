@@ -125,6 +125,12 @@ export default function NegativeViewer() {
             canvas.height = videoEl.videoHeight;
           }
           setIsCameraOn(true);
+          if (
+            typeof window !== "undefined" &&
+            window.matchMedia("(max-width: 720px)").matches
+          ) {
+            setIsFullscreen(true);
+          }
           processVideo();
           if (pipelineRef.current) {
             autoSampleTimerRef.current = window.setTimeout(() => {
