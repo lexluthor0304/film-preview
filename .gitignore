@@ -87,6 +87,9 @@ web_modules/
 .next
 out
 
+# Self-signed certificates from `next dev --experimental-https`
+certificates
+
 # Nuxt.js build / generate output
 .nuxt
 dist
