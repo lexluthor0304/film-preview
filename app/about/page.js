@@ -111,9 +111,9 @@ export default function AboutPage() {
 
           <h2>Who built it</h2>
           <p>
-            Built and maintained by {siteConfig.author.name}, a developer based at{" "}
+            Built and maintained by {siteConfig.author.name}, a developer at{" "}
             <a href={siteConfig.publisher.url} rel="noopener noreferrer">
-              tokugai.com
+              {siteConfig.publisher.name}
             </a>
             . The project started as a tool for sorting through a box of family
             negatives and grew into a public site after a friend asked, "could you

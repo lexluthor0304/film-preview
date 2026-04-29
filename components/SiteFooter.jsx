@@ -33,7 +33,9 @@ export default function SiteFooter() {
           <ul>
             <li><Link href="/about">About this site</Link></li>
             <li>
-              <a href="https://tokugai.com" rel="noopener noreferrer">tokugai.com</a>
+              <a href={siteConfig.publisher.url} rel="noopener noreferrer">
+                {siteConfig.publisher.name}
+              </a>
             </li>
           </ul>
         </div>

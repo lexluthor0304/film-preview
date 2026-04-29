@@ -186,9 +186,8 @@ export default function DigitizeGuide() {
             "DSLR scanning" means photographing the backlit negative with a digital
             camera. With a 24 MP sensor and a true 1:1 macro lens, you'll capture
             more real detail than a $500 dedicated scanner — close to what a $2,000+
-            drum scanner gives. Tutorials from{" "}
-            <em>Negative Lab Pro</em> and the r/AnalogCommunity wiki cover this in
-            detail.
+            drum scanner gives. Tutorials on the r/AnalogCommunity wiki and YouTube
+            channels like Pushing Film cover the gear setup in detail.
           </p>
           <p>
             <strong>The minimum kit:</strong>
@@ -199,13 +198,30 @@ export default function DigitizeGuide() {
             <li>A copy stand <em>or</em> tripod with the camera pointed straight down</li>
             <li>A high-CRI light source (NEEWER 660 RGB or a Kaiser Slimlite are common)</li>
             <li>A film holder (Negative Supply, Lomography DigitaLIZA, or 3D-printed)</li>
-            <li>Inversion software: Negative Lab Pro (Lightroom plugin, paid) or free curves</li>
+            <li>
+              Inversion software: free curves in any RAW editor, or our free
+              browser tool{" "}
+              <a
+                href="https://negative-converter.tokugai.com/"
+                rel="noopener noreferrer"
+              >
+                Negative Converter
+              </a>{" "}
+              for one-click inversion with orange-mask correction
+            </li>
           </ul>
           <p>
             <strong>Workflow:</strong> shoot RAW, lock white balance to your light's
             color temperature, expose so the brightest part of the histogram (the
             unexposed film base) sits ~3 stops below clipping. Invert and color
-            correct in Lightroom or Negative Lab Pro.
+            correct in Lightroom, or drop the JPEG export into{" "}
+            <a
+              href="https://negative-converter.tokugai.com/"
+              rel="noopener noreferrer"
+            >
+              Negative Converter
+            </a>{" "}
+            for instant inversion plus orange-mask correction.
           </p>
           <p>
             <strong>Strengths:</strong> highest fidelity; you keep RAW originals
@@ -296,12 +312,19 @@ export default function DigitizeGuide() {
             </p>
           </div>
           <div className="faq__item">
-            <h3 className="faq__q">Should I invert with software or use Negative Lab Pro?</h3>
+            <h3 className="faq__q">What's the easiest way to invert and color-correct a digital scan?</h3>
             <p className="faq__a">
-              For occasional rolls, free curves in any editor is fine. If you're
-              digitizing dozens of rolls, Negative Lab Pro is worth the one-time fee
-              — it automates the white-balance correction for the orange mask and
-              has profiles for popular film stocks.
+              For occasional rolls, free curves in any photo editor is fine. For
+              everyday work, drop the camera-scan JPEG into{" "}
+              <a
+                href="https://negative-converter.tokugai.com/"
+                rel="noopener noreferrer"
+              >
+                Negative Converter
+              </a>{" "}
+              — a free browser tool that handles the orange-mask correction, lets
+              you fine-tune exposure and white balance, and exports a
+              full-resolution positive without uploading your image.
             </p>
           </div>
         </div>
