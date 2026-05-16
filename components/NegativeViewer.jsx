@@ -8,10 +8,12 @@ import {
   gainsAreIdentity,
 } from "@/lib/webgl-pipeline";
 import { autoSampleBase, manualSampleBase } from "@/lib/sample-base";
+import { getDictionary } from "@/lib/i18n";
 
 const AUTO_SAMPLE_DELAY_MS = 250;
 
-export default function NegativeViewer() {
+export default function NegativeViewer({ labels }) {
+  const t = labels || getDictionary("en").viewer;
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
   const animationFrameRef = useRef(0);
@@ -103,7 +105,7 @@ export default function NegativeViewer() {
     setError("");
     try {
       if (typeof navigator === "undefined" || !navigator.mediaDevices?.getUserMedia) {
-        setError("Camera access is not supported in this browser.");
+        setError(t.cameraUnsupported);
         return;
       }
       const stream = await navigator.mediaDevices.getUserMedia({
@@ -145,9 +147,7 @@ export default function NegativeViewer() {
       waitForSize();
     } catch (err) {
       console.error("Camera Error:", err);
-      setError(
-        "Could not start the camera. Make sure you granted permission and that you're on HTTPS."
-      );
+      setError(t.cameraError);
     }
   };
 
@@ -201,19 +201,15 @@ export default function NegativeViewer() {
   const isCorrected = !gainsAreIdentity(gains);
   const showColorControls = useGL && isCameraOn;
 
-  let statusLabel = "Color cast: uncorrected";
-  if (sampleSource === "auto") statusLabel = "Color cast: corrected (auto)";
-  if (sampleSource === "manual") statusLabel = "Color cast: corrected (sampled)";
+  let statusLabel = t.statusUncorrected;
+  if (sampleSource === "auto") statusLabel = t.statusAuto;
+  if (sampleSource === "manual") statusLabel = t.statusManual;
 
   return (
     <div className={`viewer${isFullscreen ? " viewer--fullscreen" : ""}`}>
       {insecureContext && (
         <p className="viewer__notice" role="status">
-          <strong>Camera access requires HTTPS.</strong> Open this page over HTTPS
-          (or via <code>localhost</code>) to use the live viewer. The deployed site
-          at <code>negativeviewer.tokugai.com</code> already uses HTTPS — this notice
-          only appears when the page is served over plain HTTP from a non-localhost
-          host (typically a LAN dev server).
+          {t.insecureNotice}
         </p>
       )}
       <div className="viewer__viewport">
@@ -222,19 +218,19 @@ export default function NegativeViewer() {
           className="viewer__video"
           playsInline
           muted
-          aria-label="Live camera feed for negative film conversion"
+          aria-label={t.videoAria}
         />
         <canvas
           ref={canvasRef}
           className={`viewer__canvas${armSample ? " viewer__canvas--sampling" : ""}`}
           onClick={handleCanvasClick}
-          aria-label="Processed image preview after negative color inversion"
+          aria-label={t.canvasAria}
         />
         {!isCameraOn && (
           <div className="viewer__placeholder" aria-hidden="true">
-            <p>Camera preview will appear here.</p>
+            <p>{t.placeholder}</p>
             <p className="viewer__placeholder-sub">
-              Your video never leaves this device — all processing runs in your browser.
+              {t.placeholderSub}
             </p>
           </div>
         )}
@@ -246,7 +242,7 @@ export default function NegativeViewer() {
           disabled={isCameraOn || insecureContext}
           className="btn btn--primary"
         >
-          {isCameraOn ? "● Live" : "▶ Start camera"}
+          {isCameraOn ? t.live : t.startCamera}
         </button>
         <button
           type="button"
@@ -254,7 +250,7 @@ export default function NegativeViewer() {
           disabled={!isCameraOn}
           className="btn"
         >
-          Save photo
+          {t.savePhoto}
         </button>
         {showColorControls && (
           <button
@@ -263,12 +259,12 @@ export default function NegativeViewer() {
             className={`btn${armSample ? " btn--primary" : ""}`}
             aria-pressed={armSample}
           >
-            {armSample ? "Tap on the orange film…" : "Sample base"}
+            {armSample ? t.tapOrangeFilm : t.sampleBase}
           </button>
         )}
         {showColorControls && isCorrected && (
           <button type="button" onClick={resetGains} className="btn">
-            Reset color cast
+            {t.resetColorCast}
           </button>
         )}
         <button
@@ -277,7 +273,7 @@ export default function NegativeViewer() {
           className="btn"
           aria-pressed={isFullscreen}
         >
-          {isFullscreen ? "Exit fullscreen" : "Fullscreen"}
+          {isFullscreen ? t.exitFullscreen : t.fullscreen}
         </button>
       </div>
       {showColorControls && (

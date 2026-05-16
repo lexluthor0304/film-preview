@@ -1,23 +1,9 @@
-import "./globals.css";
 import Script from "next/script";
-import SiteHeader from "@/components/SiteHeader";
-import SiteFooter from "@/components/SiteFooter";
 import JsonLd from "@/components/JsonLd";
+import SiteFooter from "@/components/SiteFooter";
+import SiteHeader from "@/components/SiteHeader";
+import { getDictionary } from "@/lib/i18n";
 import { siteConfig } from "@/lib/site-config";
-import { buildMetadata } from "@/lib/seo";
-
-export const metadata = {
-  ...buildMetadata({
-    title: `${siteConfig.name} — Online Film Negative Viewer`,
-    description: siteConfig.description,
-    path: "/",
-  }),
-  icons: {
-    icon: "/favicon.ico",
-    apple: "/logo192.png",
-  },
-  manifest: "/manifest.webmanifest",
-};
 
 export const viewport = {
   themeColor: "#1a1a1a",
@@ -39,32 +25,37 @@ const organizationSchema = {
   sameAs: [siteConfig.author.url],
 };
 
-const websiteSchema = {
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  name: siteConfig.name,
-  url: siteConfig.url,
-  description: siteConfig.description,
-  publisher: {
-    "@type": "Organization",
-    name: siteConfig.publisher.name,
-    url: siteConfig.publisher.url,
-  },
-  inLanguage: "en",
-};
+export function buildWebsiteSchema(locale) {
+  const dictionary = getDictionary(locale);
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: siteConfig.name,
+    url: siteConfig.url,
+    description: dictionary.site.description,
+    publisher: {
+      "@type": "Organization",
+      name: siteConfig.publisher.name,
+      url: siteConfig.publisher.url,
+    },
+    inLanguage: dictionary.htmlLang,
+  };
+}
 
-export default function RootLayout({ children }) {
+export default function AppShell({ children, locale }) {
   const { gaTrackingId, adsenseClient } = siteConfig.analytics;
+  const dictionary = getDictionary(locale);
+
   return (
-    <html lang="en">
+    <html lang={dictionary.htmlLang}>
       <head>
         <JsonLd data={organizationSchema} />
-        <JsonLd data={websiteSchema} />
+        <JsonLd data={buildWebsiteSchema(locale)} />
       </head>
       <body>
-        <SiteHeader />
+        <SiteHeader locale={locale} />
         <main>{children}</main>
-        <SiteFooter />
+        <SiteFooter locale={locale} />
 
         {gaTrackingId && (
           <>

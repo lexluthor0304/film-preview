@@ -164,6 +164,25 @@ p {
 .site-nav a:hover {
   color: var(--accent);
 }
+.language-switcher {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--ink-soft);
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+.language-switcher__label {
+  font-size: 0.78rem;
+}
+.language-switcher select {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--bg-elev);
+  color: var(--ink);
+  font: inherit;
+  padding: 0.3rem 0.45rem;
+}
 
 .site-footer {
   margin-top: 4rem;
@@ -325,6 +344,12 @@ main {
   .site-nav {
     gap: 0.2rem 0.7rem;
     font-size: 0.85rem;
+  }
+  .language-switcher {
+    width: 100%;
+  }
+  .language-switcher select {
+    max-width: 100%;
   }
 }
 .viewer--fullscreen {
