@@ -1,66 +1,60 @@
 # Negative Viewer
 
-Negative Viewer is a web-based application that uses a webcam to display a live negative filter effect in real-time. It also provides controls for adjusting exposure and toggling between manual and continuous focus modes.
+Negative Viewer is a free browser-based tool for previewing film negatives as positive images in real time. It uses the device camera, inverts the video frame locally in the browser, and never uploads the camera feed.
 
-## Features
-- **Live Negative Effect**: Applies a real-time negative filter to the video stream.
-- **Exposure Control**: Adjusts exposure compensation dynamically.
-- **Focus Mode Switching**: Switch between manual and continuous focus.
-- **Retro Aesthetic UI**: Styled with CRT overlay and VHS sticker for a vintage feel.
-- **Adsense Integration**: Includes ad placement for monetization.
+Live site: https://negativeviewer.tokugai.com
 
-## Demo
-A live demo of the application can be set up by running the project locally.
+## What It Does
 
-## Installation
-### Prerequisites
-- Node.js and npm installed
+- Converts 35mm, 120, 4x5, APS, 110, and other backlit negatives into a live positive preview.
+- Runs in modern mobile and desktop browsers with camera access.
+- Saves the current preview frame as a PNG.
+- Provides multilingual guide pages for viewing, digitizing, and comparing film workflows.
+- Publishes SEO and AI-readable surfaces including `robots.txt`, `sitemap.xml`, JSON-LD, and `llms.txt`.
 
-### Steps
-1. Clone the repository:
-   ```sh
-   git clone https://github.com/yourusername/negative-viewer.git
-   cd negative-viewer
-   ```
-2. Install dependencies:
-   ```sh
-   npm install
-   ```
-3. Start the application:
-   ```sh
-   npm start
-   ```
+## Privacy
 
-## Usage
-1. Click the **Start Camera** button to initialize the webcam.
-2. Adjust exposure using the slider.
-3. Toggle between **Manual Focus** and **Auto Focus**.
-4. View the negative effect in real-time on the canvas.
+The camera stream stays on the user's device. Processing is done with Web APIs in the browser, and the app does not expose an upload endpoint for video or photo data.
 
-## Technologies Used
-- **React**: Component-based UI.
-- **WebRTC API**: Accessing camera input.
-- **CSS**: Styled for a retro visual aesthetic.
+## Content
 
-## File Structure
-```
-📂 negative-viewer
-├── 📁 src
-│   ├── 📄 App.js          # Main application logic
-│   ├── 📄 CameraControls.js # Camera control component
-│   ├── 📄 Adsense.js      # Ad integration
-│   ├── 📄 App.css         # Styling
-│   └── ...other files
-├── 📄 package.json        # Dependencies and scripts
-└── 📄 README.md           # Documentation
+- `/` - live negative viewer and summary FAQ
+- `/how-to-use` - setup, lighting, focus, browser compatibility, and saving
+- `/faq` - privacy, supported formats, color cast, browser, and workflow answers
+- `/guides/film-negatives` - film negative basics, formats, storage, and viewing
+- `/guides/digitize-35mm` - browser, phone, camera scanning, and flatbed workflows
+- `/guides/film-vs-digital` - practical comparison of film and digital photography
+- `/llms.txt` - compact context file for AI assistants and answer engines
+
+Localized versions are available under `/ru`, `/es`, `/fr`, `/it`, and `/el`.
+
+## Development
+
+```sh
+npm install
+npm run dev
 ```
 
-## Contributing
-Feel free to fork the project and submit pull requests for improvements.
+Camera access requires HTTPS or `localhost`. For local HTTPS testing:
+
+```sh
+npm run dev:https
+```
+
+## Validation
+
+```sh
+npm run lint
+npm run build
+```
+
+## Tech Stack
+
+- Next.js 15 App Router
+- React 19
+- `getUserMedia`
+- Canvas 2D and WebGL image processing
 
 ## License
-This project is licensed under the MIT License.
 
-## Author
-[Lexluthor0304](https://github.com/lexluthor0304)
-
+MIT

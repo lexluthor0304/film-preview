@@ -1,6 +1,10 @@
 import Link from "next/link";
 import NegativeViewer from "@/components/NegativeViewer";
 import JsonLd from "@/components/JsonLd";
+import {
+  buildFaqPageSchema,
+  buildSoftwareApplicationSchema,
+} from "@/lib/schema";
 import { buildMetadata } from "@/lib/seo";
 import { siteConfig } from "@/lib/site-config";
 
@@ -30,49 +34,24 @@ const homeFaqs = [
   },
 ];
 
-const softwareApplicationSchema = {
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  name: siteConfig.name,
-  url: siteConfig.url,
-  applicationCategory: "MultimediaApplication",
-  operatingSystem: "Web",
-  description: siteConfig.description,
-  offers: {
-    "@type": "Offer",
-    price: "0",
-    priceCurrency: "USD",
-  },
-  featureList: [
-    "Real-time negative-to-positive conversion",
-    "Works on phone, tablet, and laptop browsers",
-    "Privacy-first: video never leaves your device",
-    "Save the inverted image as a PNG with one click",
-    "Works with 35mm, 120, 4×5, and APS negatives",
-  ],
-  author: {
-    "@type": "Person",
-    name: siteConfig.author.name,
-    url: siteConfig.author.url,
-  },
-  aggregateRating: undefined,
-};
-
-const faqPageSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: homeFaqs.map(({ q, a }) => ({
-    "@type": "Question",
-    name: q,
-    acceptedAnswer: { "@type": "Answer", text: a },
-  })),
-};
+const featureList = [
+  "Real-time negative-to-positive conversion",
+  "Works on phone, tablet, and laptop browsers",
+  "Privacy-first: video never leaves your device",
+  "Save the inverted image as a PNG with one click",
+  "Works with 35mm, 120, 4×5, and APS negatives",
+];
 
 export default function HomePage() {
   return (
     <>
-      <JsonLd data={softwareApplicationSchema} />
-      <JsonLd data={faqPageSchema} />
+      <JsonLd
+        data={buildSoftwareApplicationSchema({
+          description: siteConfig.description,
+          featureList,
+        })}
+      />
+      <JsonLd data={buildFaqPageSchema({ faqs: homeFaqs, path: "/" })} />
 
       <section className="hero container">
         <p className="hero__eyebrow">Free · Browser-based · No upload</p>

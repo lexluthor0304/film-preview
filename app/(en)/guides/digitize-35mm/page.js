@@ -1,5 +1,11 @@
 import Link from "next/link";
 import JsonLd from "@/components/JsonLd";
+import SourceList from "@/components/SourceList";
+import {
+  buildArticleSchema,
+  buildFaqPageSchema,
+  guideCitations,
+} from "@/lib/schema";
 import { buildMetadata } from "@/lib/seo";
 import { siteConfig } from "@/lib/site-config";
 
@@ -17,33 +23,46 @@ export const metadata = buildMetadata({
   modifiedTime: `${siteConfig.lastUpdatedISO}T00:00:00Z`,
 });
 
-const articleSchema = {
-  "@context": "https://schema.org",
-  "@type": "Article",
-  headline: title,
-  description,
-  datePublished: "2026-04-29",
-  dateModified: `${siteConfig.lastUpdatedISO}T00:00:00Z`,
-  author: {
-    "@type": "Person",
-    name: siteConfig.author.name,
-    url: siteConfig.author.url,
+const sources = guideCitations[path];
+const faqs = [
+  {
+    q: "What's the cheapest 35mm scanner that's actually good?",
+    a: "A dedicated 35mm scanner in the Plustek OpticFilm 8200i class is the practical entry point for print-quality scans. Cheaper used scanners can work, but check current software support before buying because some older film scanners depend on legacy operating systems.",
   },
-  publisher: {
-    "@type": "Organization",
-    name: siteConfig.publisher.name,
-    url: siteConfig.publisher.url,
-    logo: { "@type": "ImageObject", url: `${siteConfig.url}/logo512.png` },
+  {
+    q: "Can I use my phone to scan 35mm negatives?",
+    a: "Yes. The two free options are to point your phone at a backlit negative through a browser-based inverter like Negative Viewer for instant viewing, or to take a high-resolution still photo and invert it in Snapseed or Lightroom Mobile for shareable JPEGs.",
   },
-  mainEntityOfPage: { "@type": "WebPage", "@id": `${siteConfig.url}${path}` },
-  articleSection: "Guides",
-  inLanguage: "en",
-};
+  {
+    q: "What resolution should I scan 35mm at?",
+    a: "For web sharing, 1500 pixels on the long edge is enough. For 8x10 prints, aim for about 2400 pixels. For archival work, follow a digitization target from FADGI or scan at the highest true optical resolution your film scanner can deliver.",
+  },
+  {
+    q: "What's the easiest way to invert and color-correct a digital scan?",
+    a: "For occasional rolls, curves in a photo editor is fine. For everyday work, use a purpose-built negative inversion tool that can remove the orange mask, tune exposure and white balance, and export without uploading the image.",
+  },
+];
 
 export default function DigitizeGuide() {
   return (
     <>
-      <JsonLd data={articleSchema} />
+      <JsonLd
+        data={buildArticleSchema({
+          title,
+          description,
+          path,
+          readTime: "PT8M",
+          keywords: [
+            "digitize 35mm negatives",
+            "scan film negatives",
+            "DSLR scanning",
+            "flatbed scanner",
+            "negative viewer",
+          ],
+          about: ["film scanning", "35mm negatives", "camera scanning"],
+        })}
+      />
+      <JsonLd data={buildFaqPageSchema({ faqs, path })} />
       <article className="container section">
         <h1>{title}</h1>
         <p className="meta-row">
@@ -146,10 +165,10 @@ export default function DigitizeGuide() {
           </p>
           <p>
             Take a still photo of the backlit negative with your phone, then invert
-            it in Apple Photos (Edit → Filters? — actually use the curve trick), or
-            in any free editor like Snapseed, Lightroom Mobile, or VSCO. The
-            advantage over a video-frame capture is that you can shoot in your
-            phone's full resolution and use HDR/portrait modes if you want.
+            it in a free editor like Snapseed, Lightroom Mobile, GIMP, or Photoshop
+            Express. Apple Photos is useful for crop and exposure after the inversion,
+            but it is not the cleanest place to do the initial negative-to-positive
+            conversion.
           </p>
           <p>
             <strong>How to invert in a few common apps:</strong>
@@ -184,10 +203,9 @@ export default function DigitizeGuide() {
           </p>
           <p>
             "DSLR scanning" means photographing the backlit negative with a digital
-            camera. With a 24 MP sensor and a true 1:1 macro lens, you'll capture
-            more real detail than a $500 dedicated scanner — close to what a $2,000+
-            drum scanner gives. Tutorials on the r/AnalogCommunity wiki and YouTube
-            channels like Pushing Film cover the gear setup in detail.
+            camera. A 24 MP or higher sensor with a true 1:1 macro lens can capture
+            enough detail for serious 35mm work, especially when the camera, holder,
+            and light source are aligned carefully.
           </p>
           <p>
             <strong>The minimum kit:</strong>
@@ -234,14 +252,14 @@ export default function DigitizeGuide() {
 
           <h2 id="m4">Method 4 — Flatbed scanner (best for batches)</h2>
           <p>
-            <strong>Cost: $250–$400. Time per frame: ~3 minutes. Quality: good for
-            web, soft for prints.</strong>
+            <strong>Cost: scanner purchase. Time per frame: ~3 minutes. Quality:
+            good for web, softer than a careful camera scan.</strong>
           </p>
           <p>
-            An Epson V550 or V600 flatbed with the included film holder is the
-            classic batch workflow. Load 12 35mm frames at once, run an automatic
-            multi-frame scan, walk away. The scanner inverts and corrects color in
-            its driver, giving you ready-to-use JPEGs.
+            An Epson V600-class flatbed with the included film holder is the classic
+            batch workflow. Load multiple 35mm frames, run an automatic multi-frame
+            scan, and walk away. The scanner driver can invert and correct color,
+            giving you ready-to-use JPEGs.
           </p>
           <p>
             <strong>Strengths:</strong> hands-off batch scanning; one device handles
@@ -266,9 +284,10 @@ export default function DigitizeGuide() {
               tilts cause one corner to go soft. A copy stand fixes this for free.
             </li>
             <li>
-              <strong>Use a high-CRI light.</strong> A "white" cheap LED can have a
-              color rendering index in the 60s, which crushes color accuracy. A phone
-              screen with a white image is typically CRI 90+ and a great free option.
+              <strong>Use a neutral, even light.</strong> A cheap warm LED can create
+              color problems before you even invert the file. A phone or tablet
+              screen with a full-white image is a practical free backlight for quick
+              previews.
             </li>
             <li>
               <strong>Save TIFF or PNG masters.</strong> JPEG re-saves accumulate
@@ -283,50 +302,40 @@ export default function DigitizeGuide() {
           </ul>
 
           <h2 id="faq">Frequently asked questions</h2>
-          <div className="faq__item">
-            <h3 className="faq__q">What's the cheapest 35mm scanner that's actually good?</h3>
-            <p className="faq__a">
-              For dedicated 35mm scanners, the Plustek OpticFilm 8200i (around $500
-              new) is the entry point that produces print-quality scans. Below that
-              price, used Pakon F135 Plus units have a cult following — fast and
-              good color, but the software only runs on older Windows.
-            </p>
-          </div>
-          <div className="faq__item">
-            <h3 className="faq__q">Can I use my phone to scan 35mm negatives?</h3>
-            <p className="faq__a">
-              Yes. The two free options are: (1) point your phone at a backlit
-              negative through a browser-based inverter like{" "}
-              <Link href="/">Negative Viewer</Link> for instant viewing, or (2) take
-              a high-resolution still photo of the backlit negative and invert it in
-              Snapseed or Lightroom Mobile for shareable JPEGs.
-            </p>
-          </div>
-          <div className="faq__item">
-            <h3 className="faq__q">What resolution should I scan 35mm at?</h3>
-            <p className="faq__a">
-              For web sharing, 1500 pixels on the long edge is enough. For 8×10
-              prints, aim for 2400 pixels. For larger prints, scan at the highest
-              optical resolution your scanner provides — typically 3200–6400 dpi for
-              flatbeds, 7200 dpi for dedicated film scanners.
-            </p>
-          </div>
-          <div className="faq__item">
-            <h3 className="faq__q">What's the easiest way to invert and color-correct a digital scan?</h3>
-            <p className="faq__a">
-              For occasional rolls, free curves in any photo editor is fine. For
-              everyday work, drop the camera-scan JPEG into{" "}
-              <a
-                href="https://negative-converter.tokugai.com/"
-                rel="noopener noreferrer"
-              >
-                Negative Converter
-              </a>{" "}
-              — a free browser tool that handles the orange-mask correction, lets
-              you fine-tune exposure and white balance, and exports a
-              full-resolution positive without uploading your image.
-            </p>
-          </div>
+          {faqs.map(({ q, a }) => (
+            <div className="faq__item" key={q}>
+              <h3 className="faq__q">{q}</h3>
+              <p className="faq__a">
+                {q === "Can I use my phone to scan 35mm negatives?" ? (
+                  <>
+                    Yes. The two free options are: (1) point your phone at a backlit
+                    negative through a browser-based inverter like{" "}
+                    <Link href="/">Negative Viewer</Link> for instant viewing, or (2)
+                    take a high-resolution still photo of the backlit negative and
+                    invert it in Snapseed or Lightroom Mobile for shareable JPEGs.
+                  </>
+                ) : q ===
+                  "What's the easiest way to invert and color-correct a digital scan?" ? (
+                  <>
+                    For occasional rolls, curves in a photo editor is fine. For
+                    everyday work, drop the camera-scan JPEG into{" "}
+                    <a
+                      href="https://negative-converter.tokugai.com/"
+                      rel="noopener noreferrer"
+                    >
+                      Negative Converter
+                    </a>{" "}
+                    for orange-mask correction, exposure control, white balance, and
+                    local export without uploading your image.
+                  </>
+                ) : (
+                  a
+                )}
+              </p>
+            </div>
+          ))}
+
+          <SourceList sources={sources} />
         </div>
 
         <div className="cta-card">

@@ -3,6 +3,7 @@ import JsonLd from "@/components/JsonLd";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
 import { getDictionary } from "@/lib/i18n";
+import { buildOrganizationSchema, buildWebsiteSchema } from "@/lib/schema";
 import { siteConfig } from "@/lib/site-config";
 
 export const viewport = {
@@ -11,37 +12,6 @@ export const viewport = {
   initialScale: 1,
 };
 
-const organizationSchema = {
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  name: siteConfig.publisher.name,
-  url: siteConfig.publisher.url,
-  logo: `${siteConfig.url}/logo512.png`,
-  founder: {
-    "@type": "Person",
-    name: siteConfig.author.name,
-    url: siteConfig.author.url,
-  },
-  sameAs: [siteConfig.author.url],
-};
-
-export function buildWebsiteSchema(locale) {
-  const dictionary = getDictionary(locale);
-  return {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    name: siteConfig.name,
-    url: siteConfig.url,
-    description: dictionary.site.description,
-    publisher: {
-      "@type": "Organization",
-      name: siteConfig.publisher.name,
-      url: siteConfig.publisher.url,
-    },
-    inLanguage: dictionary.htmlLang,
-  };
-}
-
 export default function AppShell({ children, locale }) {
   const { gaTrackingId, adsenseClient } = siteConfig.analytics;
   const dictionary = getDictionary(locale);
@@ -49,7 +19,7 @@ export default function AppShell({ children, locale }) {
   return (
     <html lang={dictionary.htmlLang}>
       <head>
-        <JsonLd data={organizationSchema} />
+        <JsonLd data={buildOrganizationSchema()} />
         <JsonLd data={buildWebsiteSchema(locale)} />
       </head>
       <body>

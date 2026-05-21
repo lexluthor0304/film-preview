@@ -1,5 +1,6 @@
 import Link from "next/link";
 import JsonLd from "@/components/JsonLd";
+import { buildFaqPageSchema } from "@/lib/schema";
 import { buildMetadata } from "@/lib/seo";
 import { siteConfig } from "@/lib/site-config";
 
@@ -75,20 +76,10 @@ const faqs = [
   },
 ];
 
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: faqs.map(({ q, a }) => ({
-    "@type": "Question",
-    name: q,
-    acceptedAnswer: { "@type": "Answer", text: a },
-  })),
-};
-
 export default function FaqPage() {
   return (
     <>
-      <JsonLd data={faqSchema} />
+      <JsonLd data={buildFaqPageSchema({ faqs })} />
       <article className="container section">
         <h1>Frequently asked questions</h1>
         <p className="meta-row">

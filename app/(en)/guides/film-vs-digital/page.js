@@ -1,5 +1,11 @@
 import Link from "next/link";
 import JsonLd from "@/components/JsonLd";
+import SourceList from "@/components/SourceList";
+import {
+  buildArticleSchema,
+  buildFaqPageSchema,
+  guideCitations,
+} from "@/lib/schema";
 import { buildMetadata } from "@/lib/seo";
 import { siteConfig } from "@/lib/site-config";
 
@@ -16,33 +22,45 @@ export const metadata = buildMetadata({
   modifiedTime: `${siteConfig.lastUpdatedISO}T00:00:00Z`,
 });
 
-const articleSchema = {
-  "@context": "https://schema.org",
-  "@type": "Article",
-  headline: title,
-  description,
-  datePublished: "2026-04-29",
-  dateModified: `${siteConfig.lastUpdatedISO}T00:00:00Z`,
-  author: {
-    "@type": "Person",
-    name: siteConfig.author.name,
-    url: siteConfig.author.url,
+const sources = guideCitations[path];
+const faqs = [
+  {
+    q: "Is film photography making a comeback?",
+    a: "Film photography is a niche, but it has an active modern market: labs, used-camera shops, new film runs, and active online communities. It is better described as a stable enthusiast medium than a replacement for mainstream digital photography.",
   },
-  publisher: {
-    "@type": "Organization",
-    name: siteConfig.publisher.name,
-    url: siteConfig.publisher.url,
-    logo: { "@type": "ImageObject", url: `${siteConfig.url}/logo512.png` },
+  {
+    q: "Is film photography really more expensive than digital?",
+    a: "For high-volume shooting, yes. Digital costs are concentrated in the camera and lenses, while film keeps adding film, processing, and scanning costs every frame. For low-volume hobby use, the difference depends on gear choices and local lab prices.",
   },
-  mainEntityOfPage: { "@type": "WebPage", "@id": `${siteConfig.url}${path}` },
-  articleSection: "Guides",
-  inLanguage: "en",
-};
+  {
+    q: "Why do photographers still shoot film?",
+    a: "Three common reasons: the look is hard to replicate exactly, the process forces slower and more deliberate shooting, and a finite roll of 36 frames is its own creative constraint. None of these is about the file being technically better.",
+  },
+  {
+    q: "Can I shoot film and still preview shots quickly?",
+    a: "Yes. After developing, hold the negative against any backlight and use a browser-based inverter like Negative Viewer to sort and pick keepers before sitting down at a full scanner.",
+  },
+];
 
 export default function FilmVsDigitalGuide() {
   return (
     <>
-      <JsonLd data={articleSchema} />
+      <JsonLd
+        data={buildArticleSchema({
+          title,
+          description,
+          path,
+          readTime: "PT7M",
+          keywords: [
+            "film vs digital photography",
+            "film dynamic range",
+            "film resolution",
+            "film archival storage",
+          ],
+          about: ["film photography", "digital photography", "photo archives"],
+        })}
+      />
+      <JsonLd data={buildFaqPageSchema({ faqs, path })} />
       <article className="container section">
         <h1>{title}</h1>
         <p className="meta-row">
@@ -121,7 +139,8 @@ export default function FilmVsDigitalGuide() {
           <h2 id="resolution">Resolution: how much detail each captures</h2>
           <p>
             "Resolution" in film is fuzzy because it depends on the film stock, the
-            scanner, and the lens. The widely-quoted approximations:
+            lens, the scanner, and the capture target. Treat the following as
+            workflow estimates, not manufacturer guarantees:
           </p>
           <ul>
             <li><strong>35mm color negative (Portra 400, Ektar 100):</strong> ~12–18 megapixels equivalent when scanned at 4000 dpi.</li>
@@ -130,16 +149,17 @@ export default function FilmVsDigitalGuide() {
             <li><strong>4×5 sheet film:</strong> ~200+ megapixels equivalent.</li>
           </ul>
           <p>
-            Modern full-frame digital sensors hit 24, 45, or 61 MP at far lower
-            noise. So 35mm film no longer beats digital on raw detail — it loses to
-            a $1,500 mirrorless body. Medium and large-format film still hold an
-            edge against everything except the most expensive digital backs.
+            Modern full-frame digital sensors commonly sit in the 24, 45, or 61 MP
+            range at far lower noise. So 35mm film no longer beats digital on raw
+            detail. Medium and large-format film can still hold an edge when the
+            negative is large and the scan workflow is careful.
           </p>
 
           <h2 id="dr">Dynamic range</h2>
           <p>
             Dynamic range is the ratio between the brightest and darkest tones a
-            medium can record. Higher = more highlight and shadow detail.
+            medium can record. Higher means more highlight and shadow detail before
+            the image clips or blocks up.
           </p>
           <ul>
             <li><strong>Color negative film:</strong> ~13 stops (one of film's strongest cards — it tolerates overexposure exceptionally well).</li>
@@ -148,9 +168,10 @@ export default function FilmVsDigitalGuide() {
             <li><strong>Modern full-frame digital sensor:</strong> 13–15 stops at base ISO.</li>
           </ul>
           <p>
-            Practical takeaway: digital matches color negative for highlight latitude
-            and beats slide film by a wide margin. The myth that film has more
-            dynamic range than digital was true in 2008; it isn't in 2026.
+            Practical takeaway: modern digital matches or exceeds 35mm color negative
+            for many workflows and beats slide film by a wide margin. Color negative
+            still has graceful highlight roll-off, which is why exposure mistakes can
+            look more forgiving on film.
           </p>
 
           <h2 id="cost">Cost per frame</h2>
@@ -165,39 +186,40 @@ export default function FilmVsDigitalGuide() {
             <tbody>
               <tr>
                 <td>35mm color, lab dev + scan</td>
-                <td>$0.80–$1.50</td>
+                <td>Ongoing lab cost</td>
                 <td>~$0 (after camera)</td>
               </tr>
               <tr>
                 <td>35mm B&W, home dev + DSLR scan</td>
-                <td>$0.30–$0.50</td>
+                <td>Ongoing film and chemistry cost</td>
                 <td>~$0</td>
               </tr>
               <tr>
                 <td>120 medium format, lab dev + scan</td>
-                <td>$1.50–$3.00</td>
+                <td>Higher ongoing lab cost</td>
                 <td>~$0</td>
               </tr>
               <tr>
                 <td>4×5 sheet, home dev</td>
-                <td>$3–$6</td>
+                <td>Highest ongoing sheet cost</td>
                 <td>~$0</td>
               </tr>
             </tbody>
           </table>
           <p>
             Digital costs are concentrated in the body and lenses; film costs scale
-            with how much you shoot. The break-even depends on volume: shoot a roll
-            of 36 a week and a digital body pays for itself in 12–18 months.
+            with how much you shoot. The break-even depends on local lab prices,
+            whether you scan at home, and how much of the camera gear you already
+            own.
           </p>
 
           <h2 id="archival">Archival lifespan</h2>
           <p>
-            A properly stored color negative lasts 100+ years. Black-and-white silver
-            negatives last several centuries. Digital files can theoretically last
-            forever, but only if actively migrated across drives and formats — bit-rot
-            and obsolete file formats kill more digital archives than fire kills film
-            ones.
+            Properly stored negatives can last for decades, and silver-based
+            black-and-white materials are especially stable. Color materials are more
+            sensitive to heat, so cold or cool storage matters. Digital files can last
+            indefinitely only if they are actively migrated across drives, formats,
+            and backup systems.
           </p>
           <p>
             The realistic strategy for personal archives: keep the negatives, scan
@@ -246,43 +268,25 @@ export default function FilmVsDigitalGuide() {
           </ul>
 
           <h2 id="faq">Frequently asked questions</h2>
-          <div className="faq__item">
-            <h3 className="faq__q">Is film photography making a comeback?</h3>
-            <p className="faq__a">
-              Yes — film sales rose every year from 2018 through the early 2020s,
-              and Kodak reintroduced Ektachrome and Gold 200 in 120 format on the
-              back of that demand. The community is small but stable, with active
-              labs in most large cities and a healthy used-camera market.
-            </p>
-          </div>
-          <div className="faq__item">
-            <h3 className="faq__q">Is film photography really more expensive than digital?</h3>
-            <p className="faq__a">
-              Long-term, yes. A digital body that you'll use for a decade costs
-              $1,000–$2,000 once. The same money buys 700–1,400 35mm rolls (about
-              25,000–50,000 frames). If you shoot more than that across the body's
-              lifetime, digital is cheaper per frame.
-            </p>
-          </div>
-          <div className="faq__item">
-            <h3 className="faq__q">Why do photographers still shoot film?</h3>
-            <p className="faq__a">
-              Three common reasons: the look is hard to replicate exactly, the
-              process forces slower and more deliberate shooting, and a finite roll
-              of 36 frames is its own creative constraint. None of these is about
-              the file being technically better.
-            </p>
-          </div>
-          <div className="faq__item">
-            <h3 className="faq__q">Can I shoot film and still preview shots quickly?</h3>
-            <p className="faq__a">
-              Yes — that's exactly what tools like{" "}
-              <Link href="/">Negative Viewer</Link> are for. After developing, you
-              hold the negative against any backlight and the browser inverts it in
-              real time, so you can sort and pick keepers before sitting down at a
-              full scanner.
-            </p>
-          </div>
+          {faqs.map(({ q, a }) => (
+            <div className="faq__item" key={q}>
+              <h3 className="faq__q">{q}</h3>
+              <p className="faq__a">
+                {q === "Can I shoot film and still preview shots quickly?" ? (
+                  <>
+                    Yes. After developing, hold the negative against any backlight
+                    and use a browser-based inverter like{" "}
+                    <Link href="/">Negative Viewer</Link> to sort and pick keepers
+                    before sitting down at a full scanner.
+                  </>
+                ) : (
+                  a
+                )}
+              </p>
+            </div>
+          ))}
+
+          <SourceList sources={sources} />
         </div>
 
         <div className="cta-card">

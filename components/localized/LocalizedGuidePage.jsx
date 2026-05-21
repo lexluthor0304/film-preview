@@ -1,6 +1,7 @@
 import Link from "next/link";
 import JsonLd from "@/components/JsonLd";
-import { getDictionary, localizedPath } from "@/lib/i18n";
+import { localizedPath } from "@/lib/i18n";
+import { buildArticleSchema } from "@/lib/schema";
 import { siteConfig } from "@/lib/site-config";
 
 function ContentTable({ table }) {
@@ -27,36 +28,17 @@ function ContentTable({ table }) {
 }
 
 export default function LocalizedGuidePage({ locale, content, path }) {
-  const dictionary = getDictionary(locale);
-  const articleSchema = {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    headline: content.title,
-    description: content.metaDescription,
-    datePublished: "2026-04-29",
-    dateModified: `${siteConfig.lastUpdatedISO}T00:00:00Z`,
-    inLanguage: dictionary.htmlLang,
-    author: {
-      "@type": "Person",
-      name: siteConfig.author.name,
-      url: siteConfig.author.url,
-    },
-    publisher: {
-      "@type": "Organization",
-      name: siteConfig.publisher.name,
-      url: siteConfig.publisher.url,
-      logo: { "@type": "ImageObject", url: `${siteConfig.url}/logo512.png` },
-    },
-    mainEntityOfPage: {
-      "@type": "WebPage",
-      "@id": `${siteConfig.url}${localizedPath(path, locale)}`,
-    },
-    articleSection: dictionary.nav.guides,
-  };
-
   return (
     <>
-      <JsonLd data={articleSchema} />
+      <JsonLd
+        data={buildArticleSchema({
+          title: content.title,
+          description: content.metaDescription,
+          path,
+          locale,
+          readTime: content.readTime,
+        })}
+      />
       <article className="container section">
         <h1>{content.title}</h1>
         <p className="meta-row">

@@ -1,10 +1,10 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "Negative Viewer — Online Film Negative Viewer";
-export const size = { width: 1200, height: 630 };
-export const contentType = "image/png";
+const size = { width: 1200, height: 630 };
 
-export default function OgImage() {
+export const dynamic = "force-static";
+
+export function GET() {
   return new ImageResponse(
     (
       <div
@@ -101,6 +101,6 @@ export default function OgImage() {
         </div>
       </div>
     ),
-    { ...size }
+    size
   );
 }

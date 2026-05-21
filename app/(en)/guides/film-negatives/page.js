@@ -1,5 +1,11 @@
 import Link from "next/link";
 import JsonLd from "@/components/JsonLd";
+import SourceList from "@/components/SourceList";
+import {
+  buildArticleSchema,
+  buildFaqPageSchema,
+  guideCitations,
+} from "@/lib/schema";
 import { buildMetadata } from "@/lib/seo";
 import { siteConfig } from "@/lib/site-config";
 
@@ -17,36 +23,46 @@ export const metadata = buildMetadata({
   modifiedTime: `${siteConfig.lastUpdatedISO}T00:00:00Z`,
 });
 
-const articleSchema = {
-  "@context": "https://schema.org",
-  "@type": "Article",
-  headline: title,
-  description,
-  datePublished: "2026-04-29",
-  dateModified: `${siteConfig.lastUpdatedISO}T00:00:00Z`,
-  author: {
-    "@type": "Person",
-    name: siteConfig.author.name,
-    url: siteConfig.author.url,
+const sources = guideCitations[path];
+const faqs = [
+  {
+    q: "Are old negatives still readable?",
+    a: "Almost always. Even color negatives from the 1970s, often stored poorly, usually retain enough information to be inverted and color-corrected. The main failure mode is mold, which appears as fuzzy gray growth on the emulsion side and is difficult to clean.",
   },
-  publisher: {
-    "@type": "Organization",
-    name: siteConfig.publisher.name,
-    url: siteConfig.publisher.url,
-    logo: {
-      "@type": "ImageObject",
-      url: `${siteConfig.url}/logo512.png`,
-    },
+  {
+    q: "Can I just hold a negative up to a window and read it?",
+    a: "You can identify subjects and check exposure that way. To see the actual image as a positive, you need a software inversion. The fastest free option is Negative Viewer in your browser.",
   },
-  mainEntityOfPage: { "@type": "WebPage", "@id": `${siteConfig.url}${path}` },
-  articleSection: "Guides",
-  inLanguage: "en",
-};
+  {
+    q: "What is the difference between a negative and a slide?",
+    a: "A slide, also called a transparency, is positive film: held up to light, you see the photograph directly. A negative is inverted and needs to be processed to view. Slides were historically projected for viewing; negatives were printed.",
+  },
+  {
+    q: "Why do my old negatives have a magenta or red tint?",
+    a: "Color negative film fades over time, especially the cyan dye, leaving a magenta cast. Cool, dark storage slows this dramatically. After digitizing, you can correct most age-related color shifts in any photo editor.",
+  },
+];
 
 export default function FilmNegativesGuide() {
   return (
     <>
-      <JsonLd data={articleSchema} />
+      <JsonLd
+        data={buildArticleSchema({
+          title,
+          description,
+          path,
+          readTime: "PT9M",
+          keywords: [
+            "film negatives",
+            "color negative film",
+            "35mm negatives",
+            "120 film",
+            "negative viewer",
+          ],
+          about: ["film negatives", "film storage", "film formats"],
+        })}
+      />
+      <JsonLd data={buildFaqPageSchema({ faqs, path })} />
       <article className="container section">
         <h1>{title}</h1>
         <p className="meta-row">
@@ -257,14 +273,14 @@ export default function FilmNegativesGuide() {
                 <td>High-resolution archival work</td>
               </tr>
               <tr>
-                <td>Flatbed scanner with film holder (Epson V550/V600)</td>
-                <td>$250–$400</td>
+                <td>Flatbed scanner with film holder (Epson V600 class)</td>
+                <td>Scanner purchase</td>
                 <td>~3 minutes</td>
                 <td>Medium-format, slides, batches</td>
               </tr>
               <tr>
-                <td>Dedicated film scanner (Plustek 8200, Pakon F135)</td>
-                <td>$500+</td>
+                <td>Dedicated film scanner (Plustek 8200i class)</td>
+                <td>Scanner purchase</td>
                 <td>~30 seconds</td>
                 <td>Highest 35mm scan quality</td>
               </tr>
@@ -278,7 +294,10 @@ export default function FilmNegativesGuide() {
 
           <h2 id="archive">How to store negatives safely</h2>
           <p>
-            Properly stored, color and B&W negatives last 50–100+ years. Three rules:
+            Proper storage is mostly about controlling heat, humidity, light, and
+            enclosure materials. The Library of Congress and Kodak storage guides
+            both emphasize cool, dry, dark conditions for photographic materials.
+            Three rules:
           </p>
           <ul>
             <li>
@@ -296,42 +315,25 @@ export default function FilmNegativesGuide() {
           </ul>
 
           <h2 id="faq">Frequently asked questions</h2>
-          <div className="faq__item">
-            <h3 className="faq__q">Are old negatives still readable?</h3>
-            <p className="faq__a">
-              Almost always. Even color negatives from the 1970s, often stored
-              poorly, retain enough information to be inverted and color-corrected.
-              The main failure mode is mold, which appears as fuzzy gray growth on
-              the emulsion side and is difficult to clean.
-            </p>
-          </div>
-          <div className="faq__item">
-            <h3 className="faq__q">Can I just hold a negative up to a window and read it?</h3>
-            <p className="faq__a">
-              You can identify subjects and check exposure that way. To see the
-              actual image as a positive, you need a software inversion. The fastest
-              free option is{" "}
-              <Link href="/">Negative Viewer</Link> in your browser.
-            </p>
-          </div>
-          <div className="faq__item">
-            <h3 className="faq__q">What is the difference between a negative and a slide?</h3>
-            <p className="faq__a">
-              A slide (or transparency) is positive film: held up to light, you see
-              the photograph directly. A negative is inverted and needs to be
-              processed to view. Slides were historically projected for viewing;
-              negatives were printed.
-            </p>
-          </div>
-          <div className="faq__item">
-            <h3 className="faq__q">Why do my old negatives have a magenta or red tint?</h3>
-            <p className="faq__a">
-              Color negative film fades over time, especially the cyan dye, leaving a
-              magenta cast. Cool, dark storage slows this dramatically. After
-              digitizing, you can correct most age-related color shifts in any photo
-              editor.
-            </p>
-          </div>
+          {faqs.map(({ q, a }) => (
+            <div className="faq__item" key={q}>
+              <h3 className="faq__q">{q}</h3>
+              <p className="faq__a">
+                {q === "Can I just hold a negative up to a window and read it?" ? (
+                  <>
+                    You can identify subjects and check exposure that way. To see the
+                    actual image as a positive, you need a software inversion. The
+                    fastest free option is{" "}
+                    <Link href="/">Negative Viewer</Link> in your browser.
+                  </>
+                ) : (
+                  a
+                )}
+              </p>
+            </div>
+          ))}
+
+          <SourceList sources={sources} />
         </div>
 
         <div className="cta-card">

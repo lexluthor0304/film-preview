@@ -1,5 +1,6 @@
 import Link from "next/link";
 import JsonLd from "@/components/JsonLd";
+import { buildAboutPageSchema } from "@/lib/schema";
 import { buildMetadata } from "@/lib/seo";
 import { siteConfig } from "@/lib/site-config";
 
@@ -12,25 +13,10 @@ export const metadata = buildMetadata({
   modifiedTime: `${siteConfig.lastUpdatedISO}T00:00:00Z`,
 });
 
-const aboutSchema = {
-  "@context": "https://schema.org",
-  "@type": "AboutPage",
-  name: "About Negative Viewer",
-  url: `${siteConfig.url}/about`,
-  isPartOf: { "@type": "WebSite", name: siteConfig.name, url: siteConfig.url },
-  about: {
-    "@type": "SoftwareApplication",
-    name: siteConfig.name,
-    applicationCategory: "MultimediaApplication",
-    operatingSystem: "Web",
-    url: siteConfig.url,
-  },
-};
-
 export default function AboutPage() {
   return (
     <>
-      <JsonLd data={aboutSchema} />
+      <JsonLd data={buildAboutPageSchema({ title: "About Negative Viewer" })} />
       <article className="container section">
         <h1>About Negative Viewer</h1>
         <p className="meta-row">
@@ -129,7 +115,11 @@ export default function AboutPage() {
 
           <p>
             If you have a feature you want to see, the fastest path is to open an
-            issue on the GitHub repository.
+            issue on the{" "}
+            <a href={siteConfig.repositoryUrl} rel="noopener noreferrer">
+              GitHub repository
+            </a>
+            .
           </p>
         </div>
 

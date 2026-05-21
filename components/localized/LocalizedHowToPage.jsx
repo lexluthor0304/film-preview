@@ -2,32 +2,22 @@ import Link from "next/link";
 import JsonLd from "@/components/JsonLd";
 import NegativeViewer from "@/components/NegativeViewer";
 import { getDictionary, localizedPath } from "@/lib/i18n";
+import { buildHowToSchema } from "@/lib/schema";
 import { siteConfig } from "@/lib/site-config";
 
 export default function LocalizedHowToPage({ locale, content }) {
   const dictionary = getDictionary(locale);
-  const howToSchema = {
-    "@context": "https://schema.org",
-    "@type": "HowTo",
-    name: content.title,
-    description: content.metaDescription,
-    inLanguage: dictionary.htmlLang,
-    totalTime: "PT3M",
-    estimatedCost: { "@type": "MonetaryAmount", currency: "USD", value: 0 },
-    step: content.steps.map((step, index) => ({
-      "@type": "HowToStep",
-      position: index + 1,
-      name: step.name,
-      text: step.text,
-      url: `${siteConfig.url}${localizedPath("/how-to-use", locale)}#step-${
-        index + 1
-      }`,
-    })),
-  };
 
   return (
     <>
-      <JsonLd data={howToSchema} />
+      <JsonLd
+        data={buildHowToSchema({
+          title: content.title,
+          description: content.metaDescription,
+          locale,
+          steps: content.steps,
+        })}
+      />
       <article className="container section">
         <h1>{content.title}</h1>
         <p className="meta-row">

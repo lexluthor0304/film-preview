@@ -1,29 +1,13 @@
 import Link from "next/link";
 import JsonLd from "@/components/JsonLd";
-import { getDictionary, localizedPath } from "@/lib/i18n";
+import { localizedPath } from "@/lib/i18n";
+import { buildAboutPageSchema } from "@/lib/schema";
 import { siteConfig } from "@/lib/site-config";
 
 export default function LocalizedAboutPage({ locale, content }) {
-  const dictionary = getDictionary(locale);
-  const aboutSchema = {
-    "@context": "https://schema.org",
-    "@type": "AboutPage",
-    name: content.title,
-    url: `${siteConfig.url}${localizedPath("/about", locale)}`,
-    inLanguage: dictionary.htmlLang,
-    isPartOf: { "@type": "WebSite", name: siteConfig.name, url: siteConfig.url },
-    about: {
-      "@type": "SoftwareApplication",
-      name: siteConfig.name,
-      applicationCategory: "MultimediaApplication",
-      operatingSystem: "Web",
-      url: siteConfig.url,
-    },
-  };
-
   return (
     <>
-      <JsonLd data={aboutSchema} />
+      <JsonLd data={buildAboutPageSchema({ title: content.title, locale })} />
       <article className="container section">
         <h1>{content.title}</h1>
         <p className="meta-row">

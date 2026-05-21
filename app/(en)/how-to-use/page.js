@@ -1,6 +1,7 @@
 import Link from "next/link";
 import NegativeViewer from "@/components/NegativeViewer";
 import JsonLd from "@/components/JsonLd";
+import { buildHowToSchema } from "@/lib/schema";
 import { buildMetadata } from "@/lib/seo";
 import { siteConfig } from "@/lib/site-config";
 
@@ -32,7 +33,7 @@ const steps = [
   },
   {
     name: "Adjust the backlight if the colors look off",
-    text: "If the preview looks too blue or too orange, the issue is usually the backlight color, not the negative. Most phone screens are calibrated near 6500K daylight, which is correct. Avoid yellow LEDs, candle light, or warm screens, which add a strong cast.",
+    text: "If the preview looks too blue or too orange, the issue is usually the backlight color, not the negative. A plain white phone or tablet screen is usually neutral enough for previewing. Avoid yellow LEDs, candle light, or warm screens, which add a strong cast.",
   },
   {
     name: "Save the frame you want",
@@ -40,32 +41,22 @@ const steps = [
   },
 ];
 
-const howToSchema = {
-  "@context": "https://schema.org",
-  "@type": "HowTo",
-  name: "How to use Negative Viewer to convert film negatives to positive images",
-  description:
-    "A six-step guide for using a browser-based negative viewer to preview and digitize film negatives in real time.",
-  totalTime: "PT3M",
-  estimatedCost: { "@type": "MonetaryAmount", currency: "USD", value: 0 },
-  tool: [
-    { "@type": "HowToTool", name: "A device with a camera and a modern browser" },
-    { "@type": "HowToTool", name: "A second screen or lightbox to act as backlight" },
-    { "@type": "HowToTool", name: "Film negatives to view" },
-  ],
-  step: steps.map((s, i) => ({
-    "@type": "HowToStep",
-    position: i + 1,
-    name: s.name,
-    text: s.text,
-    url: `${siteConfig.url}/how-to-use#step-${i + 1}`,
-  })),
-};
-
 export default function HowToUsePage() {
   return (
     <>
-      <JsonLd data={howToSchema} />
+      <JsonLd
+        data={buildHowToSchema({
+          title: "How to use Negative Viewer to convert film negatives to positive images",
+          description:
+            "A six-step guide for using a browser-based negative viewer to preview and digitize film negatives in real time.",
+          steps,
+          tools: [
+            "A device with a camera and a modern browser",
+            "A second screen or lightbox to act as backlight",
+            "Film negatives to view",
+          ],
+        })}
+      />
       <article className="container section">
         <h1>How to use the Negative Viewer (step-by-step)</h1>
         <p className="meta-row">

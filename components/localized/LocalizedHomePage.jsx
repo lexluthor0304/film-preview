@@ -2,47 +2,25 @@ import Link from "next/link";
 import JsonLd from "@/components/JsonLd";
 import NegativeViewer from "@/components/NegativeViewer";
 import { getDictionary, localizedPath } from "@/lib/i18n";
-import { siteConfig } from "@/lib/site-config";
+import {
+  buildFaqPageSchema,
+  buildSoftwareApplicationSchema,
+} from "@/lib/schema";
 
 export default function LocalizedHomePage({ locale, content }) {
   const dictionary = getDictionary(locale);
-  const softwareApplicationSchema = {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    name: siteConfig.name,
-    url: `${siteConfig.url}${localizedPath("/", locale)}`,
-    applicationCategory: "MultimediaApplication",
-    operatingSystem: "Web",
-    description: content.metaDescription,
-    inLanguage: dictionary.htmlLang,
-    offers: {
-      "@type": "Offer",
-      price: "0",
-      priceCurrency: "USD",
-    },
-    featureList: content.features.map((feature) => feature.title),
-    author: {
-      "@type": "Person",
-      name: siteConfig.author.name,
-      url: siteConfig.author.url,
-    },
-  };
-
-  const faqPageSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    inLanguage: dictionary.htmlLang,
-    mainEntity: content.faqs.map(({ q, a }) => ({
-      "@type": "Question",
-      name: q,
-      acceptedAnswer: { "@type": "Answer", text: a },
-    })),
-  };
 
   return (
     <>
-      <JsonLd data={softwareApplicationSchema} />
-      <JsonLd data={faqPageSchema} />
+      <JsonLd
+        data={buildSoftwareApplicationSchema({
+          path: "/",
+          locale,
+          description: content.metaDescription,
+          featureList: content.features.map((feature) => feature.title),
+        })}
+      />
+      <JsonLd data={buildFaqPageSchema({ faqs: content.faqs, path: "/", locale })} />
 
       <section className="hero container">
         <p className="hero__eyebrow">{content.eyebrow}</p>

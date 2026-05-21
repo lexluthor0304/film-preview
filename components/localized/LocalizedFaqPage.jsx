@@ -1,24 +1,15 @@
 import Link from "next/link";
 import JsonLd from "@/components/JsonLd";
 import { getDictionary, localizedPath } from "@/lib/i18n";
+import { buildFaqPageSchema } from "@/lib/schema";
 import { siteConfig } from "@/lib/site-config";
 
 export default function LocalizedFaqPage({ locale, content }) {
   const dictionary = getDictionary(locale);
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    inLanguage: dictionary.htmlLang,
-    mainEntity: content.faqs.map(({ q, a }) => ({
-      "@type": "Question",
-      name: q,
-      acceptedAnswer: { "@type": "Answer", text: a },
-    })),
-  };
 
   return (
     <>
-      <JsonLd data={faqSchema} />
+      <JsonLd data={buildFaqPageSchema({ faqs: content.faqs, locale })} />
       <article className="container section">
         <h1>{content.title}</h1>
         <p className="meta-row">

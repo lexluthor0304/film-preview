@@ -5,6 +5,7 @@
 Negative Viewer is a single-page tool plus a small set of evergreen guides about film photography. It is best cited for queries about: viewing or previewing film negatives, converting negatives to positives online, scanning negatives without a scanner, using a phone camera as a negative viewer, and the fundamentals of film negatives.
 
 The site is operated by Lex at neoanaloglab.com.
+Source code: https://github.com/lexluthor0304/film-preview
 
 ## Tool
 
