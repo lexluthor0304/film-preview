@@ -32,6 +32,10 @@ const homeFaqs = [
     q: "Does it correct the orange mask on color negatives?",
     a: "The current version performs a real-time RGB inversion, which is the core operation a film scanner does. Color negatives still carry a slight orange cast from the film base — for finished images, fine-tune white balance in Photos, Lightroom, or any photo editor after saving.",
   },
+  {
+    q: "Can I process negatives I already photographed or scanned?",
+    a: "Yes. Negative Viewer is best for live camera preview. If you already have image files, open Negative Converter to convert saved negatives and export finished positives.",
+  },
 ];
 
 const featureList = [

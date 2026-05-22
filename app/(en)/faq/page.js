@@ -1,5 +1,6 @@
 import Link from "next/link";
 import JsonLd from "@/components/JsonLd";
+import NegativeConverterCta from "@/components/NegativeConverterCta";
 import { buildFaqPageSchema } from "@/lib/schema";
 import { buildMetadata } from "@/lib/seo";
 import { siteConfig } from "@/lib/site-config";
@@ -55,6 +56,10 @@ const faqs = [
     a: "Yes — manually. Lay the roll flat on the backlight, slide it across to bring each frame into view, and press Save photo for each frame. There is no automated batch endpoint because that would require server upload, which we deliberately avoid.",
   },
   {
+    q: "Can I process negatives I already photographed or scanned?",
+    a: "Yes. Negative Viewer is best for live camera preview. If you already have image files, open Negative Converter to convert saved negatives and export finished positives.",
+  },
+  {
     q: "How is this different from just using my phone's camera with a Lightroom invert preset?",
     a: "Lightroom or any RAW workflow gives you better final image quality because it works on a high-bit-depth still photo. Negative Viewer is faster — you see the positive while you're still pointing the camera, which is useful for sorting through a stack of unknown negatives or for sharing a quick reference shot. Use both: Negative Viewer to triage, a real workflow for keepers.",
   },
@@ -75,6 +80,13 @@ const faqs = [
     a: "The fastest channel is GitHub: open an issue on the repository linked from the About page. We read every report.",
   },
 ];
+
+const negativeConverterCta = {
+  eyebrow: "For saved files",
+  title: "Already photographed or scanned your negatives?",
+  text: "Use Negative Converter when you want to work from image files, process a set of frames, or export finished positives after this quick preview.",
+  linkText: "Open Negative Converter",
+};
 
 export default function FaqPage() {
   return (
@@ -99,6 +111,7 @@ export default function FaqPage() {
               <p className="faq__a">{a}</p>
             </div>
           ))}
+          <NegativeConverterCta {...negativeConverterCta} />
         </div>
 
         <div className="cta-card">

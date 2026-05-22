@@ -1,5 +1,6 @@
 import Link from "next/link";
 import JsonLd from "@/components/JsonLd";
+import NegativeConverterCta from "@/components/NegativeConverterCta";
 import { getDictionary, localizedPath } from "@/lib/i18n";
 import { buildFaqPageSchema } from "@/lib/schema";
 import { siteConfig } from "@/lib/site-config";
@@ -31,6 +32,9 @@ export default function LocalizedFaqPage({ locale, content }) {
               <p className="faq__a">{a}</p>
             </div>
           ))}
+          {content.negativeConverterCta && (
+            <NegativeConverterCta {...content.negativeConverterCta} />
+          )}
         </div>
 
         <div className="cta-card">

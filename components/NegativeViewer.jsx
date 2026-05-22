@@ -9,6 +9,7 @@ import {
 } from "@/lib/webgl-pipeline";
 import { autoSampleBase, manualSampleBase } from "@/lib/sample-base";
 import { getDictionary } from "@/lib/i18n";
+import { siteConfig } from "@/lib/site-config";
 
 const AUTO_SAMPLE_DELAY_MS = 250;
 
@@ -252,6 +253,15 @@ export default function NegativeViewer({ labels }) {
         >
           {t.savePhoto}
         </button>
+        <a
+          className="btn viewer__converter-link"
+          href={siteConfig.negativeConverterUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={t.openConverterAria}
+        >
+          {t.openConverter}
+        </a>
         {showColorControls && (
           <button
             type="button"
