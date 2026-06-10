@@ -626,6 +626,31 @@ main {
   color: var(--ink-soft);
   font-size: 0.9rem;
 }
+.viewer__contrast {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 0.6rem;
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+}
+.viewer__contrast input[type="range"] {
+  flex: 1;
+  max-width: 16rem;
+  accent-color: var(--accent);
+}
+.viewer--fullscreen .viewer__contrast {
+  position: absolute;
+  bottom: calc(4.6rem + env(safe-area-inset-bottom));
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(80%, 20rem);
+  margin: 0;
+  padding: 0.35rem 0.75rem;
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  border-radius: 999px;
+}
 .btn {
   appearance: none;
   -webkit-appearance: none;
