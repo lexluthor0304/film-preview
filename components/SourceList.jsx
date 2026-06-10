@@ -1,11 +1,11 @@
-export default function SourceList({ sources }) {
+export default function SourceList({ sources, title = "Sources and further reading" }) {
   if (!sources?.length) {
     return null;
   }
 
   return (
     <section>
-      <h2>Sources and further reading</h2>
+      <h2>{title}</h2>
       <ul>
         {sources.map((source) => (
           <li key={source.url}>

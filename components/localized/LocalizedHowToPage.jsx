@@ -3,10 +3,12 @@ import JsonLd from "@/components/JsonLd";
 import NegativeViewer from "@/components/NegativeViewer";
 import { getDictionary, localizedPath } from "@/lib/i18n";
 import { buildHowToSchema } from "@/lib/schema";
+import { getPageDates } from "@/lib/page-dates";
 import { siteConfig } from "@/lib/site-config";
 
 export default function LocalizedHowToPage({ locale, content }) {
   const dictionary = getDictionary(locale);
+  const dates = getPageDates("/how-to-use");
 
   return (
     <>
@@ -22,7 +24,7 @@ export default function LocalizedHowToPage({ locale, content }) {
         <h1>{content.title}</h1>
         <p className="meta-row">
           <span>{siteConfig.author.name}</span>
-          <span>{siteConfig.lastUpdatedISO}</span>
+          <span>{dates.modified}</span>
           <span>{content.readTime}</span>
         </p>
 

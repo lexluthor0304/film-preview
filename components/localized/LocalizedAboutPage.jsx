@@ -2,9 +2,12 @@ import Link from "next/link";
 import JsonLd from "@/components/JsonLd";
 import { localizedPath } from "@/lib/i18n";
 import { buildAboutPageSchema } from "@/lib/schema";
+import { getPageDates } from "@/lib/page-dates";
 import { siteConfig } from "@/lib/site-config";
 
 export default function LocalizedAboutPage({ locale, content }) {
+  const dates = getPageDates("/about");
+
   return (
     <>
       <JsonLd data={buildAboutPageSchema({ title: content.title, locale })} />
@@ -12,7 +15,7 @@ export default function LocalizedAboutPage({ locale, content }) {
         <h1>{content.title}</h1>
         <p className="meta-row">
           <span>{siteConfig.author.name}</span>
-          <span>{siteConfig.lastUpdatedISO}</span>
+          <span>{dates.modified}</span>
         </p>
 
         <div className="prose" style={{ maxWidth: "72ch" }}>

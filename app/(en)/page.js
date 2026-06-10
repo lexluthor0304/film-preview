@@ -1,6 +1,8 @@
 import Link from "next/link";
+import Image from "next/image";
 import NegativeViewer from "@/components/NegativeViewer";
 import JsonLd from "@/components/JsonLd";
+import NegativeConverterCta from "@/components/NegativeConverterCta";
 import {
   buildFaqPageSchema,
   buildSoftwareApplicationSchema,
@@ -30,7 +32,7 @@ const homeFaqs = [
   },
   {
     q: "Does it correct the orange mask on color negatives?",
-    a: "The current version performs a real-time RGB inversion, which is the core operation a film scanner does. Color negatives still carry a slight orange cast from the film base — for finished images, fine-tune white balance in Photos, Lightroom, or any photo editor after saving.",
+    a: "The live viewer can sample the film base and reduce the color cast for preview. For saved image files and more deliberate orange-mask removal, use Negative Converter.",
   },
   {
     q: "Can I process negatives I already photographed or scanned?",
@@ -38,12 +40,20 @@ const homeFaqs = [
   },
 ];
 
+const negativeConverterCta = {
+  eyebrow: "Orange-mask removal",
+  title: "Need to convert saved negative files?",
+  text: "Use Negative Converter for photographed or scanned negatives when you want orange-mask correction, exposure control, and finished positive exports.",
+  linkText: "Open Negative Converter",
+};
+
 const featureList = [
   "Real-time negative-to-positive conversion",
   "Works on phone, tablet, and laptop browsers",
   "Privacy-first: video never leaves your device",
   "Save the inverted image as a PNG with one click",
   "Works with 35mm, 120, 4×5, and APS negatives",
+  "Connects to Negative Converter for saved files and orange-mask correction",
 ];
 
 export default function HomePage() {
@@ -71,6 +81,7 @@ export default function HomePage() {
           <Link href="/how-to-use">30-second how-to guide</Link> or jump to the{" "}
           <Link href="/faq">FAQ</Link>.
         </p>
+        <NegativeConverterCta {...negativeConverterCta} />
       </section>
 
       <section className="section section--alt">
@@ -93,6 +104,19 @@ export default function HomePage() {
               was meant to be seen.
             </p>
           </div>
+          <figure className="seo-figure">
+            <Image
+              src="/negative-viewer-before-after.png"
+              width={1200}
+              height={675}
+              alt="A generated before and after comparison showing a film negative inverted into a positive preview"
+              loading="lazy"
+            />
+            <figcaption>
+              Generated sample: the left side approximates a color negative, and the
+              right side shows the positive preview a browser inverter produces.
+            </figcaption>
+          </figure>
         </div>
       </section>
 
@@ -224,6 +248,41 @@ export default function HomePage() {
                 A practical, side-by-side comparison of film and digital across cost,
                 resolution, dynamic range, and the look.
               </p>
+            </div>
+          </div>
+          <h2>More practical guides</h2>
+          <div className="feature-grid">
+            <div className="feature-card">
+              <h3>
+                <Link href="/guides/scan-negatives-without-scanner">
+                  Scan negatives without a scanner
+                </Link>
+              </h3>
+              <p>Free and low-cost workflows for seeing old negatives quickly.</p>
+            </div>
+            <div className="feature-card">
+              <h3>
+                <Link href="/guides/invert-negatives-iphone">
+                  Invert negatives on iPhone
+                </Link>
+              </h3>
+              <p>Use live preview first, then capture better stills when needed.</p>
+            </div>
+            <div className="feature-card">
+              <h3>
+                <Link href="/guides/orange-mask-removal">
+                  Orange mask removal
+                </Link>
+              </h3>
+              <p>Why color negatives turn blue after inversion and how to fix it.</p>
+            </div>
+            <div className="feature-card">
+              <h3>
+                <Link href="/guides/best-free-negative-viewer">
+                  Best free negative viewer
+                </Link>
+              </h3>
+              <p>What privacy, speed, and format support signals to look for.</p>
             </div>
           </div>
         </div>

@@ -5,9 +5,16 @@ import {
   routePaths,
   supportedLocales,
 } from "@/lib/i18n";
+import { getPageDates } from "@/lib/page-dates";
+
+const englishOnlyRoutePaths = [
+  "/guides/scan-negatives-without-scanner",
+  "/guides/invert-negatives-iphone",
+  "/guides/orange-mask-removal",
+  "/guides/best-free-negative-viewer",
+];
 
 export default function sitemap() {
-  const lastModified = new Date(siteConfig.lastUpdatedISO);
   const routeMeta = {
     "/": { changeFrequency: "weekly", priority: 1.0 },
     "/how-to-use": { changeFrequency: "monthly", priority: 0.9 },
@@ -18,10 +25,10 @@ export default function sitemap() {
     "/about": { changeFrequency: "yearly", priority: 0.5 },
   };
 
-  return routePaths.flatMap((path) =>
+  const localizedRoutes = routePaths.flatMap((path) =>
     supportedLocales.map((locale) => ({
       url: `${siteConfig.url}${localizedPath(path, locale)}`,
-      lastModified,
+      lastModified: new Date(getPageDates(path).modified),
       changeFrequency: routeMeta[path].changeFrequency,
       priority: routeMeta[path].priority,
       alternates: {
@@ -29,4 +36,13 @@ export default function sitemap() {
       },
     }))
   );
+
+  const englishOnlyRoutes = englishOnlyRoutePaths.map((path) => ({
+    url: `${siteConfig.url}${path}`,
+    lastModified: new Date(getPageDates(path).modified),
+    changeFrequency: "monthly",
+    priority: 0.7,
+  }));
+
+  return [...localizedRoutes, ...englishOnlyRoutes];
 }

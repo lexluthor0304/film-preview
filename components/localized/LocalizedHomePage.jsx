@@ -1,5 +1,7 @@
 import Link from "next/link";
+import Image from "next/image";
 import JsonLd from "@/components/JsonLd";
+import NegativeConverterCta from "@/components/NegativeConverterCta";
 import NegativeViewer from "@/components/NegativeViewer";
 import { getDictionary, localizedPath } from "@/lib/i18n";
 import {
@@ -36,6 +38,9 @@ export default function LocalizedHomePage({ locale, content }) {
           <Link href={localizedPath("/faq", locale)}>{content.afterLede.faq}</Link>
           {content.afterLede.after}
         </p>
+        {content.negativeConverterCta && (
+          <NegativeConverterCta {...content.negativeConverterCta} />
+        )}
       </section>
 
       <section className="section section--alt">
@@ -46,6 +51,15 @@ export default function LocalizedHomePage({ locale, content }) {
               <p key={paragraph}>{paragraph}</p>
             ))}
           </div>
+          <figure className="seo-figure">
+            <Image
+              src="/negative-viewer-before-after.png"
+              width={1200}
+              height={675}
+              alt={content.title}
+              loading="lazy"
+            />
+          </figure>
         </div>
       </section>
 

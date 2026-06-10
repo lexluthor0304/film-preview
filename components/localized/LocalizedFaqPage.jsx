@@ -3,10 +3,12 @@ import JsonLd from "@/components/JsonLd";
 import NegativeConverterCta from "@/components/NegativeConverterCta";
 import { getDictionary, localizedPath } from "@/lib/i18n";
 import { buildFaqPageSchema } from "@/lib/schema";
+import { getPageDates } from "@/lib/page-dates";
 import { siteConfig } from "@/lib/site-config";
 
 export default function LocalizedFaqPage({ locale, content }) {
   const dictionary = getDictionary(locale);
+  const dates = getPageDates("/faq");
 
   return (
     <>
@@ -15,7 +17,7 @@ export default function LocalizedFaqPage({ locale, content }) {
         <h1>{content.title}</h1>
         <p className="meta-row">
           <span>{siteConfig.author.name}</span>
-          <span>{siteConfig.lastUpdatedISO}</span>
+          <span>{dates.modified}</span>
         </p>
 
         <div className="prose" style={{ maxWidth: "72ch" }}>

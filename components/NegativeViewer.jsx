@@ -17,10 +17,12 @@ export default function NegativeViewer({ labels }) {
   const t = labels || getDictionary("en").viewer;
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
+  const viewerRef = useRef(null);
   const animationFrameRef = useRef(0);
   const pipelineRef = useRef(null);
   const samplingRef = useRef(false);
   const autoSampleTimerRef = useRef(0);
+  const nativeFullscreenRef = useRef(false);
 
   const [isCameraOn, setIsCameraOn] = useState(false);
   const [error, setError] = useState("");
@@ -46,6 +48,19 @@ export default function NegativeViewer({ labels }) {
   }, [isFullscreen]);
 
   useEffect(() => {
+    const onFullscreenChange = () => {
+      if (nativeFullscreenRef.current && !document.fullscreenElement) {
+        nativeFullscreenRef.current = false;
+        setIsFullscreen(false);
+      }
+    };
+    document.addEventListener("fullscreenchange", onFullscreenChange);
+    return () => {
+      document.removeEventListener("fullscreenchange", onFullscreenChange);
+    };
+  }, []);
+
+  useEffect(() => {
     if (typeof window === "undefined") return;
     const host = window.location.hostname;
     const isLocalHost =
@@ -61,6 +76,33 @@ export default function NegativeViewer({ labels }) {
       }
     }
   }, []);
+
+  const shouldAutoFullscreen = () => {
+    if (typeof window === "undefined") return false;
+    return window.matchMedia("(max-width: 900px), (pointer: coarse)").matches;
+  };
+
+  const enterFullscreenPreview = () => {
+    setIsFullscreen(true);
+    const el = viewerRef.current;
+    if (!el || document.fullscreenElement || !el.requestFullscreen) return;
+    el
+      .requestFullscreen({ navigationUI: "hide" })
+      .then(() => {
+        nativeFullscreenRef.current = true;
+      })
+      .catch(() => {
+        nativeFullscreenRef.current = false;
+      });
+  };
+
+  const exitFullscreenPreview = () => {
+    setIsFullscreen(false);
+    nativeFullscreenRef.current = false;
+    if (document.fullscreenElement) {
+      document.exitFullscreen?.().catch(() => {});
+    }
+  };
 
   const applyBase = (base, source) => {
     if (!base) return;
@@ -104,9 +146,14 @@ export default function NegativeViewer({ labels }) {
 
   const startCamera = async () => {
     setError("");
+    const autoFullscreen = shouldAutoFullscreen();
+    if (autoFullscreen) {
+      enterFullscreenPreview();
+    }
     try {
       if (typeof navigator === "undefined" || !navigator.mediaDevices?.getUserMedia) {
         setError(t.cameraUnsupported);
+        if (autoFullscreen) exitFullscreenPreview();
         return;
       }
       const stream = await navigator.mediaDevices.getUserMedia({
@@ -128,12 +175,6 @@ export default function NegativeViewer({ labels }) {
             canvas.height = videoEl.videoHeight;
           }
           setIsCameraOn(true);
-          if (
-            typeof window !== "undefined" &&
-            window.matchMedia("(max-width: 720px)").matches
-          ) {
-            setIsFullscreen(true);
-          }
           processVideo();
           if (pipelineRef.current) {
             autoSampleTimerRef.current = window.setTimeout(() => {
@@ -149,6 +190,7 @@ export default function NegativeViewer({ labels }) {
     } catch (err) {
       console.error("Camera Error:", err);
       setError(t.cameraError);
+      if (autoFullscreen) exitFullscreenPreview();
     }
   };
 
@@ -207,7 +249,10 @@ export default function NegativeViewer({ labels }) {
   if (sampleSource === "manual") statusLabel = t.statusManual;
 
   return (
-    <div className={`viewer${isFullscreen ? " viewer--fullscreen" : ""}`}>
+    <div
+      ref={viewerRef}
+      className={`viewer${isFullscreen ? " viewer--fullscreen" : ""}`}
+    >
       {insecureContext && (
         <p className="viewer__notice" role="status">
           {t.insecureNotice}
@@ -279,8 +324,10 @@ export default function NegativeViewer({ labels }) {
         )}
         <button
           type="button"
-          onClick={() => setIsFullscreen((v) => !v)}
-          className="btn"
+          onClick={() =>
+            isFullscreen ? exitFullscreenPreview() : enterFullscreenPreview()
+          }
+          className="btn viewer__fullscreen-button"
           aria-pressed={isFullscreen}
         >
           {isFullscreen ? t.exitFullscreen : t.fullscreen}

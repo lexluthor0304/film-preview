@@ -73,7 +73,7 @@ const faqs = [
   },
   {
     q: "Will adding more features cost money in the future?",
-    a: "The core viewer will always be free. We may add optional pro features like a dedicated orange-mask remover, perspective correction, or a frame-by-frame export — and those would be free unless they require server-side processing.",
+    a: "The core live viewer will always be free. For saved-file orange-mask removal, use Negative Converter. Future viewer features such as perspective correction or frame-by-frame export would be free unless they require server-side processing.",
   },
   {
     q: "I have feedback or a bug to report. Where do I send it?",
@@ -82,9 +82,9 @@ const faqs = [
 ];
 
 const negativeConverterCta = {
-  eyebrow: "For saved files",
+  eyebrow: "Orange-mask removal",
   title: "Already photographed or scanned your negatives?",
-  text: "Use Negative Converter when you want to work from image files, process a set of frames, or export finished positives after this quick preview.",
+  text: "Use Negative Converter when you want to work from image files, remove the orange mask, tune exposure, and export finished positives after this quick preview.",
   linkText: "Open Negative Converter",
 };
 

@@ -108,7 +108,17 @@ export default function AboutPage() {
 
           <h2>Roadmap</h2>
           <ul>
-            <li>An optional in-browser orange-mask remover for color negatives.</li>
+            <li>
+              Continued integration with{" "}
+              <a
+                href={siteConfig.negativeConverterUrl}
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                Negative Converter
+              </a>{" "}
+              for saved-file orange-mask removal.
+            </li>
             <li>Crop and rotate before saving, so the PNG is closer to ready-to-share.</li>
             <li>An EXIF-stripping export option for sensitive archival work.</li>
           </ul>
