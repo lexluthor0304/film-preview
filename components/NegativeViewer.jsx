@@ -453,21 +453,21 @@ export default function NegativeViewer({ labels }) {
         >
           {isFullscreen ? t.exitFullscreen : t.fullscreen}
         </button>
+        {showColorControls && isCorrected && (
+          <label className="viewer__contrast">
+            <span>{t.contrast}</span>
+            <input
+              type="range"
+              min={GAMMA_MIN}
+              max={GAMMA_MAX}
+              step={GAMMA_STEP}
+              value={gamma}
+              onChange={(e) => changeGamma(Number(e.target.value))}
+              aria-label={t.contrastAria}
+            />
+          </label>
+        )}
       </div>
-      {showColorControls && isCorrected && (
-        <label className="viewer__contrast">
-          <span>{t.contrast}</span>
-          <input
-            type="range"
-            min={GAMMA_MIN}
-            max={GAMMA_MAX}
-            step={GAMMA_STEP}
-            value={gamma}
-            onChange={(e) => changeGamma(Number(e.target.value))}
-            aria-label={t.contrastAria}
-          />
-        </label>
-      )}
       {showColorControls && (
         <p className="viewer__status" role="status">
           {statusLabel}
