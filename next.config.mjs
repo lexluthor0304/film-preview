@@ -1,5 +1,6 @@
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import withSerwist from "@serwist/next";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -33,4 +34,8 @@ const nextConfig = {
   ],
 };
 
-export default nextConfig;
+export default withSerwist({
+  swSrc: "app/sw.js",
+  swDest: "public/sw.js",
+  maximumFileSizeToCacheInBytes: 5 * 1024 * 1024, // 5 MB
+})(nextConfig);

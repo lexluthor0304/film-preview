@@ -1,4 +1,5 @@
 import Script from "next/script";
+import { SerwistProvider } from "@serwist/next/react";
 import JsonLd from "@/components/JsonLd";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
@@ -10,6 +11,7 @@ export const viewport = {
   themeColor: "#1a1a1a",
   width: "device-width",
   initialScale: 1,
+  viewportFit: "cover",
 };
 
 export default function AppShell({ children, locale }) {
@@ -19,13 +21,22 @@ export default function AppShell({ children, locale }) {
   return (
     <html lang={dictionary.htmlLang}>
       <head>
+        {/* iOS PWA meta tags — required for Apple devices to treat this as a PWA */}
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-title" content={siteConfig.name} />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <link rel="apple-touch-icon" href="/logo192.png" />
+        <link rel="apple-touch-icon" sizes="512x512" href="/logo512.png" />
+
         <JsonLd data={buildOrganizationSchema()} />
         <JsonLd data={buildWebsiteSchema(locale)} />
       </head>
       <body>
-        <SiteHeader locale={locale} />
-        <main>{children}</main>
-        <SiteFooter locale={locale} />
+        <SerwistProvider>
+          <SiteHeader locale={locale} />
+          <main>{children}</main>
+          <SiteFooter locale={locale} />
+        </SerwistProvider>
 
         {gaTrackingId && (
           <>

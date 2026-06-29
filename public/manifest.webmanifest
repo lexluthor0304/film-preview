@@ -1,13 +1,51 @@
 {
-  "name": "Negative Viewer",
+  "name": "Negative Viewer — Free Film Negative Converter",
   "short_name": "Negative Viewer",
-  "description": "Free online film negative viewer. Convert negatives to positives with your camera, in real time.",
+  "description": "Free online film negative viewer. Use your phone or laptop camera to convert film negatives to positives in real time — no upload, no scanner, no install.",
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
+  "display_override": ["standalone", "minimal-ui"],
+  "orientation": "any",
   "background_color": "#faf8f4",
   "theme_color": "#1a1a1a",
+  "categories": ["photo", "utilities", "productivity"],
+  "lang": "en",
   "icons": [
-    { "src": "/logo192.png", "sizes": "192x192", "type": "image/png" },
-    { "src": "/logo512.png", "sizes": "512x512", "type": "image/png" }
+    {
+      "src": "/logo192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/logo512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/negative-viewer-before-after.png",
+      "sizes": "2400x1350",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Before and after — negative to positive conversion"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "How to Use",
+      "short_name": "Guide",
+      "description": "Learn how to use the negative viewer",
+      "url": "/how-to-use"
+    },
+    {
+      "name": "FAQ",
+      "short_name": "FAQ",
+      "description": "Frequently asked questions",
+      "url": "/faq"
+    }
   ]
 }
