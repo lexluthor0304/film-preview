@@ -171,6 +171,7 @@ export default function NegativeViewer({ labels }) {
   const [zoomUi, setZoomUi] = useState(1);
   const [mirror, setMirror] = useState(false);
   const [panelOpen, setPanelOpen] = useState(false);
+  const [hudHidden, setHudHidden] = useState(false);
   const [shots, setShots] = useState([]);
   const [flash, setFlash] = useState(false);
   const [capturing, setCapturing] = useState(false);
@@ -288,6 +289,7 @@ export default function NegativeViewer({ labels }) {
 
   const enterFullscreenPreview = () => {
     setIsFullscreen(true);
+    setHudHidden(false);
     const el = viewerRef.current;
     if (!el || document.fullscreenElement || !el.requestFullscreen) return;
     el
@@ -302,6 +304,7 @@ export default function NegativeViewer({ labels }) {
 
   const exitFullscreenPreview = () => {
     setIsFullscreen(false);
+    setHudHidden(false);
     nativeFullscreenRef.current = false;
     if (document.fullscreenElement) {
       document.exitFullscreen?.().catch(() => {});
@@ -896,6 +899,9 @@ export default function NegativeViewer({ labels }) {
     if (st.pointers.size === 0) {
       if (!st.moved && samplingRef.current) {
         sampleAtClient(e.clientX, e.clientY);
+      } else if (!st.moved && isFullscreen) {
+        // Tap toggles the control overlay, like a video player.
+        setHudHidden((v) => !v);
       }
       st.lastDist = 0;
       st.moved = false;
@@ -1024,6 +1030,16 @@ export default function NegativeViewer({ labels }) {
           <div className="viewer__guide" style={guideStyle} aria-hidden="true" />
         )}
         {flash && <div className="viewer__flash" aria-hidden="true" />}
+        {isCameraOn && isFullscreen && hudHidden && (
+          <button
+            type="button"
+            className="viewer__hud-reveal"
+            onClick={() => setHudHidden(false)}
+            aria-label={t.showControls}
+          >
+            ⋯
+          </button>
+        )}
         {!isCameraOn && (
           <div className="viewer__placeholder" aria-hidden="true">
             <p>{t.placeholder}</p>
@@ -1033,7 +1049,11 @@ export default function NegativeViewer({ labels }) {
           </div>
         )}
       </div>
-      <div className="viewer__hud">
+      <div
+        className={`viewer__hud${
+          isFullscreen && hudHidden ? " viewer__hud--hidden" : ""
+        }`}
+      >
         <div className="viewer__controls">
           {isCameraOn ? (
             <button type="button" onClick={stopCamera} className="btn">
@@ -1063,7 +1083,7 @@ export default function NegativeViewer({ labels }) {
             type="button"
             onClick={captureShot}
             disabled={!isCameraOn || capturing}
-            className="btn"
+            className="btn viewer__capture-button"
           >
             {t.capture}
           </button>
@@ -1076,19 +1096,14 @@ export default function NegativeViewer({ labels }) {
           >
             {t.openConverter}
           </a>
-          {showNegativeControls && (
+          {isCameraOn && (
             <button
               type="button"
-              onClick={toggleSample}
-              className={`btn${armSample ? " btn--primary" : ""}`}
-              aria-pressed={armSample}
+              onClick={() => setPanelOpen((v) => !v)}
+              className={`btn${panelOpen ? " btn--primary" : ""}`}
+              aria-expanded={panelOpen}
             >
-              {armSample ? t.tapOrangeFilm : t.sampleBase}
-            </button>
-          )}
-          {showNegativeControls && isCorrected && (
-            <button type="button" onClick={resetCorrection} className="btn">
-              {t.resetColorCast}
+              {t.adjust}
             </button>
           )}
           <button
@@ -1101,16 +1116,6 @@ export default function NegativeViewer({ labels }) {
           >
             {isFullscreen ? t.exitFullscreen : t.fullscreen}
           </button>
-          {isCameraOn && (
-            <button
-              type="button"
-              onClick={() => setPanelOpen((v) => !v)}
-              className={`btn${panelOpen ? " btn--primary" : ""}`}
-              aria-expanded={panelOpen}
-            >
-              {t.adjust}
-            </button>
-          )}
         </div>
         {isCameraOn && panelOpen && (
           <div className="viewer__panel">
@@ -1125,6 +1130,25 @@ export default function NegativeViewer({ labels }) {
                 <option value="positive">{t.filmPositive}</option>
               </select>
             </label>
+            {showNegativeControls && (
+              <button
+                type="button"
+                onClick={toggleSample}
+                className={`btn btn--small${armSample ? " btn--primary" : ""}`}
+                aria-pressed={armSample}
+              >
+                {armSample ? t.tapOrangeFilm : t.sampleBase}
+              </button>
+            )}
+            {showNegativeControls && isCorrected && (
+              <button
+                type="button"
+                onClick={resetCorrection}
+                className="btn btn--small"
+              >
+                {t.resetColorCast}
+              </button>
+            )}
             <label className="viewer__field">
               <span>{t.frameGuide}</span>
               <select value={guide} onChange={(e) => changeGuide(e.target.value)}>

@@ -15,6 +15,7 @@ const eslintConfig = [
       "out/**",
       "coverage/**",
       "next-env.d.ts",
+      "public/sw.js",
     ],
   },
   ...compat.extends("next/core-web-vitals"),
