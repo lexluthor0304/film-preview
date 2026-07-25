@@ -1,0 +1,17 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '.tool_input.file_path // empty' | { read -r f; case \"$f\" in \"$CLAUDE_PROJECT_DIR\"/*.js|\"$CLAUDE_PROJECT_DIR\"/*.jsx|\"$CLAUDE_PROJECT_DIR\"/*.mjs) cd \"$CLAUDE_PROJECT_DIR\" && npx --no-install eslint --no-warn-ignored \"$f\" 1>&2 || exit 2;; esac; }",
+            "timeout": 60,
+            "statusMessage": "Running ESLint..."
+          }
+        ]
+      }
+    ]
+  }
+}
