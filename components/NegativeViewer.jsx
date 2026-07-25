@@ -1213,16 +1213,6 @@ export default function NegativeViewer({ labels }) {
             )}
           </div>
         )}
-        {showNegativeControls && (
-          <p className="viewer__status" role="status">
-            {statusLabel}
-          </p>
-        )}
-        {error && (
-          <p className="viewer__error" role="alert">
-            {error}
-          </p>
-        )}
         {shots.length > 0 && (
           <div className="viewer__gallery">
             <div className="viewer__gallery-header">
@@ -1292,6 +1282,16 @@ export default function NegativeViewer({ labels }) {
           </div>
         )}
       </div>
+      {showNegativeControls && !(isFullscreen && hudHidden) && (
+        <p className="viewer__status" role="status">
+          {statusLabel}
+        </p>
+      )}
+      {error && (
+        <p className="viewer__error" role="alert">
+          {error}
+        </p>
+      )}
     </div>
   );
 }
