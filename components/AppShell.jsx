@@ -3,7 +3,7 @@ import { SerwistProvider } from "@serwist/next/react";
 import JsonLd from "@/components/JsonLd";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
-import { getDictionary } from "@/lib/i18n";
+import { getDictionary, getLocaleDir } from "@/lib/i18n";
 import { buildOrganizationSchema, buildWebsiteSchema } from "@/lib/schema";
 import { siteConfig } from "@/lib/site-config";
 
@@ -19,7 +19,7 @@ export default function AppShell({ children, locale }) {
   const dictionary = getDictionary(locale);
 
   return (
-    <html lang={dictionary.htmlLang}>
+    <html lang={dictionary.htmlLang} dir={getLocaleDir(locale)}>
       <head>
         {/* iOS PWA meta tags — required for Apple devices to treat this as a PWA */}
         <meta name="apple-mobile-web-app-capable" content="yes" />
