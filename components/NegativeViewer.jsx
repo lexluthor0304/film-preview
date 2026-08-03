@@ -909,10 +909,11 @@ export default function NegativeViewer({ labels }) {
   };
 
   const toggleSample = () => {
-    setArmSample((v) => {
-      samplingRef.current = !v;
-      return !v;
-    });
+    const next = !samplingRef.current;
+    samplingRef.current = next;
+    setArmSample(next);
+    // Sampling means tapping the film in the preview; the panel would cover it.
+    if (next) setPanelOpen(false);
   };
 
   // Desktop wheel zoom; React's synthetic wheel listener is passive, so we
@@ -1069,6 +1070,18 @@ export default function NegativeViewer({ labels }) {
               {t.startCamera}
             </button>
           )}
+          {showNegativeControls && (
+            <button
+              type="button"
+              onClick={toggleSample}
+              className={`btn viewer__sample-button${
+                armSample ? " btn--primary" : ""
+              }`}
+              aria-pressed={armSample}
+            >
+              {armSample ? t.tapOrangeFilm : t.sampleBase}
+            </button>
+          )}
           {isCameraOn && (
             <button
               type="button"
@@ -1130,16 +1143,6 @@ export default function NegativeViewer({ labels }) {
                 <option value="positive">{t.filmPositive}</option>
               </select>
             </label>
-            {showNegativeControls && (
-              <button
-                type="button"
-                onClick={toggleSample}
-                className={`btn btn--small${armSample ? " btn--primary" : ""}`}
-                aria-pressed={armSample}
-              >
-                {armSample ? t.tapOrangeFilm : t.sampleBase}
-              </button>
-            )}
             {showNegativeControls && isCorrected && (
               <button
                 type="button"

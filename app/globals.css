@@ -627,6 +627,7 @@ main {
     line-height: 1.2;
   }
   .viewer__controls .btn:first-child,
+  .viewer__sample-button,
   .viewer__fullscreen-button {
     grid-column: 1 / -1;
   }
