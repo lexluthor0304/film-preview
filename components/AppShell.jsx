@@ -3,6 +3,7 @@ import { SerwistProvider } from "@serwist/next/react";
 import JsonLd from "@/components/JsonLd";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
+import VignetteOptOut from "@/components/VignetteOptOut";
 import { getDictionary, getLocaleDir } from "@/lib/i18n";
 import { buildOrganizationSchema, buildWebsiteSchema } from "@/lib/schema";
 import { siteConfig } from "@/lib/site-config";
@@ -56,11 +57,16 @@ export default function AppShell({ children, locale }) {
         )}
 
         {adsenseClient && (
-          <Script
-            src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsenseClient}`}
-            strategy="afterInteractive"
-            crossOrigin="anonymous"
-          />
+          <>
+            {/* Auto ads would otherwise serve full-screen vignettes, which the
+                Ad Experience Report reports as a POPUP violation. */}
+            <VignetteOptOut />
+            <Script
+              src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsenseClient}`}
+              strategy="afterInteractive"
+              crossOrigin="anonymous"
+            />
+          </>
         )}
       </body>
     </html>
