@@ -1,8 +1,10 @@
 import Link from "next/link";
 import Image from "next/image";
 import NegativeViewer from "@/components/NegativeViewer";
+import ContestPromo from "@/components/ContestPromo";
 import JsonLd from "@/components/JsonLd";
 import NegativeConverterCta from "@/components/NegativeConverterCta";
+import { getDictionary } from "@/lib/i18n";
 import {
   buildFaqPageSchema,
   buildSoftwareApplicationSchema,
@@ -287,6 +289,8 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      <ContestPromo labels={getDictionary().contest} />
     </>
   );
 }

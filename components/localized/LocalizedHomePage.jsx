@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import ContestPromo from "@/components/ContestPromo";
 import JsonLd from "@/components/JsonLd";
 import NegativeConverterCta from "@/components/NegativeConverterCta";
 import NegativeViewer from "@/components/NegativeViewer";
@@ -132,6 +133,8 @@ export default function LocalizedHomePage({ locale, content }) {
           </div>
         </div>
       </section>
+
+      <ContestPromo labels={dictionary.contest} />
     </>
   );
 }
