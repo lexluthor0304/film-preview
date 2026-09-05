@@ -1095,3 +1095,92 @@ body:has(.viewer--fullscreen) .contest-promo {
     display: none;
   }
 }
+
+/* 校正中は原寸の負片と確認操作を優先する。 */
+.viewer__sample-help {
+  position: absolute;
+  inset: calc(0.75rem + env(safe-area-inset-top)) 0.75rem auto;
+  padding: 0.75rem;
+  border-radius: 10px;
+  background: rgb(0 0 0 / 80%);
+  color: white;
+  font-size: 0.9rem;
+  pointer-events: none;
+}
+.viewer__loupe {
+  position: absolute;
+  top: calc(6.5rem + env(safe-area-inset-top));
+  right: 0.75rem;
+  width: 120px;
+  height: 120px;
+  border: 2px solid white;
+  border-radius: 12px;
+  overflow: hidden;
+  pointer-events: none;
+  box-shadow: 0 2px 14px #0008;
+}
+.viewer__loupe canvas { width: 100%; height: 100%; }
+.viewer__loupe span {
+  position: absolute;
+  inset: 42%;
+  border: 2px solid white;
+  box-shadow: 0 0 0 1px black;
+}
+.viewer__sample-target {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  transform: translate(-50%, -50%);
+  border: 2px solid white;
+  box-shadow: 0 0 0 1px black;
+  pointer-events: none;
+}
+.viewer__auto-region {
+  position: absolute;
+  border: 2px solid #78edb3;
+  box-shadow: 0 0 0 1px #0008;
+  pointer-events: none;
+}
+.viewer__sample-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.6rem;
+}
+.viewer__sample-actions p { grid-column: 1 / -1; margin: 0; }
+.viewer__sample-actions .btn { min-height: 48px; }
+.viewer--fullscreen .viewer__sample-actions { color: white; }
+.viewer__status-detail { display: block; font-size: 0.8rem; margin-top: 0.25rem; }
+.viewer--fullscreen .viewer__status { width: max-content; max-width: calc(100% - 2rem); text-align: center; }
+body:has(.viewer--active) .contest-promo { display: none; }
+@media (max-width: 720px) {
+  /* モバイルでは告知を文書フロー内に置き、操作ボタンを覆わない。 */
+  .contest-promo { position: relative; inset: auto; margin: 1rem 0.75rem; width: auto; }
+  .contest-promo__close { width: 44px; height: 44px; }
+  .viewer--fullscreen .viewer__controls {
+    display: grid;
+    grid-template-columns: 1fr 1.15fr 1fr;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .viewer--fullscreen .viewer__controls .btn { min-height: 48px; width: 100%; grid-column: auto; }
+  .viewer--fullscreen .viewer__controls .viewer__sample-button { grid-column: 1; grid-row: 1; }
+  .viewer--fullscreen .viewer__controls .viewer__capture-button { grid-column: 2; grid-row: 1; min-height: 64px !important; border-radius: 999px; font-weight: 700; }
+  .viewer--fullscreen .viewer__controls .viewer__adjust-button { grid-column: 3; grid-row: 1; }
+  .viewer--fullscreen .viewer__stop-button { grid-row: 2; }
+  .viewer--fullscreen .viewer__freeze-button { grid-row: 2; }
+  .viewer--fullscreen .viewer__fullscreen-button { grid-row: 2; }
+  .viewer--fullscreen .viewer__panel { max-height: 32dvh; overflow-y: auto; }
+  .viewer--fullscreen .viewer__hud { max-height: 55%; }
+  .viewer__hud-reveal { min-height: 48px; min-width: 48px; }
+  .viewer__panel .btn, .viewer__field select { min-height: 48px; }
+  .viewer__slider { min-width: 0; }
+  .viewer__slider input { min-width: 0; }
+}
+@media (max-height: 500px) and (orientation: landscape) {
+  .viewer__sample-help { right: 145px; }
+  .viewer__loupe { top: calc(0.5rem + env(safe-area-inset-top)); }
+}
+.viewer--fullscreen .viewer__gallery { order: 1; }
+.viewer--fullscreen .viewer__panel { order: 2; }
+.viewer--fullscreen .viewer__controls,
+.viewer--fullscreen .viewer__sample-actions { order: 3; }

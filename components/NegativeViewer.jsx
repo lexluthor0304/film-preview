@@ -6,7 +6,8 @@ import {
   correctionFromSample,
   DEFAULT_GAMMA,
 } from "@/lib/webgl-pipeline";
-import { autoSampleBase, manualSampleBase } from "@/lib/sample-base";
+import { manualSampleResult } from "@/lib/sample-base";
+import { calibrateCamera } from "@/lib/camera-calibration";
 import { srgbToLinear, linearToSrgb } from "@/lib/color";
 import {
   clampValue,
@@ -20,14 +21,6 @@ import {
 import { getDictionary } from "@/lib/i18n";
 import { siteConfig } from "@/lib/site-config";
 
-// Long enough for auto-exposure/AWB to settle before we lock and sample.
-const AUTO_SAMPLE_DELAY_MS = 600;
-const RESAMPLE_INTERVAL_MS = 2000;
-const EMA_ALPHA = 0.25;
-// Skip uniform updates below this per-channel delta (avoids flicker)…
-const EMA_MIN_DELTA = 1.5;
-// …but snap immediately on large jumps (user swapped negatives).
-const EMA_SNAP_DELTA = 20;
 const GAMMA_MIN = 1.0;
 const GAMMA_MAX = 2.4;
 const GAMMA_STEP = 0.05;
@@ -95,35 +88,6 @@ function applyCpuColor(imageData, luts, filmType) {
   return imageData;
 }
 
-async function lockCameraColor(stream) {
-  const track = stream.getVideoTracks()[0];
-  if (!track?.getCapabilities) return;
-  try {
-    const caps = track.getCapabilities();
-    const settings = track.getSettings();
-    const advanced = [];
-    if (caps.whiteBalanceMode?.includes("manual")) {
-      const wb = { whiteBalanceMode: "manual" };
-      if (caps.colorTemperature) {
-        // Lock at the value AWB has already converged to, not an arbitrary one.
-        wb.colorTemperature =
-          settings.colorTemperature ??
-          (caps.colorTemperature.min + caps.colorTemperature.max) / 2;
-      }
-      advanced.push(wb);
-    }
-    if (caps.exposureMode?.includes("manual") && settings.exposureTime) {
-      advanced.push({
-        exposureMode: "manual",
-        exposureTime: settings.exposureTime,
-      });
-    }
-    if (advanced.length) await track.applyConstraints({ advanced });
-  } catch {
-    // Device-dependent; periodic resampling compensates for AWB drift.
-  }
-}
-
 export default function NegativeViewer({ labels }) {
   const t = labels || getDictionary("en").viewer;
   const videoRef = useRef(null);
@@ -133,8 +97,9 @@ export default function NegativeViewer({ labels }) {
   const animationFrameRef = useRef(0);
   const pipelineRef = useRef(null);
   const samplingRef = useRef(false);
-  const autoSampleTimerRef = useRef(0);
-  const resampleTimerRef = useRef(0);
+  const calibrationRef = useRef(null);
+  const calibrationFrameRef = useRef(null);
+  const loupeRef = useRef(null);
   const nativeFullscreenRef = useRef(false);
   const baseRef = useRef(null); // sampled base color, 0-255 per channel
   const gammaRef = useRef(DEFAULT_GAMMA);
@@ -155,6 +120,12 @@ export default function NegativeViewer({ labels }) {
   const shotsRef = useRef([]);
   const shotSeqRef = useRef(0);
 
+  const [calibrating, setCalibrating] = useState(false);
+  const [calibrationMessage, setCalibrationMessage] = useState("");
+  const [cameraLocked, setCameraLocked] = useState(false);
+  const [samplePoint, setSamplePoint] = useState(null);
+  const [pendingSample, setPendingSample] = useState(null);
+  const [autoRegion, setAutoRegion] = useState(null);
   const [isCameraOn, setIsCameraOn] = useState(false);
   const [error, setError] = useState("");
   const [insecureContext, setInsecureContext] = useState(false);
@@ -176,6 +147,12 @@ export default function NegativeViewer({ labels }) {
   const [flash, setFlash] = useState(false);
   const [capturing, setCapturing] = useState(false);
   const [canShareFiles, setCanShareFiles] = useState(false);
+
+  useEffect(() => {
+    if (!autoRegion) return;
+    const timer = setTimeout(() => setAutoRegion(null), 3500);
+    return () => clearTimeout(timer);
+  }, [autoRegion]);
 
   useEffect(() => {
     isCameraOnRef.current = isCameraOn;
@@ -318,6 +295,11 @@ export default function NegativeViewer({ labels }) {
 
   const pushColorState = () => {
     const correction = currentCorrection();
+    if (samplingRef.current) {
+      pipelineRef.current?.setCorrection(null);
+      pipelineRef.current?.setAdjust({ filmType: 2, ev: 0 });
+      return;
+    }
     pipelineRef.current?.setCorrection(correction);
     pipelineRef.current?.setAdjust({
       ev: evRef.current,
@@ -330,12 +312,14 @@ export default function NegativeViewer({ labels }) {
   };
 
   const pushView = () => {
+    setAutoRegion(null);
     pipelineRef.current?.setView(viewRef.current);
     setZoomUi(viewRef.current.zoom);
   };
 
   const applyBase = (base, source) => {
     if (!base) return;
+    setCalibrationMessage("");
     baseRef.current = base;
     sampleSourceRef.current = source;
     setSampleSource(source);
@@ -343,6 +327,10 @@ export default function NegativeViewer({ labels }) {
   };
 
   const resetCorrection = () => {
+    calibrationRef.current?.abort();
+    setCalibrating(false);
+    setAutoRegion(null);
+    setCalibrationMessage("");
     baseRef.current = null;
     sampleSourceRef.current = "none";
     setSampleSource("none");
@@ -367,10 +355,8 @@ export default function NegativeViewer({ labels }) {
     if (!FILM_TYPES.includes(value)) return;
     filmTypeRef.current = value;
     setFilmType(value);
-    if (value === "positive" && samplingRef.current) {
-      samplingRef.current = false;
-      setArmSample(false);
-    }
+    cancelSample();
+    resetCorrection();
     pushColorState();
     persistSettings();
   };
@@ -484,6 +470,7 @@ export default function NegativeViewer({ labels }) {
     ctx.rotate((view.rotate * Math.PI) / 2);
     ctx.drawImage(source, sx, sy, srcW, srcH, -sw / 2, -sh / 2, sw, sh);
     ctx.restore();
+    if (samplingRef.current) return;
     if (!lutRef.current) {
       lutRef.current = buildLuts(
         currentCorrection(),
@@ -500,7 +487,7 @@ export default function NegativeViewer({ labels }) {
   };
 
   const processVideo = () => {
-    const videoEl = videoRef.current;
+    const videoEl = calibrationFrameRef.current || videoRef.current;
     const canvas = canvasRef.current;
     if (!videoEl || !canvas) return;
     if (pipelineRef.current) {
@@ -511,38 +498,52 @@ export default function NegativeViewer({ labels }) {
     animationFrameRef.current = requestAnimationFrame(processVideo);
   };
 
-  const startResampleLoop = () => {
-    if (resampleTimerRef.current) return;
-    resampleTimerRef.current = window.setInterval(() => {
-      // Only track drift while in auto mode; never override a manual sample.
-      if (sampleSourceRef.current !== "auto") return;
-      if (frozenRef.current) return;
-      const videoEl = videoRef.current;
-      if (!videoEl) return;
-      const sampled = autoSampleBase(videoEl);
-      if (!sampled) return;
-      const prev = baseRef.current;
-      if (!prev) {
-        applyBase(sampled, "auto");
+  const runCalibration = async (manual = false) => {
+    calibrationRef.current?.abort();
+    const controller = new AbortController();
+    calibrationRef.current = controller;
+    const video = videoRef.current;
+    const stream = streamRef.current;
+    if (!video || !stream) return;
+    setCalibrating(true);
+    setCalibrationMessage("");
+    setAutoRegion(null);
+    try {
+      // 凍結した画面での手動取樣は、その画面を維持する。
+      const result = frozenRef.current && manual
+        ? { locked: cameraLocked }
+        : await calibrateCamera(stream, video, filmTypeRef.current, controller.signal, { findBase: !manual });
+      controller.signal.throwIfAborted();
+      if (streamRef.current !== stream) return;
+      setCameraLocked(result.locked);
+      if (manual && result.reason === "unstable") {
+        setCalibrationMessage("unstable");
         return;
       }
-      const maxDelta = Math.max(
-        Math.abs(sampled.r - prev.r),
-        Math.abs(sampled.g - prev.g),
-        Math.abs(sampled.b - prev.b)
-      );
-      if (maxDelta < EMA_MIN_DELTA) return;
-      const next =
-        maxDelta > EMA_SNAP_DELTA
-          ? sampled
-          : {
-              r: prev.r + EMA_ALPHA * (sampled.r - prev.r),
-              g: prev.g + EMA_ALPHA * (sampled.g - prev.g),
-              b: prev.b + EMA_ALPHA * (sampled.b - prev.b),
-            };
-      baseRef.current = next;
-      pushColorState();
-    }, RESAMPLE_INTERVAL_MS);
+      if (manual) {
+        const frame = document.createElement("canvas");
+        frame.width = video.videoWidth;
+        frame.height = video.videoHeight;
+        frame.getContext("2d").drawImage(video, 0, 0);
+        calibrationFrameRef.current = frame;
+        samplingRef.current = true;
+        setArmSample(true);
+        setPendingSample(null);
+        setSamplePoint(null);
+        setPanelOpen(false);
+        setHudHidden(false);
+        pushColorState();
+      } else if (result.base) {
+        applyBase(result.base, "auto");
+        setAutoRegion(result.region);
+      } else {
+        setCalibrationMessage(result.reason || "noBase");
+      }
+    } catch (err) {
+      if (err.name !== "AbortError") setCalibrationMessage("noBase");
+    } finally {
+      if (calibrationRef.current === controller) setCalibrating(false);
+    }
   };
 
   const requestWakeLock = async () => {
@@ -620,12 +621,7 @@ export default function NegativeViewer({ labels }) {
           processVideo();
           requestWakeLock();
           recomputeGuideSoon();
-          autoSampleTimerRef.current = window.setTimeout(async () => {
-            await lockCameraColor(stream);
-            const base = autoSampleBase(videoEl);
-            if (base) applyBase(base, "auto");
-            startResampleLoop();
-          }, AUTO_SAMPLE_DELAY_MS);
+          if (filmTypeRef.current !== "positive") runCalibration();
         } else {
           requestAnimationFrame(waitForSize);
         }
@@ -639,14 +635,9 @@ export default function NegativeViewer({ labels }) {
   };
 
   const stopCamera = () => {
-    if (autoSampleTimerRef.current) {
-      clearTimeout(autoSampleTimerRef.current);
-      autoSampleTimerRef.current = 0;
-    }
-    if (resampleTimerRef.current) {
-      clearInterval(resampleTimerRef.current);
-      resampleTimerRef.current = 0;
-    }
+    calibrationRef.current?.abort();
+    cancelSample();
+    setCameraLocked(false);
     if (animationFrameRef.current) {
       cancelAnimationFrame(animationFrameRef.current);
       animationFrameRef.current = 0;
@@ -840,21 +831,50 @@ export default function NegativeViewer({ labels }) {
   // ---- Pointer input: tap-to-sample, drag-to-pan, pinch-to-zoom ----------
 
   const sampleAtClient = (clientX, clientY) => {
-    const videoEl = videoRef.current;
+    const source = calibrationFrameRef.current;
     const canvas = canvasRef.current;
-    if (!videoEl || !canvas) return;
+    if (!source || !canvas) return;
     const norm = clientToContentNorm(canvas, clientX, clientY);
     if (!norm || norm.x < 0 || norm.x > 1 || norm.y < 0 || norm.y > 1) return;
     const src = displayToSource(norm.x, norm.y, viewRef.current);
-    const base = manualSampleBase(videoEl, src.u, src.v);
-    if (base) applyBase(base, "manual");
-    setArmSample(false);
+    const result = manualSampleResult(source, src.u, src.v, filmTypeRef.current);
+    setPendingSample(result.base ?? null);
+    setCalibrationMessage(result.reason || "");
+    const rect = viewportRef.current.getBoundingClientRect();
+    setSamplePoint({ x: clientX - rect.left, y: clientY - rect.top });
+    const loupe = loupeRef.current;
+    if (loupe) {
+      const ctx = loupe.getContext("2d");
+      ctx.imageSmoothingEnabled = false;
+      const size = Math.max(24, source.width / 24);
+      ctx.clearRect(0, 0, 120, 120);
+      ctx.drawImage(source, src.u * source.width - size / 2, src.v * source.height - size / 2, size, size, 0, 0, 120, 120);
+    }
+  };
+
+  const cancelSample = () => {
+    calibrationRef.current?.abort();
+    setCalibrating(false);
     samplingRef.current = false;
+    calibrationFrameRef.current = null;
+    setArmSample(false);
+    setPendingSample(null);
+    setSamplePoint(null);
+    setCalibrationMessage("");
+    pushColorState();
+  };
+
+  const confirmSample = () => {
+    if (!pendingSample) return;
+    const base = pendingSample;
+    cancelSample();
+    applyBase(base, "manual");
   };
 
   const onPointerDown = (e) => {
     if (!isCameraOnRef.current) return;
     const st = pointerStateRef.current;
+    if (samplingRef.current) sampleAtClient(e.clientX, e.clientY);
     canvasRef.current?.setPointerCapture?.(e.pointerId);
     st.pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
     if (st.pointers.size === 1) {
@@ -877,6 +897,10 @@ export default function NegativeViewer({ labels }) {
     if (Math.hypot(cur.x - st.downX, cur.y - st.downY) > TAP_SLOP_PX) {
       st.moved = true;
     }
+    if (samplingRef.current) {
+      if (st.pointers.size === 1) sampleAtClient(e.clientX, e.clientY);
+      return;
+    }
     if (st.pointers.size === 2) {
       const pts = [...st.pointers.values()];
       const dist = Math.hypot(pts[0].x - pts[1].x, pts[0].y - pts[1].y);
@@ -897,7 +921,12 @@ export default function NegativeViewer({ labels }) {
     st.pointers.delete(e.pointerId);
     canvasRef.current?.releasePointerCapture?.(e.pointerId);
     if (st.pointers.size === 0) {
-      if (!st.moved && samplingRef.current) {
+      if (e.type === "pointercancel") {
+        st.lastDist = 0;
+        st.moved = false;
+        return;
+      }
+      if (samplingRef.current) {
         sampleAtClient(e.clientX, e.clientY);
       } else if (!st.moved && isFullscreen) {
         // Tap toggles the control overlay, like a video player.
@@ -909,11 +938,8 @@ export default function NegativeViewer({ labels }) {
   };
 
   const toggleSample = () => {
-    const next = !samplingRef.current;
-    samplingRef.current = next;
-    setArmSample(next);
-    // Sampling means tapping the film in the preview; the panel would cover it.
-    if (next) setPanelOpen(false);
+    if (samplingRef.current || calibrating) cancelSample();
+    else runCalibration(true);
   };
 
   // Desktop wheel zoom; React's synthetic wheel listener is passive, so we
@@ -922,7 +948,7 @@ export default function NegativeViewer({ labels }) {
     const canvas = canvasRef.current;
     if (!canvas) return;
     const onWheel = (e) => {
-      if (!isCameraOnRef.current) return;
+      if (!isCameraOnRef.current || samplingRef.current) return;
       e.preventDefault();
       const factor = e.deltaY < 0 ? 1.1 : 1 / 1.1;
       changeZoom(viewRef.current.zoom * factor);
@@ -974,12 +1000,7 @@ export default function NegativeViewer({ labels }) {
       if (animationFrameRef.current) {
         cancelAnimationFrame(animationFrameRef.current);
       }
-      if (autoSampleTimerRef.current) {
-        clearTimeout(autoSampleTimerRef.current);
-      }
-      if (resampleTimerRef.current) {
-        clearInterval(resampleTimerRef.current);
-      }
+      calibrationRef.current?.abort();
       if (videoEl?.srcObject) {
         videoEl.srcObject.getTracks().forEach((track) => track.stop());
       }
@@ -997,13 +1018,14 @@ export default function NegativeViewer({ labels }) {
   const showNegativeControls = showColorControls && filmType !== "positive";
 
   let statusLabel = t.statusUncorrected;
-  if (sampleSource === "auto") statusLabel = t.statusAuto;
-  if (sampleSource === "manual") statusLabel = t.statusManual;
+  if (sampleSource === "auto") statusLabel = t.baseAutoLocked;
+  if (sampleSource === "manual") statusLabel = t.baseManualLocked;
+  if (calibrating) statusLabel = t.findingBase;
 
   return (
     <div
       ref={viewerRef}
-      className={`viewer${isFullscreen ? " viewer--fullscreen" : ""}`}
+      className={`viewer${isFullscreen ? " viewer--fullscreen" : ""}${isCameraOn ? " viewer--active" : ""}${armSample ? " viewer--sampling" : ""}`}
     >
       {insecureContext && (
         <p className="viewer__notice" role="status">
@@ -1027,9 +1049,24 @@ export default function NegativeViewer({ labels }) {
           onPointerCancel={onPointerUp}
           aria-label={t.canvasAria}
         />
-        {guideStyle && (
+        {guideStyle && !armSample && (
           <div className="viewer__guide" style={guideStyle} aria-hidden="true" />
         )}
+        {armSample && (
+          <>
+            <div className="viewer__sample-help" role="status">{filmType === "bw" ? t.sampleHintBw : t.sampleHint}</div>
+            <div className="viewer__loupe" aria-hidden="true" hidden={!samplePoint}>
+              <canvas ref={loupeRef} width={120} height={120} />
+              <span />
+            </div>
+            {samplePoint && <div className="viewer__sample-target" style={{ left: samplePoint.x, top: samplePoint.y }} aria-hidden="true" />}
+          </>
+        )}
+        {autoRegion && !armSample && zoomUi === 1 && !mirror && viewRef.current.rotate === 0 && (() => {
+          const rect = canvasRef.current && contentRect(canvasRef.current);
+          const viewport = viewportRef.current?.getBoundingClientRect();
+          return rect && viewport && <div className="viewer__auto-region" aria-label={t.detectedBase} style={{ left: rect.left - viewport.left + autoRegion.x * rect.width, top: rect.top - viewport.top + autoRegion.y * rect.height, width: Math.max(16, autoRegion.width * rect.width), height: Math.max(16, autoRegion.height * rect.height) }} />;
+        })()}
         {flash && <div className="viewer__flash" aria-hidden="true" />}
         {isCameraOn && isFullscreen && hudHidden && (
           <button
@@ -1055,9 +1092,15 @@ export default function NegativeViewer({ labels }) {
           isFullscreen && hudHidden ? " viewer__hud--hidden" : ""
         }`}
       >
-        <div className="viewer__controls">
+        {armSample ? (
+          <div className="viewer__sample-actions">
+            <p role="status">{calibrationMessage ? t[`sampleError_${calibrationMessage}`] : pendingSample ? t.sampleReady : t.sampleHintShort}</p>
+            <button type="button" className="btn" onClick={cancelSample}>{t.cancelCalibration}</button>
+            <button type="button" className="btn btn--primary" disabled={!pendingSample} onClick={confirmSample}>{t.useSample}</button>
+          </div>
+        ) : <div className="viewer__controls">
           {isCameraOn ? (
-            <button type="button" onClick={stopCamera} className="btn">
+            <button type="button" onClick={stopCamera} className="btn viewer__stop-button">
               {t.stopCamera}
             </button>
           ) : (
@@ -1079,14 +1122,15 @@ export default function NegativeViewer({ labels }) {
               }`}
               aria-pressed={armSample}
             >
-              {armSample ? t.tapOrangeFilm : t.sampleBase}
+              {calibrating ? t.cancelCalibration : t.calibrate}
             </button>
           )}
           {isCameraOn && (
             <button
               type="button"
               onClick={toggleFreeze}
-              className={`btn${frozen ? " btn--primary" : ""}`}
+              disabled={calibrating}
+              className={`btn viewer__freeze-button${frozen ? " btn--primary" : ""}`}
               aria-pressed={frozen}
             >
               {frozen ? t.resume : t.freeze}
@@ -1095,7 +1139,7 @@ export default function NegativeViewer({ labels }) {
           <button
             type="button"
             onClick={captureShot}
-            disabled={!isCameraOn || capturing}
+            disabled={!isCameraOn || capturing || calibrating || armSample}
             className="btn viewer__capture-button"
           >
             {t.capture}
@@ -1113,7 +1157,8 @@ export default function NegativeViewer({ labels }) {
             <button
               type="button"
               onClick={() => setPanelOpen((v) => !v)}
-              className={`btn${panelOpen ? " btn--primary" : ""}`}
+              disabled={calibrating}
+              className={`btn viewer__adjust-button${panelOpen ? " btn--primary" : ""}`}
               aria-expanded={panelOpen}
             >
               {t.adjust}
@@ -1129,9 +1174,10 @@ export default function NegativeViewer({ labels }) {
           >
             {isFullscreen ? t.exitFullscreen : t.fullscreen}
           </button>
-        </div>
+        </div>}
         {isCameraOn && panelOpen && (
           <div className="viewer__panel">
+            {showNegativeControls && <button type="button" className="btn" disabled={calibrating || frozen} onClick={() => { setPanelOpen(false); runCalibration(); }}>{t.findBaseAgain}</button>}
             <label className="viewer__field">
               <span>{t.filmType}</span>
               <select
@@ -1285,9 +1331,11 @@ export default function NegativeViewer({ labels }) {
           </div>
         )}
       </div>
-      {showNegativeControls && !(isFullscreen && hudHidden) && (
+      {showNegativeControls && !armSample && !(isFullscreen && hudHidden) && (
         <p className="viewer__status" role="status">
           {statusLabel}
+          {calibrationMessage && <span className="viewer__status-detail">{t[`sampleError_${calibrationMessage}`]}</span>}
+          {isCorrected && !calibrating && <span className="viewer__status-detail">{cameraLocked ? t.cameraColorLocked : t.cameraColorAuto}</span>}
         </p>
       )}
       {error && (
