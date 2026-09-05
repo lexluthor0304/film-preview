@@ -125,6 +125,7 @@ export default function NegativeViewer({ labels }) {
   const [cameraLocked, setCameraLocked] = useState(false);
   const [samplePoint, setSamplePoint] = useState(null);
   const [pendingSample, setPendingSample] = useState(null);
+  const [sampleWarning, setSampleWarning] = useState(null);
   const [autoRegion, setAutoRegion] = useState(null);
   const [isCameraOn, setIsCameraOn] = useState(false);
   const [error, setError] = useState("");
@@ -529,6 +530,7 @@ export default function NegativeViewer({ labels }) {
         samplingRef.current = true;
         setArmSample(true);
         setPendingSample(null);
+        setSampleWarning(null);
         setSamplePoint(null);
         setPanelOpen(false);
         setHudHidden(false);
@@ -839,6 +841,7 @@ export default function NegativeViewer({ labels }) {
     const src = displayToSource(norm.x, norm.y, viewRef.current);
     const result = manualSampleResult(source, src.u, src.v, filmTypeRef.current);
     setPendingSample(result.base ?? null);
+    setSampleWarning(result.warning ?? null);
     setCalibrationMessage(result.reason || "");
     const rect = viewportRef.current.getBoundingClientRect();
     setSamplePoint({ x: clientX - rect.left, y: clientY - rect.top });
@@ -859,6 +862,7 @@ export default function NegativeViewer({ labels }) {
     calibrationFrameRef.current = null;
     setArmSample(false);
     setPendingSample(null);
+    setSampleWarning(null);
     setSamplePoint(null);
     setCalibrationMessage("");
     pushColorState();
@@ -875,7 +879,11 @@ export default function NegativeViewer({ labels }) {
     if (!isCameraOnRef.current) return;
     const st = pointerStateRef.current;
     if (samplingRef.current) sampleAtClient(e.clientX, e.clientY);
-    canvasRef.current?.setPointerCapture?.(e.pointerId);
+    try {
+      canvasRef.current?.setPointerCapture?.(e.pointerId);
+    } catch {
+      // 捕捉できない場合もタップした領域の取様は維持する。
+    }
     st.pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
     if (st.pointers.size === 1) {
       st.moved = false;
@@ -919,7 +927,11 @@ export default function NegativeViewer({ labels }) {
     const st = pointerStateRef.current;
     if (!st.pointers.has(e.pointerId)) return;
     st.pointers.delete(e.pointerId);
-    canvasRef.current?.releasePointerCapture?.(e.pointerId);
+    try {
+      canvasRef.current?.releasePointerCapture?.(e.pointerId);
+    } catch {
+      // ブラウザが既に捕捉を解除していても確認操作へ進める。
+    }
     if (st.pointers.size === 0) {
       if (e.type === "pointercancel") {
         st.lastDist = 0;
@@ -1094,9 +1106,9 @@ export default function NegativeViewer({ labels }) {
       >
         {armSample ? (
           <div className="viewer__sample-actions">
-            <p role="status">{calibrationMessage ? t[`sampleError_${calibrationMessage}`] : pendingSample ? t.sampleReady : t.sampleHintShort}</p>
+            <p id="sample-feedback" role="status">{calibrationMessage ? t[`sampleError_${calibrationMessage}`] : sampleWarning ? t.sampleWarningTextured : pendingSample ? t.sampleReady : t.sampleHintShort}</p>
             <button type="button" className="btn" onClick={cancelSample}>{t.cancelCalibration}</button>
-            <button type="button" className="btn btn--primary" disabled={!pendingSample} onClick={confirmSample}>{t.useSample}</button>
+            <button type="button" className="btn btn--primary" disabled={!pendingSample} aria-describedby="sample-feedback" onClick={confirmSample}>{t.useSample}</button>
           </div>
         ) : <div className="viewer__controls">
           {isCameraOn ? (

@@ -40,7 +40,7 @@ test('小さな橙色の孤立点は十分な領域として扱わない', () =>
   assert.equal(detectBase(frame((x, y) => x < 5 && y < 5 ? orange : [80, 80, 80])).base, undefined);
 });
 
-test('手動取樣の過曝・境界・均一性を判定する', () => {
+test('厳格な領域判定の過曝・境界・均一性を確認する', () => {
   assert.equal(inspectPatch(frame(() => [255, 255, 255], 5, 5), 0, 0, 5).reason, 'clipped');
   assert.equal(inspectPatch(frame((x) => x < 2 ? [240, 240, 240] : orange, 5, 5), 0, 0, 5).reason, 'noBase');
   assert.deepEqual(inspectPatch(frame(() => orange, 5, 5), 0, 0, 5).base, expected);
@@ -109,4 +109,28 @@ test('離れた橙色パッチが3個あっても片縁として採用しない'
 test('手動で指定した均一な片基はAWBで中性化されていても使用できる', () => {
   const neutral = frame(() => [180, 179, 175], 5, 5);
   assert.deepEqual(inspectPatch(neutral, 0, 0, 5, 'color', { requireOrange: false }).base, { r: 180, g: 179, b: 175 });
+});
+
+test('手動取様は粒状性を警告にし、確認可能な中央値を返す', () => {
+  const grain = frame((x, y) => [220, 150, 90].map(v => v + ((x + y) % 2 ? 8 : -8)), 15, 15);
+  const strict = inspectPatch(grain, 0, 0, 15, 'color', { requireOrange: false });
+  assert.equal(strict.reason, 'textured');
+  const manual = inspectPatch(grain, 0, 0, 15, 'color', { requireOrange: false, manual: true });
+  assert.ok(manual.base);
+  assert.equal(manual.reason, null);
+  assert.equal(manual.warning, 'textured');
+});
+
+test('手動取様は未飽和の明るい赤と弱い青チャネルを許容する', () => {
+  for (const pixel of [[252, 180, 90], [220, 100, 12]]) {
+    const manual = inspectPatch(frame(() => pixel, 5, 5), 0, 0, 5, 'color', { requireOrange: false, manual: true });
+    assert.deepEqual(manual.base, { r: pixel[0], g: pixel[1], b: pixel[2] });
+    assert.equal(manual.warning, null);
+  }
+});
+
+test('手動でもクリップした片基やほぼ全黒は確認可能にしない', () => {
+  for (const pixel of [[255, 255, 255], [255, 150, 90], [2, 2, 2]]) {
+    assert.equal(inspectPatch(frame(() => pixel, 5, 5), 0, 0, 5, 'color', { requireOrange: false, manual: true }).base, undefined);
+  }
 });
