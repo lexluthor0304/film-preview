@@ -1147,7 +1147,7 @@ body:has(.viewer--fullscreen) .contest-promo {
   gap: 0.6rem;
 }
 .viewer__sample-actions p { grid-column: 1 / -1; margin: 0; }
-.viewer__sample-actions .btn { min-height: 48px; }
+.viewer__sample-actions .btn { min-height: 48px; touch-action: manipulation; }
 .viewer--fullscreen .viewer__sample-actions { color: white; }
 .viewer__status-detail { display: block; font-size: 0.8rem; margin-top: 0.25rem; }
 .viewer--fullscreen .viewer__status { width: max-content; max-width: calc(100% - 2rem); text-align: center; }
