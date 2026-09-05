@@ -1,0 +1,357 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2029D6CDCFAD421C2A0437A2 /* NegativeShader.metal in Sources */ = {isa = PBXBuildFile; fileRef = 07611915D93E46B49EA7F2FA /* NegativeShader.metal */; };
+		30FB146B4E7744AA1EDBF1C0 /* ViewerScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ECFB16A45033AE4EE97F993 /* ViewerScreen.swift */; };
+		38E98A207D0EDE98C482F9D4 /* RenderState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448512EBDCFEC6D86A24AE09 /* RenderState.swift */; };
+		3F7F46B7A837ACFE23007DAA /* CaptureService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977D9F7F7349159C510E053D /* CaptureService.swift */; };
+		52BFCAC2B6EBC7A91117E5D7 /* BaseSampler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD0E1CA4798818FB14E1BB6 /* BaseSampler.swift */; };
+		8F8BD6FED592C45470E68256 /* ColorMath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970D78443F4D2DD7BE68FA25 /* ColorMath.swift */; };
+		A8AB38D7FCF0EE5F04C69A46 /* MetalPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F39207070E2EFBDF6B15E0 /* MetalPreview.swift */; };
+		E0572F14B41A502DBC3D7B9D /* NegativeViewerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF520398B9243901BFF38EC /* NegativeViewerApp.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		07611915D93E46B49EA7F2FA /* NegativeShader.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = NegativeShader.metal; sourceTree = "<group>"; };
+		2AF520398B9243901BFF38EC /* NegativeViewerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NegativeViewerApp.swift; sourceTree = "<group>"; };
+		448512EBDCFEC6D86A24AE09 /* RenderState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RenderState.swift; sourceTree = "<group>"; };
+		4CD0E1CA4798818FB14E1BB6 /* BaseSampler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseSampler.swift; sourceTree = "<group>"; };
+		57F39207070E2EFBDF6B15E0 /* MetalPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetalPreview.swift; sourceTree = "<group>"; };
+		58017EE040EAC78C0D7887EE /* NegativeViewer.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = NegativeViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6ECFB16A45033AE4EE97F993 /* ViewerScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewerScreen.swift; sourceTree = "<group>"; };
+		970D78443F4D2DD7BE68FA25 /* ColorMath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorMath.swift; sourceTree = "<group>"; };
+		977D9F7F7349159C510E053D /* CaptureService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureService.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		1DF755F4E3944682C2DD26CC /* Color */ = {
+			isa = PBXGroup;
+			children = (
+				4CD0E1CA4798818FB14E1BB6 /* BaseSampler.swift */,
+				970D78443F4D2DD7BE68FA25 /* ColorMath.swift */,
+			);
+			path = Color;
+			sourceTree = "<group>";
+		};
+		26AFF1BAA48176A001A24C47 /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				977D9F7F7349159C510E053D /* CaptureService.swift */,
+			);
+			path = Camera;
+			sourceTree = "<group>";
+		};
+		89D54CA24B3F4A620AFC172B /* NegativeViewer */ = {
+			isa = PBXGroup;
+			children = (
+				A1634DE09F0DD47CCB2A81AB /* App */,
+				26AFF1BAA48176A001A24C47 /* Camera */,
+				1DF755F4E3944682C2DD26CC /* Color */,
+				BEEE6746ACC00F5E2FBACFC7 /* Render */,
+			);
+			path = NegativeViewer;
+			sourceTree = "<group>";
+		};
+		A1634DE09F0DD47CCB2A81AB /* App */ = {
+			isa = PBXGroup;
+			children = (
+				2AF520398B9243901BFF38EC /* NegativeViewerApp.swift */,
+				6ECFB16A45033AE4EE97F993 /* ViewerScreen.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		B30EA3D871E47BB38BFF234E = {
+			isa = PBXGroup;
+			children = (
+				89D54CA24B3F4A620AFC172B /* NegativeViewer */,
+				D429DE7339445B46D08DD5B9 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		BEEE6746ACC00F5E2FBACFC7 /* Render */ = {
+			isa = PBXGroup;
+			children = (
+				57F39207070E2EFBDF6B15E0 /* MetalPreview.swift */,
+				07611915D93E46B49EA7F2FA /* NegativeShader.metal */,
+				448512EBDCFEC6D86A24AE09 /* RenderState.swift */,
+			);
+			path = Render;
+			sourceTree = "<group>";
+		};
+		D429DE7339445B46D08DD5B9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				58017EE040EAC78C0D7887EE /* NegativeViewer.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		9733DAB0980578BDA4FEB512 /* NegativeViewer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7A6F3975799FE94FDA960583 /* Build configuration list for PBXNativeTarget "NegativeViewer" */;
+			buildPhases = (
+				116F21908061C9E530B015AA /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NegativeViewer;
+			packageProductDependencies = (
+			);
+			productName = NegativeViewer;
+			productReference = 58017EE040EAC78C0D7887EE /* NegativeViewer.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9B21F7CE7D8266F79E2AF0C4 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					9733DAB0980578BDA4FEB512 = {
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 3059EB8DBB210250B3543472 /* Build configuration list for PBXProject "NegativeViewer" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = B30EA3D871E47BB38BFF234E;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = D429DE7339445B46D08DD5B9 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				9733DAB0980578BDA4FEB512 /* NegativeViewer */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		116F21908061C9E530B015AA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				52BFCAC2B6EBC7A91117E5D7 /* BaseSampler.swift in Sources */,
+				3F7F46B7A837ACFE23007DAA /* CaptureService.swift in Sources */,
+				8F8BD6FED592C45470E68256 /* ColorMath.swift in Sources */,
+				A8AB38D7FCF0EE5F04C69A46 /* MetalPreview.swift in Sources */,
+				2029D6CDCFAD421C2A0437A2 /* NegativeShader.metal in Sources */,
+				E0572F14B41A502DBC3D7B9D /* NegativeViewerApp.swift in Sources */,
+				38E98A207D0EDE98C482F9D4 /* RenderState.swift in Sources */,
+				30FB146B4E7744AA1EDBF1C0 /* ViewerScreen.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		225B1AF4557F3F72499E94D4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		2DD2412E2871052E431A85D9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		929A8E91C853008FA84712CA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Negative Viewer uses the camera to preview film negatives as positives in real time. All processing happens on this device.";
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tokugai.negativeviewer;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		D00BB06EF773E5455518BA79 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Negative Viewer uses the camera to preview film negatives as positives in real time. All processing happens on this device.";
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tokugai.negativeviewer;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3059EB8DBB210250B3543472 /* Build configuration list for PBXProject "NegativeViewer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				225B1AF4557F3F72499E94D4 /* Debug */,
+				2DD2412E2871052E431A85D9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		7A6F3975799FE94FDA960583 /* Build configuration list for PBXNativeTarget "NegativeViewer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D00BB06EF773E5455518BA79 /* Debug */,
+				929A8E91C853008FA84712CA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 9B21F7CE7D8266F79E2AF0C4 /* Project object */;
+}
