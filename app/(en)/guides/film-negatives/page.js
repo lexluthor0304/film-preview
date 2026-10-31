@@ -133,7 +133,8 @@ export default function FilmNegativesGuide() {
             <li>
               When you invert a color negative in software, the inverted image looks
               slightly <em>blue-cyan</em>. That's the inverted orange mask, and it's
-              normal.
+              normal. Tools that measure the film base first, like Negative Viewer,
+              divide it out before inverting, so the cast disappears.
             </li>
             <li>
               Black-and-white negatives have no mask, so they look like a clean
@@ -261,7 +262,7 @@ export default function FilmNegativesGuide() {
                 <td>Triage, sharing, casual viewing</td>
               </tr>
               <tr>
-                <td>Phone photo + invert in editor (Photos, Lightroom Mobile)</td>
+                <td>Phone photo + invert in editor (Snapseed, Lightroom Mobile)</td>
                 <td>Free</td>
                 <td>~30 seconds</td>
                 <td>Better quality stills, quick edits</td>

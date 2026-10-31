@@ -43,7 +43,7 @@ export default function LocalizedGuidePage({ locale, content, path }) {
   const guideSeo = getGuideSeo(path);
   const faqs = getLocalizedGuideFaqs(path, locale);
   const sources = guideCitations[path] || [];
-  const dates = getPageDates(path);
+  const dates = getPageDates(path, locale);
 
   return (
     <>
@@ -53,7 +53,7 @@ export default function LocalizedGuidePage({ locale, content, path }) {
           description: content.metaDescription,
           path,
           locale,
-          readTime: guideSeo.schemaReadTime,
+          readTime: content.schemaReadTime || guideSeo.schemaReadTime,
           keywords: guideSeo.keywords,
           about: guideSeo.about,
         })}
@@ -88,6 +88,9 @@ export default function LocalizedGuidePage({ locale, content, path }) {
                 </ul>
               )}
               {section.table && <ContentTable table={section.table} />}
+              {section.afterParagraphs?.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
             </section>
           ))}
 

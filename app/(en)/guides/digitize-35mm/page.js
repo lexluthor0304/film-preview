@@ -134,14 +134,16 @@ export default function DigitizeGuide() {
 
           <h2 id="m1">Method 1 — Browser viewer (free, fastest)</h2>
           <p>
-            <strong>Cost: $0. Time per frame: real-time. Quality: viewing only.</strong>
+            <strong>Cost: $0. Time per frame: real-time. Quality: good for viewing and sharing.</strong>
           </p>
           <p>
             Use a browser-based negative viewer like{" "}
             <Link href="/">Negative Viewer</Link>. Hold the negative against any
             even backlight (a second phone showing a white image works perfectly),
-            grant camera permission, and the page inverts your camera feed live. Tap
-            "Save photo" to download the current frame as a PNG.
+            grant camera permission, and the page inverts your camera feed live,
+            removing the orange cast of color negatives automatically from a clear
+            film edge. Press Capture to keep a frame, then save it as a PNG or share
+            it.
           </p>
           <p>
             <strong>What you need:</strong> a phone or laptop with a working camera
@@ -153,9 +155,9 @@ export default function DigitizeGuide() {
             across the backlight to triage 36 frames in a minute.
           </p>
           <p>
-            <strong>Limits:</strong> not high-resolution enough to print large; the
-            color is approximate (faithful inversion, but the orange mask leaves a
-            slight blue cast that you'd correct later).
+            <strong>Limits:</strong> not high-resolution enough to print large, and
+            a phone camera held over a light pad is softer than a macro setup. Use it
+            to sort, share, and decide which frames deserve a proper scan.
           </p>
 
           <h2 id="m2">Method 2 — Phone photo + invert in an editor (free, better quality)</h2>
@@ -176,15 +178,16 @@ export default function DigitizeGuide() {
           <ul>
             <li>
               <strong>Snapseed (free):</strong> Tools → Curves → drag the white point
-              to the bottom-left corner and the black point to the top-right.
+              from the top-right corner down to the bottom-right, and the black point
+              from the bottom-left corner up to the top-left.
             </li>
             <li>
               <strong>Lightroom Mobile (free tier):</strong> Light → Curves → flip the
               endpoints. Then drop temperature and tint to fight the orange mask.
             </li>
             <li>
-              <strong>Photoshop / GIMP (desktop):</strong> Image → Adjustments →
-              Invert (Cmd/Ctrl + I).
+              <strong>Photoshop / GIMP (desktop):</strong> in Photoshop, Image →
+              Adjustments → Invert (Cmd/Ctrl + I); in GIMP, Colors → Invert.
             </li>
           </ul>
           <p>
@@ -211,10 +214,17 @@ export default function DigitizeGuide() {
             <strong>The minimum kit:</strong>
           </p>
           <ul>
-            <li>Mirrorless or DSLR camera (any 20+ MP body works)</li>
+            <li>Mirrorless or DSLR camera (20 MP works; 24 MP or more for serious 35mm work)</li>
             <li>Macro lens with 1:1 reproduction (Sigma 70mm 2.8 Art is a popular pick)</li>
             <li>A copy stand <em>or</em> tripod with the camera pointed straight down</li>
-            <li>A high-CRI light source (NEEWER 660 RGB or a Kaiser Slimlite are common)</li>
+            <li>
+              A high-CRI light source (NEEWER 660 RGB or a Kaiser Slimlite are common;{" "}
+              <a href="https://github.com/Neoanaloglab/Neobox" rel="noopener noreferrer">
+                NeoBox
+              </a>
+              , a free 3D-printable strobe light box from the team behind this site,
+              is an open-hardware option)
+            </li>
             <li>A film holder (Negative Supply, Lomography DigitaLIZA, or 3D-printed)</li>
             <li>
               Inversion software: free curves in any RAW editor, or our free
@@ -231,7 +241,7 @@ export default function DigitizeGuide() {
           <p>
             <strong>Workflow:</strong> shoot RAW, lock white balance to your light's
             color temperature, expose so the brightest part of the histogram (the
-            unexposed film base) sits ~3 stops below clipping. Invert and color
+            unexposed film base) sits just below clipping, without touching it. Invert and color
             correct in Lightroom, or drop the JPEG export into{" "}
             <a
               href="https://negative-converter.tokugai.com/"
@@ -262,9 +272,9 @@ export default function DigitizeGuide() {
             giving you ready-to-use JPEGs.
           </p>
           <p>
-            <strong>Strengths:</strong> hands-off batch scanning; one device handles
-            35mm, 120, and even 4×5; software handles dust removal (Digital ICE)
-            for color negatives.
+            <strong>Strengths:</strong> hands-off batch scanning; a V600 handles 35mm
+            and 120, and larger models such as the Epson V850 add 4×5 holders;
+            software handles dust removal (Digital ICE) for color negatives.
           </p>
           <p>
             <strong>Limits:</strong> per-frame sharpness is lower than DSLR scanning
@@ -281,7 +291,7 @@ export default function DigitizeGuide() {
             </li>
             <li>
               <strong>Hold the camera and the negative parallel.</strong> Even small
-              tilts cause one corner to go soft. A copy stand fixes this for free.
+              tilts cause one corner to go soft. A copy stand keeps the camera square for you.
             </li>
             <li>
               <strong>Use a neutral, even light.</strong> A cheap warm LED can create
