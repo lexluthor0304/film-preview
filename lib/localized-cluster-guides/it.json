@@ -1,0 +1,464 @@
+{
+  "ui": {
+    "moreGuidesTitle": "Altre guide pratiche",
+    "figureAlt": "Confronto prima e dopo generato digitalmente: un negativo fotografico invertito in un'anteprima positiva",
+    "figureCaption": "L'anteprima nel browser è perfetta per una selezione veloce; per le scansioni definitive serve comunque un'acquisizione a risoluzione più alta."
+  },
+  "guides": {
+    "/guides/scan-negatives-without-scanner": {
+      "title": "Come scansionare i negativi senza scanner",
+      "description": "Modi pratici per vedere e digitalizzare i negativi senza comprare uno scanner: anteprima nel browser, foto con il telefono e scansione con fotocamera.",
+      "displayReadTime": "6 minuti di lettura",
+      "keywords": [
+        "scansionare negativi senza scanner",
+        "digitalizzare negativi con il cellulare",
+        "come vedere i negativi delle foto",
+        "fotografare negativi con lo smartphone",
+        "digitalizzare negativi fai da te"
+      ],
+      "about": [
+        "scansione di pellicole",
+        "negativi fotografici",
+        "scansione con il telefono"
+      ],
+      "lede": "Puoi scansionare i negativi senza scanner illuminando la pellicola da dietro, fotografandola con il telefono o con una fotocamera e invertendo l'immagine. Per una prima cernita, il metodo più rapido è un visualizzatore nel browser. Per i fotogrammi da conservare, scatta una foto e correggi il colore dopo l'inversione.",
+      "converterCta": {
+        "eyebrow": "Per le foto già salvate",
+        "title": "Trasforma i negativi fotografati in positivi finiti",
+        "text": "Dopo aver fotografato il negativo con il telefono o la fotocamera, apri Negative Converter per rimuovere la maschera arancione, regolare l'esposizione ed esportare un positivo pulito.",
+        "linkText": "Apri Negative Converter"
+      },
+      "sections": [
+        {
+          "title": "Il metodo gratuito più veloce",
+          "paragraphs": [
+            "Appoggia il negativo su uno schermo bianco luminoso e uniforme o su un lightbox. Apri Negative Viewer, consenti l'accesso alla fotocamera e inquadra un fotogramma. Il browser trasforma il negativo dal vivo in un'anteprima positiva, senza caricare l'immagine.",
+            "Questo metodo è ideale per riconoscere i soggetti, selezionare i fotogrammi di un rullo e condividere al volo un'immagine di riferimento. Non sostituisce una scansione d'archivio ad alta risoluzione."
+          ]
+        },
+        {
+          "title": "Quale metodo scegliere",
+          "table": {
+            "headers": [
+              "Obiettivo",
+              "Metodo migliore",
+              "Compromesso"
+            ],
+            "rows": [
+              [
+                "Vedere cosa c'è sul rullo",
+                "Visualizzatore live nel browser",
+                "Il più veloce, ma con qualità da anteprima"
+              ],
+              [
+                "Condividere le foto di famiglia",
+                "Foto col telefono + inversione",
+                "Più risoluzione, colore da sistemare a mano"
+              ],
+              [
+                "Archiviare i fotogrammi importanti",
+                "Fotocamera + obiettivo macro",
+                "Qualità massima, più preparazione"
+              ],
+              [
+                "Medio formato in serie",
+                "Scanner piano",
+                "Comodo, ma non gratis"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "Cosa serve come minimo",
+          "list": [
+            "Un telefono, un tablet o un laptop con una fotocamera funzionante.",
+            "Un secondo schermo o un lightbox che mostri un bianco uniforme.",
+            "Una striscia di pellicola pulita, tenuta piatta e parallela alla fotocamera.",
+            "Uno strumento di inversione nel browser o un editor di foto per rendere positivo il negativo."
+          ]
+        }
+      ],
+      "faqs": [
+        {
+          "q": "Posso scansionare i negativi senza comprare attrezzatura?",
+          "a": "Sì. Se hai già un telefono o un laptop con fotocamera e un secondo schermo per la retroilluminazione, puoi vedere i negativi in anteprima gratis nel browser. Per salvare immagini di qualità più alta servono una foto e più lavoro di ritocco."
+        },
+        {
+          "q": "Il telefono basta per i vecchi negativi di famiglia?",
+          "a": "Di solito il telefono basta per riconoscere le persone, scegliere gli scatti da tenere e condividere immagini piccole. Per stampe o file d'archivio a lungo termine, usa una scansione con fotocamera o uno scanner per pellicola dedicato."
+        },
+        {
+          "q": "Qual è il principale problema di qualità?",
+          "a": "Gli errori più comuni sono retroilluminazione non uniforme, foto mosse, polvere e dominante di colore dovuta alla base arancione della pellicola. Una fotocamera ben ferma e una luce neutra risolvono la maggior parte dei problemi visibili."
+        }
+      ],
+      "cardText": "Schermo bianco, telefono e browser: come vedere e digitalizzare i negativi senza scanner.",
+      "cta": {
+        "text": "Vuoi provare subito con un negativo vero?",
+        "link": "Apri Negative Viewer"
+      },
+      "dates": {
+        "published": "2026-10-31",
+        "modified": "2026-10-31"
+      }
+    },
+    "/guides/invert-negatives-iphone": {
+      "title": "Come invertire i negativi su iPhone e vederli in positivo",
+      "description": "Un metodo pratico per vedere, fotografare e invertire i negativi con iPhone, senza caricare online le tue immagini private.",
+      "displayReadTime": "6 minuti di lettura",
+      "keywords": [
+        "invertire negativi iPhone",
+        "vedere negativi con iPhone",
+        "app per vedere negativi iPhone",
+        "negativo in positivo iPhone",
+        "inversione classica iPhone"
+      ],
+      "about": [
+        "scansione di pellicole con iPhone",
+        "inversione dei negativi",
+        "negativi fotografici"
+      ],
+      "lede": "Il modo più semplice per invertire i negativi su iPhone è aprire Negative Viewer in Safari, tenere il negativo davanti a una retroilluminazione bianca e consentire l'accesso alla fotocamera: la pagina mostra il positivo dal vivo e rimuove in automatico la dominante arancione. iOS può anche invertire tutto lo schermo con l'Inversione classica, ma così i negativi a colori appaiono blu e il positivo non si può salvare. Per avere i file più grandi, scatta una foto con l'app Fotocamera e convertila in un secondo momento.",
+      "converterCta": {
+        "eyebrow": "File di negativi su iPhone",
+        "title": "Rimuovi la maschera arancione dalle foto salvate su iPhone",
+        "text": "Usa Negative Converter quando hai già fotografato il negativo e vuoi esportare un positivo più pulito di quello che può darti un'anteprima live.",
+        "linkText": "Apri Negative Converter"
+      },
+      "sections": [
+        {
+          "title": "Parti dall'anteprima live",
+          "paragraphs": [
+            "Apri Negative Viewer in Safari o Chrome sull'iPhone che punterai verso la pellicola. Come retroilluminazione bianca usa un altro telefono, un tablet o un laptop. Appena parte la fotocamera, la pagina mostra il positivo dal vivo e, con i negativi a colori, trova un bordo pulito della pellicola e rimuove la dominante arancione.",
+            "Premi Cattura per tenere un fotogramma, poi salvalo come PNG o condividilo. L'anteprima live è anche il modo più rapido per passare in rassegna un rullo e decidere quali fotogrammi meritano una cattura a risoluzione più alta."
+          ]
+        },
+        {
+          "title": "Usa l'Inversione classica di iPhone",
+          "paragraphs": [
+            "iOS può invertire tutto ciò che appare sullo schermo, compreso il mirino dell'app Fotocamera. La funzione si attiva in Impostazioni → Accessibilità → Schermo e dimensioni testo → Inversione classica. Per accenderla e spegnerla al volo, scegli Inversione classica in Impostazioni → Accessibilità → Abbreviazione accessibilità, poi premi tre volte il tasto laterale (o il tasto Home).",
+            "Usa Inversione classica, non Inversione smart: Inversione smart lascia invariati immagini e video, quindi la vista della fotocamera resta in negativo.",
+            "È solo un effetto di visualizzazione. I negativi a colori mostrano una forte dominante blu-ciano perché viene invertita anche la base arancione, le foto che scatti restano negativi e gli screenshot di solito vengono salvati con i colori normali: non è un modo affidabile per conservare un positivo."
+          ]
+        },
+        {
+          "title": "Inversione classica e Negative Viewer a confronto",
+          "table": {
+            "headers": [
+              "Funzione",
+              "Inversione classica (iOS)",
+              "Negative Viewer"
+            ],
+            "rows": [
+              [
+                "Rimuovere la dominante arancione",
+                "No, i negativi a colori diventano blu",
+                "Sì, in automatico da un bordo pulito della pellicola"
+              ],
+              [
+                "Negativi in bianco e nero",
+                "Sì",
+                "Sì, con una modalità in scala di grigi"
+              ],
+              [
+                "Diapositive",
+                "Le inverte per errore",
+                "La modalità Positivo (diapositiva) le mostra così come sono"
+              ],
+              [
+                "Salvare il positivo",
+                "No, le foto restano negative",
+                "Cattura, poi salva come PNG o condividi"
+              ],
+              [
+                "Luminosità e contrasto",
+                "No",
+                "Sì, oltre a Zoom e Guida inquadratura"
+              ],
+              [
+                "Installazione",
+                "Integrata in iOS",
+                "Si apre in Safari, niente da installare"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "Scatta una foto migliore",
+          "list": [
+            "Usa la fotocamera posteriore, non quella frontale.",
+            "Tieni l'iPhone parallelo alla pellicola per evitare la distorsione trapezoidale.",
+            "Blocca messa a fuoco ed esposizione, se l'app della fotocamera lo consente.",
+            "Conserva lo scatto originale prima di ritoccarlo, così potrai rifare il colore in seguito."
+          ]
+        },
+        {
+          "title": "Anteprima nel browser o foto ritoccata",
+          "table": {
+            "headers": [
+              "Metodo",
+              "Ideale per",
+              "Limite"
+            ],
+            "rows": [
+              [
+                "Anteprima live nel browser + Cattura",
+                "Cernita, visione immediata, salvataggi rapidi",
+                "Meno controllo di una scansione dedicata"
+              ],
+              [
+                "Foto con iPhone + inversione",
+                "Condivisione e ritocchi leggeri",
+                "Serve una correzione manuale del colore"
+              ],
+              [
+                "Scansione con fotocamera",
+                "Fotogrammi da archiviare",
+                "Richiede attrezzatura in più"
+              ]
+            ]
+          }
+        }
+      ],
+      "faqs": [
+        {
+          "q": "Serve un'app per invertire i negativi su iPhone?",
+          "a": "No. Negative Viewer inverte in Safari l'immagine live della fotocamera e rimuove in automatico la dominante arancione. Un editor o Negative Converter servono solo se vuoi foto più grandi e un controllo più fine del colore."
+        },
+        {
+          "q": "Posso usare l'impostazione Inverti colori di iPhone per vedere i negativi?",
+          "a": "Sì, per un'occhiata veloce: attiva Inversione classica in Impostazioni → Accessibilità → Schermo e dimensioni testo e punta l'app Fotocamera sul negativo. I negativi a colori appariranno blu perché viene invertita anche la base arancione, e il positivo non si può salvare. Inversione smart non funziona, perché esclude foto e video."
+        },
+        {
+          "q": "Perché le foto dei negativi fatte con iPhone diventano blu dopo l'inversione?",
+          "a": "I negativi a colori hanno una base arancione e una semplice inversione la trasforma in blu o ciano. L'anteprima live di Negative Viewer rimuove in automatico quella dominante partendo da un bordo pulito della pellicola. Se inverti una foto in un editor, poi neutralizza la dominante regolando bilanciamento del bianco e tinta, oppure aprila in Negative Converter."
+        },
+        {
+          "q": "Il video della fotocamera viene caricato online?",
+          "a": "Negative Viewer elabora il fotogramma live localmente nel browser. Il sito non ha bisogno di un endpoint di upload né per l'anteprima della fotocamera né per la cattura in PNG."
+        }
+      ],
+      "cardText": "Anteprima live in Safari o Inversione classica di iOS: come vedere i negativi in positivo su iPhone.",
+      "cta": {
+        "text": "Vuoi provare subito con un negativo vero?",
+        "link": "Apri Negative Viewer"
+      },
+      "dates": {
+        "published": "2026-10-31",
+        "modified": "2026-10-31"
+      }
+    },
+    "/guides/view-negatives-android": {
+      "title": "Come vedere i negativi in positivo su Android",
+      "description": "Negativi in positivo su Android: anteprima live in Chrome che toglie la maschera arancione, inversione dei colori di Android e consigli per foto nitide.",
+      "displayReadTime": "6 minuti di lettura",
+      "keywords": [
+        "vedere negativi con Android",
+        "app per vedere negativi Android",
+        "invertire negativi Android",
+        "inversione dei colori Android",
+        "negativo in positivo Android"
+      ],
+      "about": [
+        "scansione di pellicole con Android",
+        "inversione dei negativi",
+        "negativi fotografici"
+      ],
+      "lede": "Il modo più rapido per vedere i negativi su Android è aprire Negative Viewer in Chrome, tenere il negativo davanti a una retroilluminazione bianca e consentire l'accesso alla fotocamera: la pagina mostra il positivo dal vivo e rimuove in automatico la dominante arancione dei negativi a colori. Anche con l'inversione dei colori integrata in Android la vista della fotocamera si inverte, ma i negativi a colori appaiono blu e il positivo non si può salvare.",
+      "converterCta": {
+        "eyebrow": "File di negativi su Android",
+        "title": "Converti i negativi che hai già fotografato",
+        "text": "Usa Negative Converter quando hai sul telefono foto o scansioni di negativi e vuoi rimuovere la maschera arancione ed esportare un positivo pulito.",
+        "linkText": "Apri Negative Converter"
+      },
+      "sections": [
+        {
+          "title": "Usa l'anteprima live in Chrome",
+          "paragraphs": [
+            "Apri Negative Viewer in Chrome, Samsung Internet, Edge o Firefox sul telefono che punterai verso la pellicola e usa come retroilluminazione un altro telefono, un tablet o un laptop con lo schermo tutto bianco. Premi Avvia fotocamera e consenti l'accesso: la pagina chiede la fotocamera posteriore.",
+            "Con i negativi a colori, tieni nell'inquadratura un po' di bordo pulito della pellicola: il visualizzatore trova la base arancione e rimuove la dominante in automatico. Per negativi in bianco e nero o diapositive, apri Regolazioni e imposta Pellicola su Negativo B/N o Positivo (diapositiva).",
+            "Premi Cattura per tenere un fotogramma, poi salvalo come PNG o condividilo. Dove il browser lo supporta, come fa Chrome su Android, Cattura scatta una foto a piena risoluzione dalla fotocamera invece di prendere il fotogramma del video."
+          ]
+        },
+        {
+          "title": "Usa l'inversione dei colori di Android",
+          "paragraphs": [
+            "Android può invertire tutto lo schermo, compreso il mirino dell'app Fotocamera. Sui Pixel e sulla maggior parte dei telefoni con Android stock, vai in Impostazioni → Accessibilità → Colore e movimento → Inversione dei colori. Sui Samsung Galaxy il percorso è Impostazioni → Accessibilità → Ausili visivi → Inversione colore (Miglioramenti della visibilità in alcune versioni). I nomi dei menu cambiano un po' a seconda della marca e della versione di Android. Su altri marchi, come Xiaomi, OPPO o vivo, cerca «inversione dei colori» nelle impostazioni.",
+            "Per attivarla e disattivarla al volo, aggiungi il riquadro Inversione dei colori alle Impostazioni rapide (apri le Impostazioni rapide, tocca Modifica e trascina dentro il riquadro), oppure attiva la sua scorciatoia di accessibilità.",
+            "Come l'Inversione classica di iPhone, cambia solo la visualizzazione. I negativi a colori mostrano una forte dominante blu-ciano perché viene invertita anche la base arancione, le foto che scatti restano negativi e gli screenshot di solito vengono salvati senza inversione."
+          ]
+        },
+        {
+          "title": "Inversione dei colori e Negative Viewer a confronto",
+          "table": {
+            "headers": [
+              "Funzione",
+              "Inversione dei colori di Android",
+              "Negative Viewer"
+            ],
+            "rows": [
+              [
+                "Rimuovere la dominante arancione",
+                "No, i negativi a colori diventano blu",
+                "Sì, in automatico da un bordo pulito della pellicola"
+              ],
+              [
+                "Negativi in bianco e nero",
+                "Sì",
+                "Sì, con una modalità in scala di grigi"
+              ],
+              [
+                "Diapositive",
+                "Le inverte per errore",
+                "La modalità Positivo (diapositiva) le mostra così come sono"
+              ],
+              [
+                "Salvare il positivo",
+                "No, le foto restano negative",
+                "Cattura, poi salva come PNG o condividi"
+              ],
+              [
+                "Luminosità e contrasto",
+                "No",
+                "Sì, oltre a Zoom e Guida inquadratura"
+              ],
+              [
+                "Installazione",
+                "Integrata in Android",
+                "Si apre in Chrome, niente da installare"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "Risultati più nitidi su Android",
+          "list": [
+            "Appoggia il telefono su una pila di libri o su un piccolo supporto, parallelo alla pellicola.",
+            "Se da vicino l'immagine resta sfocata, allontana il telefono finché non diventa nitida e usa lo zoom del visualizzatore per riempire l'inquadratura.",
+            "Porta lo schermo della retroilluminazione alla massima luminosità e non far cadere la luce della stanza sulla pellicola, per evitare riflessi.",
+            "Se la fotocamera non parte, apri il link in Chrome invece che nel browser interno di un'app e controlla che il sito abbia il permesso di usare la fotocamera (tocca l'icona a sinistra dell'indirizzo, poi Autorizzazioni)."
+          ]
+        }
+      ],
+      "faqs": [
+        {
+          "q": "Esiste un'app per vedere i negativi su Android?",
+          "a": "Non serve. Negative Viewer funziona in Chrome, rimuove in automatico la dominante arancione e si può aggiungere alla schermata Home come un'app. Anche le app del Play Store vanno bene, ma qui non servono installazioni né account."
+        },
+        {
+          "q": "Posso usare l'inversione dei colori di Android per vedere i negativi?",
+          "a": "Sì, per un'occhiata veloce: attiva l'inversione dei colori (Impostazioni → Accessibilità → Colore e movimento su Pixel, oppure Ausili visivi su Samsung) e punta l'app Fotocamera sul negativo. I negativi a colori appariranno blu perché viene invertita anche la base arancione, e il positivo non si può salvare."
+        },
+        {
+          "q": "Perché l'anteprima è sfocata quando avvicino il telefono?",
+          "a": "Tutte le fotocamere dei telefoni hanno una distanza minima di messa a fuoco. Allontana il telefono finché l'immagine non diventa nitida, poi usa lo zoom del visualizzatore per riempire l'inquadratura con un solo negativo."
+        },
+        {
+          "q": "Il video della fotocamera viene caricato online?",
+          "a": "No. Negative Viewer elabora ogni fotogramma localmente nel browser e le catture vengono create sul tuo telefono."
+        }
+      ],
+      "cardText": "Anteprima live in Chrome o inversione dei colori: come vedere i negativi in positivo su Android.",
+      "cta": {
+        "text": "Vuoi provare subito con un negativo vero?",
+        "link": "Apri Negative Viewer"
+      },
+      "dates": {
+        "published": "2026-10-31",
+        "modified": "2026-10-31"
+      }
+    },
+    "/guides/orange-mask-removal": {
+      "title": "Come rimuovere la maschera arancione dai negativi a colori",
+      "description": "Perché i negativi a colori hanno la maschera arancione, perché le scansioni invertite diventano blu e come correggere la dominante dopo la conversione.",
+      "displayReadTime": "6 minuti di lettura",
+      "keywords": [
+        "maschera arancione negativi",
+        "rimuovere maschera arancione",
+        "negativi invertiti blu",
+        "dominante blu negativi",
+        "invertire negativi a colori"
+      ],
+      "about": [
+        "maschera arancione",
+        "pellicola negativa a colori",
+        "scansione di pellicole"
+      ],
+      "lede": "I negativi a colori hanno una maschera arancione perché i coloranti dei loro strati non sono perfettamente puri. Quando inverti la pellicola in digitale, la base arancione diventa una dominante blu o ciano. La soluzione pratica è campionare la base della pellicola o correggere il bilanciamento del bianco dopo l'inversione.",
+      "converterCta": {
+        "eyebrow": "Strumento dedicato alla maschera arancione",
+        "title": "Usa Negative Converter per i negativi a colori salvati",
+        "text": "Negative Converter è pensato per i file di negativi fotografati o scansionati, con correzione della maschera arancione ed esportazione in positivo nel browser.",
+        "linkText": "Apri Negative Converter"
+      },
+      "sections": [
+        {
+          "title": "A cosa serve la maschera arancione",
+          "paragraphs": [
+            "La base arancione fa parte del sistema del negativo a colori: non è un danno. Aiuta il processo di stampa a compensare gli assorbimenti indesiderati dei coloranti. I negativi in bianco e nero e le diapositive di solito non hanno la stessa base arancione.",
+            "Una semplice inversione RGB rende positiva la scena, ma trasforma anche la base arancione nel suo colore opposto. Per questo una prima anteprima tecnicamente corretta può comunque sembrare troppo blu."
+          ]
+        },
+        {
+          "title": "Metodi di correzione",
+          "table": {
+            "headers": [
+              "Metodo",
+              "Quando usarlo",
+              "Risultato"
+            ],
+            "rows": [
+              [
+                "Campionare la base della pellicola",
+                "Nell'inquadratura c'è un bordo arancione pulito della pellicola",
+                "Automatico nell'anteprima live di Negative Viewer"
+              ],
+              [
+                "Bilanciamento del bianco dopo il salvataggio",
+                "Hai già una foto",
+                "Più controllo"
+              ],
+              [
+                "Software dedicato ai negativi",
+                "Elabori molti rulli",
+                "Risultati più ripetibili"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "In che ordine correggere",
+          "list": [
+            "Per prima cosa inverti il negativo.",
+            "Neutralizza la dominante blu o ciano dovuta alla base della pellicola.",
+            "Regola esposizione e contrasto.",
+            "Rifinisci i toni della pelle o gli oggetti che sai essere neutri."
+          ]
+        }
+      ],
+      "faqs": [
+        {
+          "q": "La maschera arancione è un difetto della pellicola?",
+          "a": "No. È una parte normale della pellicola negativa a colori e aiuta a stampare i colori in modo più fedele. Diventa evidente solo quando fai un'inversione digitale diretta."
+        },
+        {
+          "q": "Un visualizzatore nel browser può rimuovere la maschera arancione?",
+          "a": "Sì. All'avvio della fotocamera, Negative Viewer trova un bordo pulito della pellicola, stima la base e la elimina con una divisione in luce lineare prima dell'inversione, così l'anteprima live esce senza dominante blu. Per le immagini importanti conviene comunque una correzione finale del colore in un editor o in Negative Converter."
+        },
+        {
+          "q": "I negativi in bianco e nero richiedono la correzione della maschera arancione?",
+          "a": "No. I negativi in bianco e nero tradizionali non hanno la maschera arancione, quindi di solito un'inversione diretta dà un risultato neutro."
+        }
+      ],
+      "cardText": "Perché i negativi a colori invertiti diventano blu e come eliminare la maschera arancione.",
+      "cta": {
+        "text": "Vuoi provare subito con un negativo vero?",
+        "link": "Apri Negative Viewer"
+      },
+      "dates": {
+        "published": "2026-10-31",
+        "modified": "2026-10-31"
+      }
+    }
+  }
+}

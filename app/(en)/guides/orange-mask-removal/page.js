@@ -1,6 +1,7 @@
 import ClusterGuidePage from "@/components/ClusterGuidePage";
 import { getClusterGuide } from "@/lib/cluster-guides";
-import { buildMetadata, englishOnlyLanguageAlternates } from "@/lib/seo";
+import { clusterGuideLanguageAlternates } from "@/lib/localized-cluster-guides";
+import { buildMetadata } from "@/lib/seo";
 
 const path = "/guides/orange-mask-removal";
 const guide = getClusterGuide(path);
@@ -10,7 +11,7 @@ export const metadata = buildMetadata({
   description: guide.description,
   path,
   type: "article",
-  languages: englishOnlyLanguageAlternates(path),
+  languages: clusterGuideLanguageAlternates(path),
 });
 
 export default function OrangeMaskRemovalPage() {

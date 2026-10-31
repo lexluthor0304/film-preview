@@ -1,0 +1,464 @@
+{
+  "ui": {
+    "moreGuidesTitle": "Autres guides pratiques",
+    "figureAlt": "Comparaison avant-après générée montrant un négatif photo inversé en aperçu positif",
+    "figureCaption": "L'aperçu dans le navigateur est idéal pour trier rapidement ; pour des scans définitifs, une capture en plus haute résolution reste nécessaire."
+  },
+  "guides": {
+    "/guides/scan-negatives-without-scanner": {
+      "title": "Comment numériser des négatifs photo sans scanner",
+      "description": "Méthodes concrètes pour voir et numériser vos négatifs sans acheter de scanner : aperçu dans le navigateur, photo au téléphone ou à l'appareil photo.",
+      "displayReadTime": "6 minutes de lecture",
+      "keywords": [
+        "numériser des négatifs sans scanner",
+        "numériser ses négatifs soi-même",
+        "scanner des négatifs avec un smartphone",
+        "voir un négatif en positif",
+        "visionneuse de négatifs en ligne"
+      ],
+      "about": [
+        "numérisation argentique",
+        "négatifs photo",
+        "numérisation au smartphone"
+      ],
+      "lede": "Vous pouvez numériser des négatifs sans scanner : éclairez le film par l'arrière, photographiez-le avec un téléphone ou un appareil photo, puis inversez l'image. Pour un premier tri, la solution la plus rapide est une visionneuse dans le navigateur. Pour les vues à garder, prenez une photo et corrigez-en les couleurs après l'inversion.",
+      "converterCta": {
+        "eyebrow": "Pour les captures enregistrées",
+        "title": "Transformez vos négatifs photographiés en positifs finalisés",
+        "text": "Une fois la vue photographiée avec votre téléphone ou votre appareil photo, ouvrez Negative Converter pour supprimer le masque orange, ajuster l'exposition et exporter un positif propre.",
+        "linkText": "Ouvrir Negative Converter"
+      },
+      "sections": [
+        {
+          "title": "La méthode gratuite la plus rapide",
+          "paragraphs": [
+            "Posez le négatif sur un écran blanc, lumineux et uniforme, ou sur une table lumineuse. Ouvrez Negative Viewer, autorisez l'accès à la caméra et cadrez une seule vue. Le navigateur convertit le négatif en aperçu positif, en direct et sans rien envoyer.",
+            "Cette méthode est idéale pour reconnaître les sujets, trier un rouleau et partager rapidement un aperçu. Elle ne remplace pas un scan d'archivage en haute résolution."
+          ]
+        },
+        {
+          "title": "Quelle méthode pour quel usage ?",
+          "table": {
+            "headers": [
+              "Objectif",
+              "Meilleure méthode",
+              "Compromis"
+            ],
+            "rows": [
+              [
+                "Simplement voir le contenu du rouleau",
+                "Aperçu en direct dans le navigateur",
+                "Le plus rapide, mais qualité d'aperçu"
+              ],
+              [
+                "Partager des photos de famille",
+                "Photo au téléphone + inversion",
+                "Meilleure résolution, couleurs à corriger à la main"
+              ],
+              [
+                "Archiver les vues importantes",
+                "Appareil photo + objectif macro",
+                "Qualité maximale, installation plus lourde"
+              ],
+              [
+                "Numériser du moyen format en série",
+                "Scanner à plat",
+                "Pratique, mais pas gratuit"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "Le matériel minimum",
+          "list": [
+            "Un téléphone, une tablette ou un ordinateur portable dont la caméra fonctionne.",
+            "Un second écran affichant un blanc uni, ou une table lumineuse.",
+            "Une bande de film propre, bien à plat et parallèle à la caméra.",
+            "Un outil d'inversion dans le navigateur ou un éditeur photo pour passer du négatif au positif."
+          ]
+        }
+      ],
+      "faqs": [
+        {
+          "q": "Peut-on numériser des négatifs sans acheter de matériel ?",
+          "a": "Oui. Si vous avez déjà un téléphone ou un ordinateur portable avec caméra, et un second écran pour le rétroéclairage, vous pouvez prévisualiser vos négatifs gratuitement dans le navigateur. Pour enregistrer des images de meilleure qualité, il faut prendre une photo et la retoucher davantage."
+        },
+        {
+          "q": "Un téléphone suffit-il pour de vieux négatifs de famille ?",
+          "a": "Un téléphone suffit généralement pour reconnaître les personnes, choisir les vues à garder et partager des images en petit format. Pour des tirages ou des fichiers d'archive à long terme, passez par une numérisation à l'appareil photo ou un scanner de film dédié."
+        },
+        {
+          "q": "Quel est le principal problème de qualité ?",
+          "a": "Les défauts les plus courants sont un rétroéclairage inégal, le flou de bougé, la poussière et la dominante due au support orange du film. Un appareil stable et une lumière neutre règlent la plupart des problèmes visibles."
+        }
+      ],
+      "cardText": "Des méthodes gratuites ou peu coûteuses pour voir rapidement vos vieux négatifs.",
+      "cta": {
+        "text": "Envie d'essayer tout de suite avec un vrai négatif ?",
+        "link": "Ouvrir Negative Viewer"
+      },
+      "dates": {
+        "published": "2026-10-31",
+        "modified": "2026-10-31"
+      }
+    },
+    "/guides/invert-negatives-iphone": {
+      "title": "Comment inverser un négatif photo sur iPhone",
+      "description": "Méthode pratique sur iPhone pour voir, photographier et inverser vos négatifs photo, sans envoyer vos images privées en ligne.",
+      "displayReadTime": "6 minutes de lecture",
+      "keywords": [
+        "inverser un négatif sur iPhone",
+        "convertir un négatif en positif sur iPhone",
+        "application négatif photo iPhone",
+        "inverser les couleurs iPhone négatif",
+        "inversion classique iPhone"
+      ],
+      "about": [
+        "numérisation argentique sur iPhone",
+        "inversion de négatifs",
+        "négatifs photo"
+      ],
+      "lede": "Le plus simple pour inverser un négatif sur iPhone est d'ouvrir Negative Viewer dans Safari, de placer le négatif devant un rétroéclairage blanc et d'autoriser l'accès à la caméra : la page affiche le positif en direct et supprime automatiquement la dominante orange. iOS peut aussi inverser tout l'écran avec l'option Inversion classique, mais les négatifs couleur paraissent alors bleus et vous ne pouvez pas enregistrer le positif. Pour obtenir les fichiers les plus grands, prenez une photo avec l'app Appareil photo et convertissez-la ensuite.",
+      "converterCta": {
+        "eyebrow": "Photos de négatifs sur iPhone",
+        "title": "Supprimez le masque orange des photos prises à l'iPhone",
+        "text": "Utilisez Negative Converter si vous avez déjà photographié le négatif et souhaitez exporter un positif plus propre que ce qu'offre un aperçu en direct.",
+        "linkText": "Ouvrir Negative Converter"
+      },
+      "sections": [
+        {
+          "title": "Commencez par l'aperçu en direct",
+          "paragraphs": [
+            "Ouvrez Negative Viewer dans Safari ou Chrome sur l'iPhone que vous allez pointer vers le film. Prenez un autre téléphone, une tablette ou un ordinateur portable comme rétroéclairage blanc. Une fois la caméra lancée, la page affiche le positif en direct et, pour les négatifs couleur, repère un bord de film sans image et supprime la dominante orange.",
+            "Appuyez sur Capturer pour garder une image, puis enregistrez-la en PNG ou partagez-la. L'aperçu en direct est aussi le moyen le plus rapide de trier un rouleau avant de décider quelles vues méritent une capture en plus haute résolution."
+          ]
+        },
+        {
+          "title": "Utilisez l'Inversion classique intégrée à l'iPhone",
+          "paragraphs": [
+            "iOS peut inverser tout ce qui s'affiche à l'écran, y compris le viseur de l'app Appareil photo. Activez l'option dans Réglages → Accessibilité → Affichage et taille du texte → Inversion classique. Pour l'activer et la désactiver rapidement, choisissez Inversion classique dans Réglages → Accessibilité → Raccourci Accessibilité, puis appuyez trois fois sur le bouton latéral (ou sur le bouton principal).",
+            "Choisissez Inversion classique, et non Inversion intelligente : l'Inversion intelligente laisse les images et les vidéos intactes, si bien que la vue de la caméra reste négative.",
+            "Ce n'est qu'un effet d'affichage. Les négatifs couleur prennent une forte dominante bleu-cyan, car le support orange est inversé lui aussi ; les photos que vous prenez restent des négatifs et les captures d'écran s'enregistrent généralement avec les couleurs normales. Ce n'est donc pas un moyen fiable de conserver un positif."
+          ]
+        },
+        {
+          "title": "Inversion classique vs Negative Viewer",
+          "table": {
+            "headers": [
+              "Besoin",
+              "Inversion classique (iOS)",
+              "Negative Viewer"
+            ],
+            "rows": [
+              [
+                "Supprimer la dominante orange",
+                "Non, les négatifs couleur paraissent bleus",
+                "Oui, automatiquement grâce à un bord de film sans image"
+              ],
+              [
+                "Négatifs noir et blanc",
+                "Oui",
+                "Oui, avec un mode en niveaux de gris"
+              ],
+              [
+                "Diapositives",
+                "Les inverse à tort",
+                "Le mode Positif (diapositive) les affiche telles quelles"
+              ],
+              [
+                "Conserver un positif",
+                "Non, les photos restent négatives",
+                "Capturer, puis enregistrer en PNG ou partager"
+              ],
+              [
+                "Luminosité et contraste",
+                "Non",
+                "Oui, avec en plus le zoom et des guides de cadrage"
+              ],
+              [
+                "Mise en place",
+                "Intégrée à iOS",
+                "S'ouvre dans Safari, rien à installer"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "Pour une photo de meilleure qualité",
+          "list": [
+            "Utilisez la caméra arrière, pas la caméra selfie.",
+            "Gardez l'iPhone parallèle au film pour éviter la déformation en trapèze.",
+            "Verrouillez la mise au point et l'exposition si votre app photo le permet.",
+            "Conservez la photo d'origine avant toute retouche, pour pouvoir refaire les couleurs plus tard."
+          ]
+        },
+        {
+          "title": "Aperçu dans le navigateur vs photo retouchée",
+          "table": {
+            "headers": [
+              "Méthode",
+              "Idéal pour",
+              "Limite"
+            ],
+            "rows": [
+              [
+                "Aperçu en direct dans le navigateur + Capturer",
+                "Trier, voir instantanément, enregistrer vite",
+                "Moins de contrôle qu'une numérisation dédiée"
+              ],
+              [
+                "Photo iPhone + inversion",
+                "Partage et retouches légères",
+                "Couleurs à corriger à la main"
+              ],
+              [
+                "Numérisation à l'appareil photo",
+                "Vues à archiver",
+                "Matériel supplémentaire nécessaire"
+              ]
+            ]
+          }
+        }
+      ],
+      "faqs": [
+        {
+          "q": "Faut-il une application pour inverser des négatifs sur iPhone ?",
+          "a": "Non. Negative Viewer inverse le flux de la caméra en direct dans Safari et supprime automatiquement la dominante orange. Un éditeur photo ou Negative Converter n'est utile que si vous voulez des fichiers plus grands et un contrôle plus fin des couleurs."
+        },
+        {
+          "q": "Peut-on voir des négatifs avec l'option Inverser les couleurs de l'iPhone ?",
+          "a": "Oui, pour un coup d'œil rapide : activez Inversion classique dans Réglages → Accessibilité → Affichage et taille du texte, puis pointez l'app Appareil photo vers le négatif. Les négatifs couleur paraîtront bleus, car le support orange est inversé lui aussi, et vous ne pourrez pas enregistrer le positif. L'Inversion intelligente ne convient pas : elle ignore les photos et les vidéos."
+        },
+        {
+          "q": "Pourquoi mes négatifs photographiés à l'iPhone sont-ils bleus après inversion ?",
+          "a": "Les négatifs couleur ont un support orange, et une simple inversion le rend bleu ou cyan. L'aperçu en direct de Negative Viewer supprime automatiquement cette dominante à partir d'un bord de film sans image. Pour une photo inversée dans un éditeur, neutralisez la balance des blancs et la teinte après l'inversion, ou ouvrez-la dans Negative Converter."
+        },
+        {
+          "q": "Le flux de la caméra est-il envoyé en ligne ?",
+          "a": "Negative Viewer traite l'image en direct localement, dans le navigateur. Le site n'a besoin d'aucun envoi vers un serveur pour l'aperçu de la caméra ni pour la capture en PNG."
+        }
+      ],
+      "cardText": "L'aperçu en direct dans Safari, et ce que permet ou non l'Inversion classique d'iOS.",
+      "cta": {
+        "text": "Envie d'essayer tout de suite avec un vrai négatif ?",
+        "link": "Ouvrir Negative Viewer"
+      },
+      "dates": {
+        "published": "2026-10-31",
+        "modified": "2026-10-31"
+      }
+    },
+    "/guides/view-negatives-android": {
+      "title": "Comment voir des négatifs photo sur Android",
+      "description": "Voir vos négatifs en positif sur Android : aperçu en direct dans Chrome qui retire le masque orange, inversion des couleurs intégrée et astuces de netteté.",
+      "displayReadTime": "6 minutes de lecture",
+      "keywords": [
+        "voir des négatifs sur Android",
+        "inverser un négatif sur Android",
+        "inversion des couleurs Android négatif",
+        "application négatif photo Android",
+        "convertir un négatif en positif sur Android"
+      ],
+      "about": [
+        "numérisation argentique sur Android",
+        "inversion de négatifs",
+        "négatifs photo"
+      ],
+      "lede": "Le moyen le plus rapide de voir des négatifs sur Android est d'ouvrir Negative Viewer dans Chrome, de placer le négatif devant un rétroéclairage blanc et d'autoriser l'accès à la caméra : la page affiche le positif en direct et supprime automatiquement la dominante orange des négatifs couleur. La fonction Inversion des couleurs d'Android agit aussi sur la vue de la caméra, mais les négatifs couleur paraissent alors bleus et vous ne pouvez pas enregistrer le positif.",
+      "converterCta": {
+        "eyebrow": "Photos de négatifs sur Android",
+        "title": "Convertissez les négatifs déjà photographiés",
+        "text": "Utilisez Negative Converter si vous avez des photos ou des scans de négatifs sur votre téléphone et voulez retirer le masque orange, puis exporter un positif propre.",
+        "linkText": "Ouvrir Negative Converter"
+      },
+      "sections": [
+        {
+          "title": "Utilisez l'aperçu en direct dans Chrome",
+          "paragraphs": [
+            "Ouvrez Negative Viewer dans Chrome, Samsung Internet, Edge ou Firefox sur le téléphone que vous allez pointer vers le film, et servez-vous comme rétroéclairage d'un autre téléphone, d'une tablette ou d'un ordinateur portable affichant un écran entièrement blanc. Appuyez sur Démarrer la caméra et autorisez l'accès ; la page demande la caméra arrière.",
+            "Pour les négatifs couleur, gardez un peu de bord de film sans image dans le cadre : la visionneuse repère le support orange et supprime automatiquement la dominante. Pour les négatifs noir et blanc ou les diapositives, ouvrez Réglages et choisissez Négatif N&B ou Positif (diapositive) sous Film.",
+            "Appuyez sur Capturer pour garder une image, puis enregistrez-la en PNG ou partagez-la. Si le navigateur le permet, comme Chrome sur Android, Capturer prend une photo en pleine résolution avec la caméra plutôt que l'image de la vidéo."
+          ]
+        },
+        {
+          "title": "Utilisez l'inversion des couleurs intégrée à Android",
+          "paragraphs": [
+            "Android peut inverser tout l'écran, y compris le viseur de l'application Appareil photo. Sur les Pixel et la plupart des téléphones sous Android pur, allez dans Paramètres → Accessibilité → Couleur et mouvement → Inversion des couleurs. Sur les Samsung Galaxy, c'est Paramètres → Accessibilité → Améliorations pour la vision → Inversion des couleurs (Améliorations de la visibilité sur certaines versions). Les noms des menus varient un peu selon la marque et la version d'Android. Sur les autres marques, comme Xiaomi, OPPO ou vivo, cherchez « inversion des couleurs » dans les paramètres.",
+            "Pour l'activer et la désactiver rapidement, ajoutez le bloc Inversion des couleurs aux Réglages rapides (ouvrez les Réglages rapides, appuyez sur Modifier et faites glisser le bloc), ou activez son raccourci d'accessibilité.",
+            "Comme l'Inversion classique de l'iPhone, elle ne change que l'affichage. Les négatifs couleur prennent une forte dominante bleu-cyan, car le support orange est inversé lui aussi ; les photos que vous prenez restent des négatifs et les captures d'écran s'enregistrent généralement sans l'inversion."
+          ]
+        },
+        {
+          "title": "Inversion des couleurs vs Negative Viewer",
+          "table": {
+            "headers": [
+              "Besoin",
+              "Inversion des couleurs (Android)",
+              "Negative Viewer"
+            ],
+            "rows": [
+              [
+                "Supprimer la dominante orange",
+                "Non, les négatifs couleur paraissent bleus",
+                "Oui, automatiquement grâce à un bord de film sans image"
+              ],
+              [
+                "Négatifs noir et blanc",
+                "Oui",
+                "Oui, avec un mode en niveaux de gris"
+              ],
+              [
+                "Diapositives",
+                "Les inverse à tort",
+                "Le mode Positif (diapositive) les affiche telles quelles"
+              ],
+              [
+                "Conserver un positif",
+                "Non, les photos restent négatives",
+                "Capturer, puis enregistrer en PNG ou partager"
+              ],
+              [
+                "Luminosité et contraste",
+                "Non",
+                "Oui, avec en plus le zoom et des guides de cadrage"
+              ],
+              [
+                "Mise en place",
+                "Intégrée à Android",
+                "S'ouvre dans Chrome, rien à installer"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "Des images plus nettes sur Android",
+          "list": [
+            "Posez le téléphone sur une pile de livres ou un petit socle, parallèlement au film.",
+            "Si l'image reste floue de près, reculez le téléphone jusqu'à ce qu'elle soit nette et utilisez le zoom de la visionneuse pour remplir le cadre.",
+            "Mettez l'écran de rétroéclairage à pleine luminosité et protégez le film de la lumière ambiante pour éviter les reflets.",
+            "Si la caméra ne démarre pas, ouvrez le lien dans Chrome plutôt que dans le navigateur intégré d'une app, et vérifiez que le site est autorisé à utiliser la caméra (touchez l'icône à gauche de l'adresse, puis Autorisations)."
+          ]
+        }
+      ],
+      "faqs": [
+        {
+          "q": "Existe-t-il une application pour voir les négatifs sur Android ?",
+          "a": "Vous n'en avez pas besoin. Negative Viewer fonctionne dans Chrome, supprime automatiquement la dominante orange et peut être ajouté à l'écran d'accueil comme une application. Les applications du Play Store font aussi l'affaire, mais ici, rien à installer et aucun compte à créer."
+        },
+        {
+          "q": "Peut-on voir des négatifs avec l'inversion des couleurs d'Android ?",
+          "a": "Oui, pour un coup d'œil rapide : activez Inversion des couleurs (Paramètres → Accessibilité → Couleur et mouvement sur Pixel, ou Améliorations pour la vision sur Samsung) et pointez l'application Appareil photo vers le négatif. Les négatifs couleur paraîtront bleus, car le support orange est inversé lui aussi, et vous ne pourrez pas enregistrer le positif."
+        },
+        {
+          "q": "Pourquoi l'aperçu est-il flou quand je tiens le téléphone tout près ?",
+          "a": "Chaque caméra de téléphone a une distance minimale de mise au point. Reculez le téléphone jusqu'à ce que l'image soit nette, puis utilisez le zoom de la visionneuse pour qu'un seul négatif remplisse le cadre."
+        },
+        {
+          "q": "Le flux de la caméra est-il envoyé en ligne ?",
+          "a": "Non. Negative Viewer traite chaque image localement dans le navigateur, et les captures sont créées sur votre téléphone."
+        }
+      ],
+      "cardText": "L'aperçu en direct dans Chrome, et ce que permet ou non l'inversion des couleurs d'Android.",
+      "cta": {
+        "text": "Envie d'essayer tout de suite avec un vrai négatif ?",
+        "link": "Ouvrir Negative Viewer"
+      },
+      "dates": {
+        "published": "2026-10-31",
+        "modified": "2026-10-31"
+      }
+    },
+    "/guides/orange-mask-removal": {
+      "title": "Supprimer le masque orange d'un négatif couleur",
+      "description": "Pourquoi les négatifs couleur ont un masque orange, pourquoi les scans inversés virent au bleu et comment corriger la dominante après conversion.",
+      "displayReadTime": "6 minutes de lecture",
+      "keywords": [
+        "masque orange négatif couleur",
+        "enlever le masque orange d'un négatif",
+        "négatif inversé bleu",
+        "inverser un négatif couleur",
+        "dominante bleue scan négatif"
+      ],
+      "about": [
+        "masque orange",
+        "film négatif couleur",
+        "numérisation argentique"
+      ],
+      "lede": "Les négatifs couleur ont un masque orange parce que leurs couches de colorants ne sont pas parfaitement pures. Lorsqu'on inverse le film numériquement, le support orange devient une dominante bleue ou cyan. En pratique, la solution consiste à échantillonner le support du film ou à corriger la balance des blancs après l'inversion.",
+      "converterCta": {
+        "eyebrow": "Outil dédié au masque orange",
+        "title": "Utilisez Negative Converter pour vos négatifs couleur enregistrés",
+        "text": "Negative Converter est conçu pour les fichiers de négatifs photographiés ou scannés, avec correction du masque orange et export en positif dans le navigateur.",
+        "linkText": "Ouvrir Negative Converter"
+      },
+      "sections": [
+        {
+          "title": "À quoi sert le masque orange",
+          "paragraphs": [
+            "Le support orange fait partie intégrante du négatif couleur : ce n'est pas une altération. Il permet au tirage de compenser l'absorption parasite des colorants. Les négatifs noir et blanc et les films inversibles (diapositives) n'ont généralement pas ce support orange.",
+            "Une simple inversion RVB rend la scène positive, mais transforme aussi le support orange en sa couleur complémentaire. Voilà pourquoi un premier aperçu techniquement correct peut quand même paraître trop bleu."
+          ]
+        },
+        {
+          "title": "Les options de correction",
+          "table": {
+            "headers": [
+              "Méthode",
+              "Quand l'utiliser",
+              "Résultat"
+            ],
+            "rows": [
+              [
+                "Échantillonner le support",
+                "Un bord de film orange sans image est visible dans le cadre",
+                "Automatique dans l'aperçu en direct de Negative Viewer"
+              ],
+              [
+                "Balance des blancs après enregistrement",
+                "Vous avez une image fixe",
+                "Meilleur contrôle"
+              ],
+              [
+                "Logiciel dédié aux négatifs",
+                "Vous traitez beaucoup de rouleaux",
+                "Le plus reproductible"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "Dans quel ordre corriger",
+          "list": [
+            "Inversez d'abord le négatif.",
+            "Neutralisez la dominante bleue ou cyan due au support.",
+            "Réglez l'exposition et le contraste.",
+            "Affinez les tons chair ou les éléments que vous savez neutres."
+          ]
+        }
+      ],
+      "faqs": [
+        {
+          "q": "Le masque orange est-il un défaut du film ?",
+          "a": "Non. C'est une composante normale du film négatif couleur, qui aide à restituer les couleurs plus fidèlement au tirage. Il ne devient vraiment visible que lors d'une inversion numérique directe."
+        },
+        {
+          "q": "Une visionneuse dans le navigateur peut-elle supprimer le masque orange ?",
+          "a": "Oui. Au démarrage de la caméra, Negative Viewer repère un bord de film sans image, estime la teinte du support et divise l'image par celle-ci en lumière linéaire avant l'inversion : l'aperçu en direct s'affiche ainsi sans dominante bleue. Pour les images importantes, une correction finale des couleurs dans un éditeur ou dans Negative Converter reste utile."
+        },
+        {
+          "q": "Faut-il corriger le masque orange sur les négatifs noir et blanc ?",
+          "a": "Non. Les négatifs noir et blanc traditionnels n'ont pas de masque orange : une inversion directe donne généralement un rendu neutre."
+        }
+      ],
+      "cardText": "Pourquoi les négatifs couleur virent au bleu une fois inversés, et comment corriger la dominante.",
+      "cta": {
+        "text": "Envie d'essayer tout de suite avec un vrai négatif ?",
+        "link": "Ouvrir Negative Viewer"
+      },
+      "dates": {
+        "published": "2026-10-31",
+        "modified": "2026-10-31"
+      }
+    }
+  }
+}
