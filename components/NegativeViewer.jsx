@@ -20,6 +20,7 @@ import {
 } from "@/lib/view-transform";
 import { getDictionary } from "@/lib/i18n";
 import { siteConfig } from "@/lib/site-config";
+import { trackEvent } from "@/lib/analytics";
 
 const GAMMA_MIN = 1.0;
 const GAMMA_MAX = 2.4;
@@ -320,6 +321,7 @@ export default function NegativeViewer({ labels }) {
 
   const applyBase = (base, source) => {
     if (!base) return;
+    trackEvent("film_base_calibrate", { method: source, calibration_result: "applied" });
     setCalibrationMessage("");
     baseRef.current = base;
     sampleSourceRef.current = source;
@@ -354,6 +356,7 @@ export default function NegativeViewer({ labels }) {
 
   const changeFilmType = (value) => {
     if (!FILM_TYPES.includes(value)) return;
+    trackEvent("film_type_select", { film_type: value });
     filmTypeRef.current = value;
     setFilmType(value);
     cancelSample();
@@ -518,6 +521,7 @@ export default function NegativeViewer({ labels }) {
       if (streamRef.current !== stream) return;
       setCameraLocked(result.locked);
       if (manual && result.reason === "unstable") {
+        trackEvent("film_base_calibrate", { method: "manual", calibration_result: "unstable" });
         setCalibrationMessage("unstable");
         return;
       }
@@ -539,10 +543,18 @@ export default function NegativeViewer({ labels }) {
         applyBase(result.base, "auto");
         setAutoRegion(result.region);
       } else {
-        setCalibrationMessage(result.reason || "noBase");
+        const reason = result.reason || "noBase";
+        trackEvent("film_base_calibrate", { method: "auto", calibration_result: reason });
+        setCalibrationMessage(reason);
       }
     } catch (err) {
-      if (err.name !== "AbortError") setCalibrationMessage("noBase");
+      if (err.name !== "AbortError") {
+        trackEvent("film_base_calibrate", {
+          method: manual ? "manual" : "auto",
+          calibration_result: "error",
+        });
+        setCalibrationMessage("noBase");
+      }
     } finally {
       if (calibrationRef.current === controller) setCalibrating(false);
     }
@@ -561,21 +573,28 @@ export default function NegativeViewer({ labels }) {
     wakeLockRef.current = null;
   };
 
-  const cameraErrorMessage = (err) => {
+  const cameraErrorKind = (err) => {
     switch (err?.name) {
       case "NotAllowedError":
       case "SecurityError":
-        return t.errorPermission;
+        return "permission";
       case "NotFoundError":
       case "OverconstrainedError":
-        return t.errorNoCamera;
+        return "no_camera";
       case "NotReadableError":
       case "AbortError":
-        return t.errorCameraBusy;
+        return "busy";
       default:
-        return t.cameraError;
+        return "other";
     }
   };
+
+  const cameraErrorMessage = (kind) =>
+    ({
+      permission: t.errorPermission,
+      no_camera: t.errorNoCamera,
+      busy: t.errorCameraBusy,
+    })[kind] || t.cameraError;
 
   const startCamera = async () => {
     setError("");
@@ -585,6 +604,7 @@ export default function NegativeViewer({ labels }) {
     }
     try {
       if (typeof navigator === "undefined" || !navigator.mediaDevices?.getUserMedia) {
+        trackEvent("camera_error", { error_type: "unsupported" });
         setError(t.cameraUnsupported);
         if (autoFullscreen) exitFullscreenPreview();
         return;
@@ -618,6 +638,7 @@ export default function NegativeViewer({ labels }) {
       setFrozen(false);
       const waitForSize = () => {
         if (videoEl.videoWidth > 0) {
+          trackEvent("camera_start", { film_type: filmTypeRef.current });
           setIsCameraOn(true);
           isCameraOnRef.current = true;
           processVideo();
@@ -631,7 +652,9 @@ export default function NegativeViewer({ labels }) {
       waitForSize();
     } catch (err) {
       console.error("Camera Error:", err);
-      setError(cameraErrorMessage(err));
+      const kind = cameraErrorKind(err);
+      trackEvent("camera_error", { error_type: kind });
+      setError(cameraErrorMessage(kind));
       if (autoFullscreen) exitFullscreenPreview();
     }
   };
@@ -764,11 +787,13 @@ export default function NegativeViewer({ labels }) {
       // Vibration is best-effort.
     }
     let blob = null;
+    let method = "preview";
     // A frozen preview must save exactly what is on screen; takePhoto would
     // capture the live sensor instead.
     if (!frozenRef.current) {
       try {
         blob = await highResShot();
+        if (blob) method = "full_res";
       } catch {
         blob = null;
       }
@@ -788,11 +813,13 @@ export default function NegativeViewer({ labels }) {
         blob,
       };
       setShots((prev) => [shot, ...prev]);
+      trackEvent("frame_capture", { method, film_type: filmTypeRef.current });
     }
     setCapturing(false);
   };
 
   const downloadShot = (shot) => {
+    trackEvent("shot_download");
     const link = document.createElement("a");
     link.href = shot.url;
     link.download = `negative-viewer-${shot.id}.png`;
@@ -806,6 +833,7 @@ export default function NegativeViewer({ labels }) {
       });
       if (navigator.canShare?.({ files: [file] })) {
         await navigator.share({ files: [file] });
+        trackEvent("share", { method: "web_share", content_type: "image" });
       }
     } catch {
       // User cancelled or share failed; nothing to clean up.
