@@ -6,6 +6,7 @@ import {
   buildFaqPageSchema,
   guideCitations,
 } from "@/lib/schema";
+import { getPageDates } from "@/lib/page-dates";
 import { buildMetadata } from "@/lib/seo";
 import { siteConfig } from "@/lib/site-config";
 
@@ -19,7 +20,6 @@ export const metadata = buildMetadata({
   description,
   path,
   type: "article",
-  modifiedTime: `${siteConfig.lastUpdatedISO}T00:00:00Z`,
 });
 
 const sources = guideCitations[path];
@@ -65,7 +65,7 @@ export default function FilmVsDigitalGuide() {
         <h1>{title}</h1>
         <p className="meta-row">
           <span>By {siteConfig.author.name}</span>
-          <span>Updated {siteConfig.lastUpdatedISO}</span>
+          <span>Updated {getPageDates("/guides/film-vs-digital").modified}</span>
           <span>7-minute read</span>
         </p>
 

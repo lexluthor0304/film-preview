@@ -26,7 +26,7 @@ const homeFaqs = [
   },
   {
     q: "What kinds of film negatives does it work with?",
-    a: "Any color or black-and-white negative film: 35mm, 120/medium format, 4×5 large format, APS, and old roll film. Hold the negative against a bright, even light source like a phone screen showing a blank white image, a lightbox, or an overcast sky.",
+    a: "Color and black-and-white negatives in 35mm, 120/medium format, 4×5 large format, APS, and old roll film, plus slides in Positive (slide) mode. Hold the film against a bright, even light source like a phone screen showing a blank white image, a lightbox, or an overcast sky.",
   },
   {
     q: "Do I need to install anything?",
@@ -34,7 +34,7 @@ const homeFaqs = [
   },
   {
     q: "Does it correct the orange mask on color negatives?",
-    a: "The live viewer can sample the film base and reduce the color cast for preview. For saved image files and more deliberate orange-mask removal, use Negative Converter.",
+    a: "Yes. When the camera starts, the viewer finds a clear film edge, estimates the orange base and removes the cast automatically. You can also sample the base by hand with Calibrate. For photographed or scanned files, use Negative Converter.",
   },
   {
     q: "Can I process negatives I already photographed or scanned?",
@@ -51,9 +51,11 @@ const negativeConverterCta = {
 
 const featureList = [
   "Real-time negative-to-positive conversion",
+  "Automatic orange-mask correction from the film edge",
+  "Color negative, B&W negative, and slide modes",
   "Works on phone, tablet, and laptop browsers",
   "Privacy-first: video never leaves your device",
-  "Save the inverted image as a PNG with one click",
+  "Capture frames, then save them as PNGs or share them",
   "Works with 35mm, 120, 4×5, and APS negatives",
   "Connects to Negative Converter for saved files and orange-mask correction",
 ];
@@ -155,17 +157,19 @@ export default function HomePage() {
               </p>
             </div>
             <div className="feature-card">
-              <h3>One-click save</h3>
+              <h3>Capture, save, share</h3>
               <p>
-                Press <em>Save photo</em> to download the current frame as a PNG.
-                Useful for sharing a quick reference shot of an old negative.
+                Press <em>Capture</em> to collect frames in a gallery, then save them
+                as PNGs or share them. Where the browser allows it, captures use the
+                camera's full resolution.
               </p>
             </div>
             <div className="feature-card">
-              <h3>Made for film shooters</h3>
+              <h3>Orange mask removed automatically</h3>
               <p>
-                Designed for hobbyist film photographers, archivists, and anyone who
-                inherited a shoebox of family negatives.
+                The viewer finds a clear film edge, estimates the orange base and
+                removes the cast. Color negative, B&amp;W negative, and slide modes
+                are built in.
               </p>
             </div>
           </div>
@@ -187,17 +191,17 @@ export default function HomePage() {
             <li>
               <h3>Hold the negative against the light</h3>
               <p>
-                Place the negative emulsion-side away from the camera (the duller side
-                faces the camera) and as close to the light source as practical to
-                eliminate reflections.
+                Place the negative with its shiny base side facing the camera and the
+                duller emulsion side toward the light, as close to the light source
+                as practical to eliminate reflections.
               </p>
             </li>
             <li>
               <h3>Press Start camera and aim</h3>
               <p>
                 Allow camera access when prompted. Move closer or farther until a
-                single frame fills the viewport. Tap <em>Save photo</em> to download
-                a PNG of the current preview.
+                single frame fills the viewport. Press <em>Capture</em> to keep a
+                frame, then save it as a PNG.
               </p>
             </li>
           </ol>

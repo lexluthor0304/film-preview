@@ -2,6 +2,7 @@ import Link from "next/link";
 import NegativeViewer from "@/components/NegativeViewer";
 import JsonLd from "@/components/JsonLd";
 import { buildHowToSchema } from "@/lib/schema";
+import { getPageDates } from "@/lib/page-dates";
 import { buildMetadata } from "@/lib/seo";
 import { siteConfig } from "@/lib/site-config";
 
@@ -11,7 +12,6 @@ export const metadata = buildMetadata({
     "Step-by-step guide to converting film negatives to positives in your browser. Lighting setup, framing, focus tips, and how to save the result as a PNG.",
   path: "/how-to-use",
   type: "article",
-  modifiedTime: `${siteConfig.lastUpdatedISO}T00:00:00Z`,
 });
 
 const steps = [
@@ -21,7 +21,7 @@ const steps = [
   },
   {
     name: "Hold the negative against the light",
-    text: "Place the negative directly against the lit surface, emulsion side away from the camera (the slightly duller, less reflective side faces the camera). Keep it flat — gentle pressure with two fingers along the edges of the strip works for 35mm.",
+    text: "Place the negative directly against the lit surface with the shiny base side facing the camera and the duller emulsion side toward the light, so the picture reads the right way round. Keep it flat — gentle pressure with two fingers along the edges of the strip works for 35mm.",
   },
   {
     name: "Open the viewer and grant camera access",
@@ -32,12 +32,12 @@ const steps = [
     text: "Move the camera close enough that one negative frame roughly fills the viewport. On phones, tap the screen to lock focus on the negative — autofocus will sometimes hunt for the backlight instead. Brace your elbows or use a small tripod for sharper results.",
   },
   {
-    name: "Adjust the backlight if the colors look off",
-    text: "If the preview looks too blue or too orange, the issue is usually the backlight color, not the negative. A plain white phone or tablet screen is usually neutral enough for previewing. Avoid yellow LEDs, candle light, or warm screens, which add a strong cast.",
+    name: "Let the viewer remove the orange cast",
+    text: "Keep a little clear film edge in the frame when you start. The viewer finds the orange film base, removes the cast automatically and holds that correction; the status line reads “Film base estimated · held”. If it can't find the base, press Calibrate, drag over a clear edge, then Use this sample. For black-and-white negatives or slides, set Film to B&W negative or Positive (slide) in Adjust first. A warm or dim backlight still tints the preview, so use a white screen at full brightness.",
   },
   {
-    name: "Save the frame you want",
-    text: "Press Save photo to download the current preview as a PNG. The file lands in your device's Downloads folder. For longer rolls, just slide the negative strip across without moving the camera and tap Save photo for each frame.",
+    name: "Capture and save the frames you want",
+    text: "Press Capture to add the current frame to the Captured frames gallery under the viewer, then save it as a PNG or share it. Freeze frame holds the picture still while you adjust it. For a whole roll, slide the strip across without moving the camera, capture each frame, then press Save all.",
   },
 ];
 
@@ -61,7 +61,7 @@ export default function HowToUsePage() {
         <h1>How to use the Negative Viewer (step-by-step)</h1>
         <p className="meta-row">
           <span>By {siteConfig.author.name}</span>
-          <span>Last updated {siteConfig.lastUpdatedISO}</span>
+          <span>Last updated {getPageDates("/how-to-use").modified}</span>
           <span>3-minute read</span>
         </p>
 
@@ -108,10 +108,10 @@ export default function HowToUsePage() {
               tilt becomes a keystone distortion in the saved image.
             </li>
             <li>
-              <strong>Do final color correction in a photo editor.</strong> The
-              browser inversion is mathematically correct, but film bases carry an
-              orange mask. After saving, drop the PNG into Photos, Lightroom, or any
-              free editor and adjust white balance and contrast to taste.
+              <strong>Fine-tune keepers afterwards.</strong> The live correction is
+              made for viewing. Adjust a saved PNG in any photo editor; for
+              archive-quality files, photograph the negative at full resolution and
+              convert it with Negative Converter.
             </li>
           </ul>
 
@@ -175,10 +175,12 @@ export default function HowToUsePage() {
           </p>
           <h3>The image is sharp but the colors look weird</h3>
           <p>
-            Color negatives have an orange-tinted base. After the live inversion, that
-            orange becomes a slight blue cast. This is normal — see{" "}
-            <Link href="/guides/film-negatives">our guide on film negatives</Link>{" "}
-            for the full explanation, or simply correct white balance after saving.
+            Check that <em>Film</em> matches what you are viewing: a slide in Color
+            negative mode looks like a negative. Then keep a clear film edge in view
+            and choose <em>Find film base again</em> in Adjust, or press{" "}
+            <em>Calibrate</em> to sample the edge by hand. Our{" "}
+            <Link href="/guides/film-negatives">guide on film negatives</Link>{" "}
+            explains why color negatives are orange in the first place.
           </p>
         </div>
 
