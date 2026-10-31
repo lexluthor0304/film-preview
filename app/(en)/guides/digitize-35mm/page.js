@@ -6,6 +6,7 @@ import {
   buildFaqPageSchema,
   guideCitations,
 } from "@/lib/schema";
+import { getPageDates } from "@/lib/page-dates";
 import { buildMetadata } from "@/lib/seo";
 import { siteConfig } from "@/lib/site-config";
 
@@ -20,7 +21,6 @@ export const metadata = buildMetadata({
   description,
   path,
   type: "article",
-  modifiedTime: `${siteConfig.lastUpdatedISO}T00:00:00Z`,
 });
 
 const sources = guideCitations[path];
@@ -67,7 +67,7 @@ export default function DigitizeGuide() {
         <h1>{title}</h1>
         <p className="meta-row">
           <span>By {siteConfig.author.name}</span>
-          <span>Updated {siteConfig.lastUpdatedISO}</span>
+          <span>Updated {getPageDates("/guides/digitize-35mm").modified}</span>
           <span>8-minute read</span>
         </p>
 

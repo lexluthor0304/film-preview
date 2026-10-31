@@ -2,6 +2,7 @@ import Link from "next/link";
 import JsonLd from "@/components/JsonLd";
 import NegativeConverterCta from "@/components/NegativeConverterCta";
 import { buildFaqPageSchema } from "@/lib/schema";
+import { getPageDates } from "@/lib/page-dates";
 import { buildMetadata } from "@/lib/seo";
 import { siteConfig } from "@/lib/site-config";
 
@@ -11,7 +12,6 @@ export const metadata = buildMetadata({
     "Answers to common questions about using a browser-based film negative viewer: privacy, supported film formats, color accuracy, browser support, and saving the result.",
   path: "/faq",
   type: "article",
-  modifiedTime: `${siteConfig.lastUpdatedISO}T00:00:00Z`,
 });
 
 const faqs = [
@@ -33,11 +33,11 @@ const faqs = [
   },
   {
     q: "Will it work with slides or positive film?",
-    a: "Slides are already positive, so inverting them produces a negative-looking image. For previewing slides, you don't need this tool — just hold them up to a light. We may add a 'pass-through' mode in a future release.",
+    a: "Yes. Open Adjust and set Film to Positive (slide): the viewer shows the slide without inverting it, and brightness, zoom, and Capture work the same way. Color and black-and-white negatives each have their own mode too.",
   },
   {
     q: "Why does my preview have a blue or cyan cast?",
-    a: "Color negative film has an orange base mask that helps with color reproduction during printing. When the image is inverted, that orange becomes a faint blue. This is expected and easy to correct: open the saved PNG in any photo editor, drop the temperature a few hundred kelvin, and adjust tint. Black-and-white negatives have no mask, so they look neutral after inversion.",
+    a: "Color negative film has an orange base (the orange mask), and inverting it straight leaves a blue or cyan cast. When the camera starts, Negative Viewer looks for a clear strip of film edge, estimates the base color, and removes the cast automatically; the status line then reads “Film base estimated · held”. If it can't find the base, keep some unexposed film edge in the frame and choose Find film base again in Adjust, or press Calibrate and drag over the clear edge. A warm or dim backlight can still tint the preview. Black-and-white negatives have no orange mask, so set Film to B&W negative for a neutral result.",
   },
   {
     q: "What kind of light should I use behind the negative?",
@@ -49,11 +49,11 @@ const faqs = [
   },
   {
     q: "How do I save a photo?",
-    a: "Press the Save photo button while the camera is running. Your browser downloads the current preview as a PNG named negative-viewer-<timestamp>.png. On iOS, the file goes to your Downloads (Files app). On Android, to your Downloads folder. On desktop, wherever your browser saves files.",
+    a: "Press Capture while the camera is running. Each capture goes into the Captured frames gallery under the viewer, where you can save it as a PNG, share it, or use Save all. When the browser supports it, Capture takes a full-resolution still from the camera instead of the preview frame. Files are named negative-viewer-<timestamp>.png and go to your Downloads (the Files app on iOS).",
   },
   {
     q: "Can I batch-process a whole roll?",
-    a: "Yes — manually. Lay the roll flat on the backlight, slide it across to bring each frame into view, and press Save photo for each frame. There is no automated batch endpoint because that would require server upload, which we deliberately avoid.",
+    a: "Yes — manually. Lay the strip on the backlight, slide each frame into view and press Capture, then use Save all to download the set. There is no automated batch endpoint because that would require server upload, which we deliberately avoid.",
   },
   {
     q: "Can I process negatives I already photographed or scanned?",
@@ -69,11 +69,11 @@ const faqs = [
   },
   {
     q: "How do I align the negative correctly?",
-    a: "Hold the negative emulsion side (the duller surface) facing the camera, and the shiny base side facing the backlight. If you hold it the opposite way, the live preview will look mirrored. Most users figure this out in under ten seconds by trying both orientations.",
+    a: "Put the shiny base side toward the camera and the duller emulsion side toward the backlight. Seen from the base side, the picture and the edge numbers read the right way round. If the preview still looks mirrored, flip the negative or use Mirror in Adjust.",
   },
   {
     q: "Will adding more features cost money in the future?",
-    a: "The core live viewer will always be free. For saved-file orange-mask removal, use Negative Converter. Future viewer features such as perspective correction or frame-by-frame export would be free unless they require server-side processing.",
+    a: "The core live viewer will always be free, and it already removes the orange base automatically. For saved negative files, use Negative Converter. Future viewer features such as perspective correction would be free unless they require server-side processing.",
   },
   {
     q: "I have feedback or a bug to report. Where do I send it?",
@@ -96,7 +96,7 @@ export default function FaqPage() {
         <h1>Frequently asked questions</h1>
         <p className="meta-row">
           <span>By {siteConfig.author.name}</span>
-          <span>Last updated {siteConfig.lastUpdatedISO}</span>
+          <span>Last updated {getPageDates("/faq").modified}</span>
         </p>
 
         <div className="prose" style={{ maxWidth: "72ch" }}>

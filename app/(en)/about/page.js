@@ -1,6 +1,7 @@
 import Link from "next/link";
 import JsonLd from "@/components/JsonLd";
 import { buildAboutPageSchema } from "@/lib/schema";
+import { getPageDates } from "@/lib/page-dates";
 import { buildMetadata } from "@/lib/seo";
 import { siteConfig } from "@/lib/site-config";
 
@@ -10,7 +11,6 @@ export const metadata = buildMetadata({
     "About Negative Viewer: who built it, how it works, the privacy commitments, and the tech stack behind the in-browser film negative converter.",
   path: "/about",
   type: "article",
-  modifiedTime: `${siteConfig.lastUpdatedISO}T00:00:00Z`,
 });
 
 export default function AboutPage() {
@@ -21,7 +21,7 @@ export default function AboutPage() {
         <h1>About Negative Viewer</h1>
         <p className="meta-row">
           <span>By {siteConfig.author.name}</span>
-          <span>Last updated {siteConfig.lastUpdatedISO}</span>
+          <span>Last updated {getPageDates("/about").modified}</span>
         </p>
 
         <div className="prose" style={{ maxWidth: "72ch" }}>

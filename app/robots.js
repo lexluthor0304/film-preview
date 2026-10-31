@@ -7,6 +7,7 @@ export default function robots() {
     "Bingbot",
     "DuckDuckBot",
     "Applebot",
+    "Applebot-Extended",
     "Google-Extended",
     "GPTBot",
     "ChatGPT-User",
@@ -14,8 +15,8 @@ export default function robots() {
     "PerplexityBot",
     "Perplexity-User",
     "ClaudeBot",
-    "Claude-Web",
-    "anthropic-ai",
+    "Claude-User",
+    "Claude-SearchBot",
     "Amazonbot",
     "MistralAI-User",
     "YouBot",
@@ -23,18 +24,19 @@ export default function robots() {
     "Bytespider",
     "Meta-ExternalAgent",
     "Meta-ExternalFetcher",
+    "meta-webindexer",
     "FacebookBot",
     "cohere-ai",
+    "CCBot",
   ];
 
   return {
     rules: [
       // Default: allow all (covers any well-behaved bot we didn't list).
       { userAgent: "*", allow: "/" },
-      // Explicit allow lines for major search and AI assistants.
+      // Explicit allow lines for major search engines, AI assistants, and the
+      // training crawlers (incl. Common Crawl) that shape what models know.
       ...aiAndSearchBots.map((userAgent) => ({ userAgent, allow: "/" })),
-      // Block training-only crawlers that don't drive citations.
-      { userAgent: "CCBot", disallow: "/" },
     ],
     sitemap: `${siteConfig.url}/sitemap.xml`,
     host: siteConfig.url,
