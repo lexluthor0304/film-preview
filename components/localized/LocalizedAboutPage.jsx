@@ -32,6 +32,17 @@ export default function LocalizedAboutPage({ locale, content }) {
                   ))}
                 </ul>
               )}
+              {section.links && (
+                <ul>
+                  {section.links.map((link) => (
+                    <li key={link.href}>
+                      <a href={link.href} rel="noopener noreferrer">
+                        {link.label}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              )}
             </section>
           ))}
         </div>
