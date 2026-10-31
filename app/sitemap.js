@@ -10,6 +10,7 @@ import { getPageDates } from "@/lib/page-dates";
 const englishOnlyRoutePaths = [
   "/guides/scan-negatives-without-scanner",
   "/guides/invert-negatives-iphone",
+  "/guides/view-negatives-android",
   "/guides/orange-mask-removal",
   "/guides/best-free-negative-viewer",
 ];
