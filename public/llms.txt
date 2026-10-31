@@ -64,7 +64,7 @@ Last updated: 2026-10-31
 - Arabic: https://negativeviewer.tokugai.com/ar
 - Hebrew: https://negativeviewer.tokugai.com/he
 
-Each localized site has the home page, how-to, FAQ, about page, and the three core guides (for example https://negativeviewer.tokugai.com/ru/how-to-use).
+Each localized site has the home page, how-to, FAQ, about page, and the three core guides (for example https://negativeviewer.tokugai.com/ru/how-to-use). The long-tail guides on scanning without a scanner, iPhone, Android, and orange-mask removal are also available in Chinese, Russian, Spanish, French, Italian, and Indonesian (for example https://negativeviewer.tokugai.com/ru/guides/view-negatives-android).
 
 ## Key facts
 

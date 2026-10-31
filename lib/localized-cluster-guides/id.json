@@ -1,0 +1,464 @@
+{
+  "ui": {
+    "moreGuidesTitle": "Panduan praktis lainnya",
+    "figureAlt": "Ilustrasi sebelum dan sesudah: negatif film yang warnanya dibalik menjadi pratinjau positif",
+    "figureCaption": "Pratinjau di browser paling cocok untuk memilih dengan cepat; pindaian akhir tetap memerlukan alur pengambilan gambar beresolusi lebih tinggi."
+  },
+  "guides": {
+    "/guides/scan-negatives-without-scanner": {
+      "title": "Cara Scan Negatif Film Tanpa Scanner",
+      "description": "Cara praktis melihat dan mendigitalisasi negatif film tanpa membeli scanner: pratinjau di browser, foto dengan ponsel, dan pemindaian dengan kamera.",
+      "displayReadTime": "Waktu baca 6 menit",
+      "keywords": [
+        "cara scan negatif film tanpa scanner",
+        "scan negatif film pakai HP",
+        "cara scan klise foto",
+        "cara melihat klise foto lama",
+        "digitalisasi negatif film"
+      ],
+      "about": [
+        "pemindaian film",
+        "negatif film",
+        "pemindaian dengan ponsel"
+      ],
+      "lede": "Anda bisa memindai negatif film tanpa scanner dengan menyinari film dari belakang, memotretnya dengan ponsel atau kamera, lalu membalik warnanya. Untuk sekadar menyortir, penampil berbasis browser adalah cara tercepat. Untuk bingkai yang layak disimpan, ambil foto diam lalu koreksi warnanya setelah inversi.",
+      "converterCta": {
+        "eyebrow": "Untuk foto yang sudah tersimpan",
+        "title": "Ubah negatif yang sudah difoto menjadi positif siap pakai",
+        "text": "Setelah memotret satu bingkai dengan ponsel atau kamera, buka Negative Converter untuk menghilangkan topeng oranye, mengatur eksposur, dan mengekspor gambar positif yang bersih.",
+        "linkText": "Buka Negative Converter"
+      },
+      "sections": [
+        {
+          "title": "Cara gratis tercepat",
+          "paragraphs": [
+            "Letakkan negatif di atas layar putih yang terang dan merata, atau di atas lightbox. Buka Negative Viewer, izinkan akses kamera, lalu arahkan kamera ke satu bingkai. Browser mengubah negatif yang tertangkap kamera menjadi pratinjau positif secara real-time, tanpa mengunggah gambar.",
+            "Alur ini paling cocok untuk mengenali isi foto, menyortir satu rol, dan membagikan gambar referensi dengan cepat. Namun, ini bukan pengganti pindaian arsip beresolusi tinggi."
+          ]
+        },
+        {
+          "title": "Kapan memakai tiap metode",
+          "table": {
+            "headers": [
+              "Tujuan",
+              "Metode terbaik",
+              "Pertimbangan"
+            ],
+            "rows": [
+              [
+                "Sekadar melihat isi rol",
+                "Penampil langsung di browser",
+                "Paling cepat, tetapi kualitasnya sebatas pratinjau"
+              ],
+              [
+                "Berbagi foto keluarga",
+                "Foto ponsel + inversi",
+                "Resolusi lebih baik, warna dikoreksi manual"
+              ],
+              [
+                "Mengarsipkan bingkai penting",
+                "Kamera + lensa makro",
+                "Kualitas terbaik, persiapan lebih banyak"
+              ],
+              [
+                "Format menengah dalam jumlah banyak",
+                "Pemindai datar",
+                "Praktis, tetapi tidak gratis"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "Perlengkapan minimal",
+          "list": [
+            "Ponsel, tablet, atau laptop dengan kamera yang berfungsi.",
+            "Layar kedua atau lightbox yang menampilkan putih polos.",
+            "Strip film yang bersih, ditahan rata dan sejajar dengan kamera.",
+            "Alat inversi berbasis browser atau editor foto untuk mengubah negatif menjadi positif."
+          ]
+        }
+      ],
+      "faqs": [
+        {
+          "q": "Bisakah memindai negatif tanpa membeli alat apa pun?",
+          "a": "Bisa. Jika Anda sudah punya kamera ponsel atau laptop dan layar kedua sebagai cahaya latar, Anda bisa melihat pratinjau negatif secara gratis di browser. Untuk menyimpan hasil yang lebih berkualitas, Anda perlu foto diam dan penyuntingan lebih lanjut."
+        },
+        {
+          "q": "Apakah ponsel cukup untuk negatif foto keluarga yang lama?",
+          "a": "Ponsel biasanya cukup untuk mengenali orang, memilih bingkai yang layak disimpan, dan membagikan gambar berukuran kecil. Untuk cetak atau file arsip jangka panjang, gunakan pemindaian dengan kamera atau pemindai film khusus."
+        },
+        {
+          "q": "Apa masalah kualitas yang paling besar?",
+          "a": "Masalah yang paling sering muncul adalah cahaya latar yang tidak merata, kamera goyang, debu, dan semburat warna dari dasar film yang oranye. Kamera yang stabil dan cahaya netral sudah mengatasi sebagian besar masalah yang terlihat."
+        }
+      ],
+      "cardText": "Cara melihat dan mendigitalisasi negatif film dengan ponsel dan layar putih, tanpa membeli pemindai.",
+      "cta": {
+        "text": "Ingin langsung mencoba dengan negatif sungguhan?",
+        "link": "Buka Negative Viewer"
+      },
+      "dates": {
+        "published": "2026-10-31",
+        "modified": "2026-10-31"
+      }
+    },
+    "/guides/invert-negatives-iphone": {
+      "title": "Cara Mengubah Negatif Film Jadi Positif di iPhone",
+      "description": "Cara praktis melihat, memotret, dan membalik warna negatif film di iPhone tanpa mengunggah gambar pribadi.",
+      "displayReadTime": "Waktu baca 6 menit",
+      "keywords": [
+        "cara melihat negatif film di iPhone",
+        "ubah negatif jadi positif di iPhone",
+        "invert warna iPhone untuk negatif film",
+        "aplikasi negatif film iPhone",
+        "Pembalikan Klasik iPhone"
+      ],
+      "about": [
+        "pemindaian film dengan iPhone",
+        "inversi negatif",
+        "negatif film"
+      ],
+      "lede": "Cara termudah mengubah negatif film menjadi positif di iPhone adalah membuka Negative Viewer di Safari, menempelkan negatif ke cahaya latar putih, lalu mengizinkan akses kamera: halaman menampilkan positif secara real-time dan menghilangkan semburat oranye secara otomatis. iOS juga bisa membalik warna seluruh layar dengan Pembalikan Klasik (Classic Invert), tetapi negatif warna jadi tampak biru dan positifnya tidak bisa disimpan. Untuk file beresolusi paling besar, ambil foto diam dengan aplikasi Kamera lalu konversikan setelahnya.",
+      "converterCta": {
+        "eyebrow": "File negatif dari iPhone",
+        "title": "Hilangkan topeng oranye dari foto iPhone yang tersimpan",
+        "text": "Gunakan Negative Converter jika negatif sudah Anda foto dan Anda ingin hasil ekspor positif yang lebih bersih daripada yang bisa diberikan pratinjau langsung.",
+        "linkText": "Buka Negative Converter"
+      },
+      "sections": [
+        {
+          "title": "Mulai dari pratinjau langsung",
+          "paragraphs": [
+            "Buka Negative Viewer di Safari atau Chrome pada iPhone yang akan Anda arahkan ke film. Gunakan ponsel, tablet, atau laptop lain sebagai cahaya latar putih. Begitu kamera menyala, halaman menampilkan positif secara real-time dan, untuk negatif warna, mencari tepi film yang bersih lalu menghilangkan semburat oranye.",
+            "Tekan Ambil gambar untuk mengabadikan satu bingkai, lalu simpan sebagai PNG atau bagikan. Pratinjau langsung juga cara tercepat untuk menyortir satu rol sebelum memutuskan bingkai mana yang layak diambil dengan resolusi lebih tinggi."
+          ]
+        },
+        {
+          "title": "Pakai Pembalikan Klasik bawaan iPhone",
+          "paragraphs": [
+            "iOS bisa membalik semua warna di layar, termasuk jendela bidik aplikasi Kamera. Aktifkan di Pengaturan → Aksesibilitas → Layar & Ukuran Teks → Pembalikan Klasik. Agar bisa menyalakan dan mematikannya dengan cepat, pilih Pembalikan Klasik di Pengaturan → Aksesibilitas → Pintasan Aksesibilitas, lalu klik tiga kali tombol samping (atau tombol Utama).",
+            "Gunakan Pembalikan Klasik, bukan Pembalikan Cerdas: Pembalikan Cerdas tidak membalik warna gambar dan video, sehingga tampilan kamera tetap negatif.",
+            "Ini hanya efek tampilan. Negatif warna tampak bersemburat biru-sian yang kuat karena dasar oranye ikut terbalik, foto yang Anda ambil tetap berupa negatif, dan tangkapan layar biasanya tersimpan dengan warna normal. Jadi, fitur ini bukan cara yang andal untuk menyimpan positif."
+          ]
+        },
+        {
+          "title": "Pembalikan Klasik vs. Negative Viewer",
+          "table": {
+            "headers": [
+              "Kebutuhan",
+              "Pembalikan Klasik (iOS)",
+              "Negative Viewer"
+            ],
+            "rows": [
+              [
+                "Menghilangkan semburat oranye",
+                "Tidak, negatif warna tampak biru",
+                "Ya, otomatis dari tepi film yang bersih"
+              ],
+              [
+                "Negatif hitam putih",
+                "Ya",
+                "Ya, dengan mode skala abu-abu"
+              ],
+              [
+                "Slide",
+                "Ikut terbalik, padahal tidak perlu",
+                "Mode Positif (slide) menampilkannya apa adanya"
+              ],
+              [
+                "Menyimpan positif",
+                "Tidak, foto tetap negatif",
+                "Ambil gambar, lalu simpan sebagai PNG atau bagikan"
+              ],
+              [
+                "Kecerahan dan kontras",
+                "Tidak",
+                "Ya, plus zoom dan panduan bingkai"
+              ],
+              [
+                "Persiapan",
+                "Bawaan iOS",
+                "Dibuka di Safari, tanpa instalasi"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "Ambil foto diam yang lebih baik",
+          "list": [
+            "Gunakan kamera belakang, bukan kamera depan.",
+            "Jaga iPhone tetap sejajar dengan film agar tidak terjadi distorsi perspektif.",
+            "Kunci fokus dan eksposur jika aplikasi kamera Anda mendukungnya.",
+            "Simpan hasil foto asli sebelum mengedit agar warnanya bisa dikoreksi ulang nanti."
+          ]
+        },
+        {
+          "title": "Pratinjau browser vs. foto diam yang diedit",
+          "table": {
+            "headers": [
+              "Alur kerja",
+              "Paling cocok untuk",
+              "Batasan"
+            ],
+            "rows": [
+              [
+                "Pratinjau langsung di browser + Ambil gambar",
+                "Menyortir, melihat seketika, menyimpan cepat",
+                "Kontrol lebih sedikit dibanding pindaian khusus"
+              ],
+              [
+                "Foto iPhone + inversi",
+                "Berbagi dan pengeditan ringan",
+                "Perlu koreksi warna manual"
+              ],
+              [
+                "Pemindaian dengan kamera",
+                "Bingkai untuk arsip",
+                "Butuh peralatan tambahan"
+              ]
+            ]
+          }
+        }
+      ],
+      "faqs": [
+        {
+          "q": "Apakah iPhone perlu aplikasi untuk membalik warna negatif?",
+          "a": "Tidak. Negative Viewer membalik warna gambar kamera secara langsung di Safari dan menghilangkan semburat oranye secara otomatis. Editor foto atau Negative Converter baru diperlukan jika Anda menginginkan file foto yang lebih besar dan kontrol warna yang lebih halus."
+        },
+        {
+          "q": "Bisakah memakai pengaturan Balikkan Warna di iPhone untuk melihat negatif?",
+          "a": "Bisa, untuk melihat sekilas: aktifkan Pembalikan Klasik di Pengaturan → Aksesibilitas → Layar & Ukuran Teks, lalu arahkan aplikasi Kamera ke negatif. Negatif warna akan tampak biru karena dasar oranye ikut terbalik, dan positifnya tidak bisa disimpan. Pembalikan Cerdas tidak bisa dipakai karena fitur itu melewatkan foto dan video."
+        },
+        {
+          "q": "Mengapa foto negatif dari iPhone tampak biru setelah warnanya dibalik?",
+          "a": "Negatif warna punya dasar oranye, dan inversi biasa mengubahnya menjadi biru atau sian. Pratinjau langsung Negative Viewer menghilangkan semburat itu secara otomatis dari tepi film yang bersih. Untuk foto yang warnanya Anda balik di editor, netralkan white balance dan tint setelah inversi, atau buka foto itu di Negative Converter."
+        },
+        {
+          "q": "Apakah aliran kamera diunggah?",
+          "a": "Negative Viewer memproses gambar kamera secara lokal di browser. Situs ini tidak memerlukan endpoint unggahan, baik untuk pratinjau kamera maupun untuk mengambil gambar PNG."
+        }
+      ],
+      "cardText": "Cara melihat negatif sebagai positif di Safari, dan mengapa Pembalikan Klasik iOS membuat negatif warna biru.",
+      "cta": {
+        "text": "Ingin langsung mencoba dengan negatif sungguhan?",
+        "link": "Buka Negative Viewer"
+      },
+      "dates": {
+        "published": "2026-10-31",
+        "modified": "2026-10-31"
+      }
+    },
+    "/guides/view-negatives-android": {
+      "title": "Cara Melihat Negatif Film di HP Android",
+      "description": "Lihat negatif film jadi positif di HP Android: pratinjau langsung di Chrome, topeng oranye hilang otomatis, plus inversi warna bawaan dan tips foto tajam.",
+      "displayReadTime": "Waktu baca 6 menit",
+      "keywords": [
+        "cara melihat negatif film di HP Android",
+        "aplikasi negatif film Android",
+        "inversi warna Android untuk negatif film",
+        "ubah negatif jadi positif di Android",
+        "cara melihat klise foto di HP"
+      ],
+      "about": [
+        "pemindaian film dengan Android",
+        "inversi negatif",
+        "negatif film"
+      ],
+      "lede": "Cara tercepat melihat negatif film di Android adalah membuka Negative Viewer di Chrome, menempelkan negatif ke cahaya latar putih, lalu mengizinkan akses kamera: halaman menampilkan positif secara real-time dan menghilangkan semburat oranye pada negatif warna secara otomatis. Fitur inversi warna bawaan Android juga membalik tampilan kamera, tetapi negatif warna jadi tampak biru dan positifnya tidak bisa disimpan.",
+      "converterCta": {
+        "eyebrow": "File negatif di Android",
+        "title": "Konversi negatif yang sudah Anda foto",
+        "text": "Gunakan Negative Converter jika Anda punya foto atau pindaian negatif di ponsel dan ingin menghilangkan topeng oranye serta mengekspor positif yang bersih.",
+        "linkText": "Buka Negative Converter"
+      },
+      "sections": [
+        {
+          "title": "Pakai pratinjau langsung di Chrome",
+          "paragraphs": [
+            "Buka Negative Viewer di Chrome, Samsung Internet, Edge, atau Firefox pada ponsel yang akan Anda arahkan ke film, lalu gunakan ponsel, tablet, atau laptop lain yang menampilkan layar putih polos sebagai cahaya latar. Tekan Mulai kamera dan izinkan akses; halaman akan meminta kamera belakang.",
+            "Untuk negatif warna, biarkan sedikit tepi film yang bersih ikut masuk ke bingkai: penampil menemukan dasar oranye dan menghilangkan semburatnya secara otomatis. Untuk negatif hitam putih atau slide, buka Penyesuaian dan atur Film ke Negatif hitam putih atau Positif (slide).",
+            "Tekan Ambil gambar untuk mengabadikan satu bingkai, lalu simpan sebagai PNG atau bagikan. Jika browser mendukung, seperti Chrome di Android, Ambil gambar memakai foto diam beresolusi penuh dari kamera, bukan bingkai video."
+          ]
+        },
+        {
+          "title": "Pakai inversi warna bawaan Android",
+          "paragraphs": [
+            "Android bisa membalik warna seluruh layar, termasuk jendela bidik aplikasi Kamera. Di Pixel dan sebagian besar ponsel dengan Android murni, buka Setelan → Aksesibilitas → Warna dan gerakan → Inversi warna. Di ponsel Samsung Galaxy, jalurnya Pengaturan → Aksesibilitas → Peningkatan visi (di beberapa versi: Peningkatan visibilitas) → Inversi warna. Nama menu bisa sedikit berbeda tergantung merek dan versi Android. Di merek lain seperti Xiaomi, OPPO, atau vivo, cari “inversi warna” di pengaturan.",
+            "Agar bisa menyalakan dan mematikannya dengan cepat, tambahkan kartu Inversi warna ke Setelan Cepat (buka Setelan Cepat, ketuk Edit, lalu tarik kartunya ke panel), atau aktifkan pintasan aksesibilitasnya.",
+            "Seperti Pembalikan Klasik di iPhone, fitur ini hanya mengubah tampilan. Negatif warna tampak bersemburat biru-sian yang kuat karena dasar oranye ikut terbalik, foto yang Anda ambil tetap berupa negatif, dan tangkapan layar biasanya tersimpan tanpa inversi."
+          ]
+        },
+        {
+          "title": "Inversi warna vs. Negative Viewer",
+          "table": {
+            "headers": [
+              "Kebutuhan",
+              "Inversi warna Android",
+              "Negative Viewer"
+            ],
+            "rows": [
+              [
+                "Menghilangkan semburat oranye",
+                "Tidak, negatif warna tampak biru",
+                "Ya, otomatis dari tepi film yang bersih"
+              ],
+              [
+                "Negatif hitam putih",
+                "Ya",
+                "Ya, dengan mode skala abu-abu"
+              ],
+              [
+                "Slide",
+                "Ikut terbalik, padahal tidak perlu",
+                "Mode Positif (slide) menampilkannya apa adanya"
+              ],
+              [
+                "Menyimpan positif",
+                "Tidak, foto tetap negatif",
+                "Ambil gambar, lalu simpan sebagai PNG atau bagikan"
+              ],
+              [
+                "Kecerahan dan kontras",
+                "Tidak",
+                "Ya, plus zoom dan panduan bingkai"
+              ],
+              [
+                "Persiapan",
+                "Bawaan Android",
+                "Dibuka di Chrome, tanpa instalasi"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "Hasil lebih tajam di Android",
+          "list": [
+            "Letakkan ponsel di atas tumpukan buku atau dudukan kecil, sejajar dengan film.",
+            "Jika gambar tetap buram dari jarak dekat, jauhkan ponsel sampai gambar tajam, lalu gunakan zoom penampil agar bingkai terisi penuh.",
+            "Atur layar cahaya latar ke kecerahan penuh dan jangan biarkan cahaya ruangan mengenai film agar tidak ada pantulan.",
+            "Jika kamera tidak mau menyala, buka tautan di Chrome, bukan di browser dalam aplikasi, lalu pastikan situs diizinkan memakai kamera (ketuk ikon di kiri kolom alamat, lalu Izin)."
+          ]
+        }
+      ],
+      "faqs": [
+        {
+          "q": "Adakah aplikasi penampil negatif untuk Android?",
+          "a": "Anda tidak perlu aplikasi. Negative Viewer berjalan di Chrome, menghilangkan semburat oranye secara otomatis, dan bisa ditambahkan ke layar utama seperti aplikasi. Aplikasi dari Play Store juga bisa dipakai, tetapi cara ini tidak perlu instalasi maupun akun."
+        },
+        {
+          "q": "Bisakah memakai inversi warna Android untuk melihat negatif?",
+          "a": "Bisa, untuk melihat sekilas: aktifkan Inversi warna (Setelan → Aksesibilitas → Warna dan gerakan di Pixel, atau Pengaturan → Aksesibilitas → Peningkatan visi di Samsung), lalu arahkan aplikasi Kamera ke negatif. Negatif warna akan tampak biru karena dasar oranye ikut terbalik, dan positifnya tidak bisa disimpan."
+        },
+        {
+          "q": "Mengapa pratinjau buram saat ponsel didekatkan?",
+          "a": "Setiap kamera ponsel punya jarak fokus minimum. Jauhkan ponsel sampai gambar tajam, lalu gunakan zoom penampil agar satu negatif memenuhi bingkai."
+        },
+        {
+          "q": "Apakah aliran kamera diunggah?",
+          "a": "Tidak. Negative Viewer memproses setiap bingkai secara lokal di browser, dan gambar yang Anda ambil dibuat langsung di ponsel."
+        }
+      ],
+      "cardText": "Cara melihat negatif sebagai positif di Chrome dan memakai inversi warna bawaan Android.",
+      "cta": {
+        "text": "Ingin langsung mencoba dengan negatif sungguhan?",
+        "link": "Buka Negative Viewer"
+      },
+      "dates": {
+        "published": "2026-10-31",
+        "modified": "2026-10-31"
+      }
+    },
+    "/guides/orange-mask-removal": {
+      "title": "Cara Menghilangkan Topeng Oranye pada Negatif Film Warna",
+      "description": "Mengapa negatif warna punya topeng oranye, mengapa hasil inversi tampak biru, dan cara mengoreksi semburat itu setelah konversi.",
+      "displayReadTime": "Waktu baca 6 menit",
+      "keywords": [
+        "menghilangkan orange mask negatif film",
+        "kenapa negatif film berwarna oranye",
+        "hasil scan negatif film kebiruan",
+        "topeng oranye negatif warna",
+        "cara invert negatif film warna"
+      ],
+      "about": [
+        "topeng oranye",
+        "film negatif warna",
+        "pemindaian film"
+      ],
+      "lede": "Negatif warna memiliki topeng oranye (orange mask) karena lapisan pewarnanya tidak sepenuhnya murni. Saat warna film dibalik secara digital, dasar oranye berubah menjadi semburat biru atau sian. Solusi praktisnya adalah mengambil sampel dasar film atau mengoreksi white balance setelah inversi.",
+      "converterCta": {
+        "eyebrow": "Khusus menghilangkan topeng oranye",
+        "title": "Gunakan Negative Converter untuk negatif warna yang tersimpan",
+        "text": "Negative Converter dibuat untuk file negatif hasil foto atau pindaian, dengan koreksi topeng oranye dan ekspor positif langsung di browser.",
+        "linkText": "Buka Negative Converter"
+      },
+      "sections": [
+        {
+          "title": "Apa fungsi topeng oranye",
+          "paragraphs": [
+            "Dasar oranye adalah bagian dari sistem negatif warna, bukan kerusakan. Lapisan ini membantu proses cetak mengompensasi penyerapan pewarna yang tidak diinginkan. Negatif hitam putih dan film slide biasanya tidak memiliki dasar oranye seperti ini.",
+            "Inversi RGB sederhana membuat gambar menjadi positif, tetapi juga mengubah dasar oranye menjadi warna kebalikannya. Itulah sebabnya pratinjau pertama yang secara teknis benar pun masih bisa tampak terlalu biru."
+          ]
+        },
+        {
+          "title": "Pilihan koreksi",
+          "table": {
+            "headers": [
+              "Metode",
+              "Gunakan jika",
+              "Hasil"
+            ],
+            "rows": [
+              [
+                "Sampel dasar film",
+                "Ada tepi film oranye yang bersih di dalam bingkai",
+                "Otomatis di pratinjau langsung Negative Viewer"
+              ],
+              [
+                "White balance setelah disimpan",
+                "Anda punya gambar diam",
+                "Kontrol lebih baik"
+              ],
+              [
+                "Perangkat lunak negatif khusus",
+                "Anda memproses banyak rol",
+                "Paling konsisten"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "Urutan koreksi yang praktis",
+          "list": [
+            "Balik warna negatif terlebih dahulu.",
+            "Netralkan semburat biru atau sian dari dasar film.",
+            "Sesuaikan eksposur dan kontras.",
+            "Sempurnakan warna kulit atau objek yang Anda tahu berwarna netral."
+          ]
+        }
+      ],
+      "faqs": [
+        {
+          "q": "Apakah topeng oranye merupakan cacat pada film?",
+          "a": "Bukan. Topeng ini bagian normal dari film negatif warna dan membantu warna tercetak lebih akurat. Keberadaannya baru terlihat jelas saat warna negatif dibalik langsung secara digital."
+        },
+        {
+          "q": "Bisakah penampil browser menghilangkan topeng oranye?",
+          "a": "Bisa. Saat kamera menyala, Negative Viewer mencari tepi film yang bersih, memperkirakan warna dasar film, lalu membagi gambar dengan warna itu dalam cahaya linear sebelum membalik warnanya, sehingga pratinjau langsung tampil tanpa semburat biru. Untuk gambar penting, koreksi warna akhir di editor atau Negative Converter tetap bermanfaat."
+        },
+        {
+          "q": "Apakah negatif hitam putih perlu koreksi topeng oranye?",
+          "a": "Tidak. Negatif hitam putih tradisional tidak memiliki topeng warna oranye, jadi inversi langsung biasanya sudah menghasilkan gambar yang netral."
+        }
+      ],
+      "cardText": "Mengapa negatif warna tampak oranye, mengapa hasil inversinya kebiruan, dan cara mengoreksinya.",
+      "cta": {
+        "text": "Ingin langsung mencoba dengan negatif sungguhan?",
+        "link": "Buka Negative Viewer"
+      },
+      "dates": {
+        "published": "2026-10-31",
+        "modified": "2026-10-31"
+      }
+    }
+  }
+}

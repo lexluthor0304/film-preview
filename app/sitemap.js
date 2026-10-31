@@ -5,15 +5,12 @@ import {
   routePaths,
   supportedLocales,
 } from "@/lib/i18n";
+import { clusterGuidePaths } from "@/lib/cluster-guides";
+import {
+  clusterGuideLanguageAlternates,
+  clusterGuideLocales,
+} from "@/lib/localized-cluster-guides";
 import { getPageDates } from "@/lib/page-dates";
-
-const englishOnlyRoutePaths = [
-  "/guides/scan-negatives-without-scanner",
-  "/guides/invert-negatives-iphone",
-  "/guides/view-negatives-android",
-  "/guides/orange-mask-removal",
-  "/guides/best-free-negative-viewer",
-];
 
 export default function sitemap() {
   const routeMeta = {
@@ -29,7 +26,7 @@ export default function sitemap() {
   const localizedRoutes = routePaths.flatMap((path) =>
     supportedLocales.map((locale) => ({
       url: `${siteConfig.url}${localizedPath(path, locale)}`,
-      lastModified: new Date(getPageDates(path).modified),
+      lastModified: new Date(getPageDates(path, locale).modified),
       changeFrequency: routeMeta[path].changeFrequency,
       priority: routeMeta[path].priority,
       alternates: {
@@ -38,12 +35,18 @@ export default function sitemap() {
     }))
   );
 
-  const englishOnlyRoutes = englishOnlyRoutePaths.map((path) => ({
-    url: `${siteConfig.url}${path}`,
-    lastModified: new Date(getPageDates(path).modified),
-    changeFrequency: "monthly",
-    priority: 0.7,
-  }));
+  // Long-tail guides exist in English plus only some translations.
+  const clusterGuideRoutes = clusterGuidePaths.flatMap((path) =>
+    ["en", ...clusterGuideLocales(path)].map((locale) => ({
+      url: `${siteConfig.url}${localizedPath(path, locale)}`,
+      lastModified: new Date(getPageDates(path, locale).modified),
+      changeFrequency: "monthly",
+      priority: 0.7,
+      alternates: {
+        languages: clusterGuideLanguageAlternates(path),
+      },
+    }))
+  );
 
-  return [...localizedRoutes, ...englishOnlyRoutes];
+  return [...localizedRoutes, ...clusterGuideRoutes];
 }

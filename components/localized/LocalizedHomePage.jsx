@@ -4,7 +4,12 @@ import ContestPromo from "@/components/ContestPromo";
 import JsonLd from "@/components/JsonLd";
 import NegativeConverterCta from "@/components/NegativeConverterCta";
 import NegativeViewer from "@/components/NegativeViewer";
+import { clusterGuidePaths } from "@/lib/cluster-guides";
 import { getDictionary, localizedPath } from "@/lib/i18n";
+import {
+  getLocalizedClusterGuide,
+  getLocalizedClusterGuideUi,
+} from "@/lib/localized-cluster-guides";
 import {
   buildFaqPageSchema,
   buildSoftwareApplicationSchema,
@@ -12,6 +17,9 @@ import {
 
 export default function LocalizedHomePage({ locale, content }) {
   const dictionary = getDictionary(locale);
+  const moreGuides = clusterGuidePaths
+    .map((path) => ({ path, guide: getLocalizedClusterGuide(locale, path) }))
+    .filter(({ guide }) => guide);
 
   return (
     <>
@@ -131,6 +139,21 @@ export default function LocalizedHomePage({ locale, content }) {
               </div>
             ))}
           </div>
+          {moreGuides.length > 0 && (
+            <>
+              <h2>{getLocalizedClusterGuideUi(locale).moreGuidesTitle}</h2>
+              <div className="feature-grid">
+                {moreGuides.map(({ path, guide }) => (
+                  <div className="feature-card" key={path}>
+                    <h3>
+                      <Link href={localizedPath(path, locale)}>{guide.title}</Link>
+                    </h3>
+                    <p>{guide.cardText}</p>
+                  </div>
+                ))}
+              </div>
+            </>
+          )}
         </div>
       </section>
 

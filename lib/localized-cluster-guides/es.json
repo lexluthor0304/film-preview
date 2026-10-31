@@ -1,0 +1,464 @@
+{
+  "ui": {
+    "moreGuidesTitle": "Más guías prácticas",
+    "figureAlt": "Comparación generada de antes y después que muestra un negativo invertido en una vista previa en positivo",
+    "figureCaption": "La vista previa en el navegador es ideal para seleccionar rápido; los escaneos finales siguen necesitando un proceso de captura de mayor resolución."
+  },
+  "guides": {
+    "/guides/scan-negatives-without-scanner": {
+      "title": "Cómo escanear negativos fotográficos sin escáner",
+      "description": "Formas prácticas de ver y digitalizar negativos sin comprar un escáner: vista previa en el navegador, fotos con el móvil y escaneo con cámara.",
+      "displayReadTime": "6 minutos de lectura",
+      "keywords": [
+        "escanear negativos sin escáner",
+        "digitalizar negativos con el móvil",
+        "digitalizar negativos con el celular",
+        "pasar negativos a digital",
+        "ver negativos sin escáner"
+      ],
+      "about": [
+        "escaneo de película",
+        "negativos fotográficos",
+        "escaneo con el móvil"
+      ],
+      "lede": "Puedes escanear negativos sin escáner iluminando la película por detrás, fotografiándola con el móvil o con una cámara e invirtiendo la imagen. Para clasificar negativos, lo más rápido es un visor en el navegador. Para los fotogramas que quieras conservar, saca una foto del negativo y corrige el color después de invertirla.",
+      "converterCta": {
+        "eyebrow": "Para fotos ya guardadas",
+        "title": "Convierte negativos fotografiados en positivos terminados",
+        "text": "Cuando tengas la foto del negativo, hecha con el móvil o con la cámara, abre Negative Converter para quitar la máscara naranja, ajustar la exposición y exportar un positivo limpio.",
+        "linkText": "Abrir Negative Converter"
+      },
+      "sections": [
+        {
+          "title": "El método gratuito más rápido",
+          "paragraphs": [
+            "Coloca el negativo sobre una pantalla blanca, brillante y uniforme, o sobre una caja de luz. Abre Negative Viewer, permite el acceso a la cámara y apúntala a un fotograma. El navegador convierte en directo el negativo en una vista previa en positivo, sin subir la imagen.",
+            "Este método es ideal para identificar qué aparece en cada foto, clasificar un rollo y compartir una referencia rápida. No sustituye a un escaneo de archivo en alta resolución."
+          ]
+        },
+        {
+          "title": "Qué método usar en cada caso",
+          "table": {
+            "headers": [
+              "Objetivo",
+              "Mejor método",
+              "Pros y contras"
+            ],
+            "rows": [
+              [
+                "Ver qué hay en el rollo",
+                "Visor en vivo en el navegador",
+                "Lo más rápido, pero con calidad de vista previa"
+              ],
+              [
+                "Compartir fotos familiares",
+                "Foto con el móvil + inversión",
+                "Más resolución, pero el color se ajusta a mano"
+              ],
+              [
+                "Archivar fotogramas importantes",
+                "Cámara + objetivo macro",
+                "La mejor calidad, pero requiere más preparación"
+              ],
+              [
+                "Formato medio por lotes",
+                "Escáner plano",
+                "Cómodo, pero no es gratis"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "Lo mínimo que necesitas",
+          "list": [
+            "Un móvil, una tablet o un portátil con una cámara que funcione.",
+            "Una segunda pantalla en blanco o una caja de luz.",
+            "Una tira de película limpia, plana y paralela a la cámara.",
+            "Una herramienta de inversión en el navegador o un editor de fotos para pasar el negativo a positivo."
+          ]
+        }
+      ],
+      "faqs": [
+        {
+          "q": "¿Puedo escanear negativos sin comprar ningún equipo?",
+          "a": "Sí. Si ya tienes la cámara del móvil o del portátil y una segunda pantalla que haga de luz de fondo, puedes ver los negativos gratis en el navegador. Para guardarlos con más calidad hace falta sacar una foto del negativo y editarla más."
+        },
+        {
+          "q": "¿Basta con un móvil para los negativos antiguos de la familia?",
+          "a": "Un móvil suele bastar para reconocer a las personas, elegir qué fotos conservar y compartir imágenes pequeñas. Para copias en papel o archivos a largo plazo, usa el escaneo con cámara o un escáner de película dedicado."
+        },
+        {
+          "q": "¿Cuál es el mayor problema de calidad?",
+          "a": "Los fallos más habituales son una luz de fondo desigual, el movimiento de la cámara, el polvo y la dominante de color que causa la base naranja de la película. Una cámara estable y una luz neutra resuelven la mayoría de los problemas visibles."
+        }
+      ],
+      "cardText": "Móvil, cámara o navegador: formas de ver y digitalizar negativos sin comprar un escáner.",
+      "cta": {
+        "text": "¿Quieres probar ahora con un negativo de verdad?",
+        "link": "Abrir Negative Viewer"
+      },
+      "dates": {
+        "published": "2026-10-31",
+        "modified": "2026-10-31"
+      }
+    },
+    "/guides/invert-negatives-iphone": {
+      "title": "Cómo invertir negativos con el iPhone y verlos en positivo",
+      "description": "Un método práctico para ver, fotografiar e invertir negativos con el iPhone sin subir tus imágenes privadas a internet.",
+      "displayReadTime": "6 minutos de lectura",
+      "keywords": [
+        "invertir negativos con el iPhone",
+        "ver negativos con el iPhone",
+        "pasar negativo a positivo en iPhone",
+        "invertir colores iPhone para ver negativos",
+        "app para ver negativos en iPhone"
+      ],
+      "about": [
+        "escaneo de película con iPhone",
+        "inversión de negativos",
+        "negativos fotográficos"
+      ],
+      "lede": "La forma más sencilla de invertir negativos con el iPhone es abrir Negative Viewer en Safari, sujetar el negativo contra una luz blanca y permitir el acceso a la cámara: la página muestra el positivo en directo y elimina la dominante naranja automáticamente. iOS también puede invertir toda la pantalla con la inversión clásica, pero entonces los negativos en color se ven azules y no puedes guardar el positivo. Para obtener los archivos más grandes, saca una foto con la app Cámara y conviértela después.",
+      "converterCta": {
+        "eyebrow": "Fotos de negativos en el iPhone",
+        "title": "Elimina la máscara naranja de las fotos guardadas en el iPhone",
+        "text": "Usa Negative Converter cuando ya hayas fotografiado el negativo y quieras exportar un positivo más limpio del que puede ofrecer una vista en vivo.",
+        "linkText": "Abrir Negative Converter"
+      },
+      "sections": [
+        {
+          "title": "Empieza por la vista en vivo",
+          "paragraphs": [
+            "Abre Negative Viewer en Safari o Chrome desde el iPhone con el que vas a apuntar a la película. Usa otro móvil, una tablet o un portátil como luz blanca de fondo. En cuanto se inicia la cámara, la página muestra el positivo en directo y, con negativos en color, localiza un borde limpio de la película y elimina la dominante naranja.",
+            "Pulsa Capturar para conservar un fotograma y luego guárdalo como PNG o compártelo. La vista en vivo es también la forma más rápida de clasificar un rollo antes de decidir qué fotogramas merecen una captura a más resolución."
+          ]
+        },
+        {
+          "title": "Usa la inversión clásica del iPhone",
+          "paragraphs": [
+            "iOS puede invertir todos los colores de la pantalla, incluido el visor de la app Cámara. Activa la inversión en Ajustes → Accesibilidad → Pantalla y tamaño del texto → Inversión clásica; si tu iPhone está en español de Latinoamérica, verás en su lugar Configuración e Invertir (clásico). Para activarla y desactivarla rápidamente, elígela en Ajustes → Accesibilidad → Función rápida de accesibilidad y pulsa tres veces el botón lateral (o el botón de inicio).",
+            "Elige la inversión clásica, no la inteligente: la inteligente no toca las imágenes ni el video, así que la vista de la cámara sigue en negativo.",
+            "Es solo un efecto de pantalla. Los negativos en color muestran una fuerte dominante azul cian porque la base naranja también se invierte, las fotos que tomes siguen siendo negativos y las capturas de pantalla suelen guardarse con los colores normales, así que no es una forma fiable de conservar un positivo."
+          ]
+        },
+        {
+          "title": "Inversión clásica vs. Negative Viewer",
+          "table": {
+            "headers": [
+              "Tarea",
+              "Inversión clásica (iOS)",
+              "Negative Viewer"
+            ],
+            "rows": [
+              [
+                "Eliminar la dominante naranja",
+                "No, los negativos en color se ven azules",
+                "Sí, automáticamente a partir de un borde limpio de la película"
+              ],
+              [
+                "Negativos en blanco y negro",
+                "Sí",
+                "Sí, con un modo en escala de grises"
+              ],
+              [
+                "Diapositivas",
+                "Las invierte por error",
+                "El modo Positivo (diapositiva) las muestra tal cual"
+              ],
+              [
+                "Conservar un positivo",
+                "No, las fotos siguen en negativo",
+                "Capturar y luego guardar como PNG o compartir"
+              ],
+              [
+                "Brillo y contraste",
+                "No",
+                "Sí, además de zoom y guías de encuadre"
+              ],
+              [
+                "Instalación",
+                "Integrada en iOS",
+                "Se abre en Safari, sin instalar nada"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "Saca una foto mejor del negativo",
+          "list": [
+            "Usa la cámara trasera, no la frontal.",
+            "Mantén el iPhone paralelo a la película para evitar la distorsión trapezoidal.",
+            "Bloquea el enfoque y la exposición si tu app de cámara lo permite.",
+            "Guarda la foto original antes de editarla para poder rehacer el color más adelante."
+          ]
+        },
+        {
+          "title": "Vista previa en el navegador vs. foto editada",
+          "table": {
+            "headers": [
+              "Método",
+              "Ideal para",
+              "Límite"
+            ],
+            "rows": [
+              [
+                "Vista en vivo en el navegador + Capturar",
+                "Clasificar, ver al instante y guardar rápido",
+                "Menos control que un escaneo dedicado"
+              ],
+              [
+                "Foto con el iPhone + inversión",
+                "Compartir y retoques ligeros",
+                "Hay que corregir el color a mano"
+              ],
+              [
+                "Escaneo con cámara",
+                "Fotogramas para archivo",
+                "Requiere equipo adicional"
+              ]
+            ]
+          }
+        }
+      ],
+      "faqs": [
+        {
+          "q": "¿Hace falta una app para invertir negativos en el iPhone?",
+          "a": "No. Negative Viewer invierte en Safari la imagen en directo de la cámara y elimina la dominante naranja automáticamente. Un editor o Negative Converter solo importan si quieres archivos de foto más grandes y un control más fino del color."
+        },
+        {
+          "q": "¿Sirve la opción Invertir colores del iPhone para ver negativos?",
+          "a": "Sí, para echar un vistazo: activa la inversión clásica en Ajustes (o Configuración) → Accesibilidad → Pantalla y tamaño del texto, y luego apunta la app Cámara al negativo. Los negativos en color se verán azules porque la base naranja también se invierte, y no podrás guardar el positivo. La inversión inteligente no funciona, porque no afecta a las fotos ni al video."
+        },
+        {
+          "q": "¿Por qué los negativos fotografiados con el iPhone salen azules al invertirlos?",
+          "a": "Los negativos en color tienen una base naranja y, con una inversión simple, esa base se vuelve azul o cian. La vista en vivo de Negative Viewer elimina esa dominante automáticamente a partir de un borde limpio de la película. Si inviertes la foto en un editor, neutraliza el balance de blancos y el tinte después de invertirla, o ábrela en Negative Converter."
+        },
+        {
+          "q": "¿Se sube la imagen de la cámara?",
+          "a": "Negative Viewer procesa la imagen en directo localmente, en el navegador. El sitio no necesita ningún servidor de subida para la vista previa de la cámara ni para las capturas en PNG."
+        }
+      ],
+      "cardText": "Positivo en directo en Safari, sin instalar nada, y por qué la inversión clásica de iOS no basta.",
+      "cta": {
+        "text": "¿Quieres probar ahora con un negativo de verdad?",
+        "link": "Abrir Negative Viewer"
+      },
+      "dates": {
+        "published": "2026-10-31",
+        "modified": "2026-10-31"
+      }
+    },
+    "/guides/view-negatives-android": {
+      "title": "Cómo ver negativos en Android y pasarlos a positivo",
+      "description": "Mira tus negativos en positivo con Android: vista en vivo en Chrome sin máscara naranja, inversión de colores del sistema y consejos para más nitidez.",
+      "displayReadTime": "6 minutos de lectura",
+      "keywords": [
+        "ver negativos en Android",
+        "app para ver negativos en Android",
+        "ver negativos con el celular",
+        "inversión de colores Android negativos",
+        "pasar negativo a positivo con el móvil"
+      ],
+      "about": [
+        "escaneo de película con Android",
+        "inversión de negativos",
+        "negativos fotográficos"
+      ],
+      "lede": "La forma más rápida de ver negativos en Android es abrir Negative Viewer en Chrome, sujetar el negativo contra una luz blanca y permitir el acceso a la cámara: la página muestra el positivo en directo y elimina automáticamente la dominante naranja de los negativos en color. La inversión de colores integrada en Android también invierte la vista de la cámara, pero entonces los negativos en color se ven azules y no puedes guardar el positivo.",
+      "converterCta": {
+        "eyebrow": "Fotos de negativos en Android",
+        "title": "Convierte negativos ya fotografiados",
+        "text": "Usa Negative Converter cuando tengas en el móvil fotos o escaneos de negativos y quieras quitar la máscara naranja y exportar un positivo limpio.",
+        "linkText": "Abrir Negative Converter"
+      },
+      "sections": [
+        {
+          "title": "Usa la vista en vivo en Chrome",
+          "paragraphs": [
+            "Abre Negative Viewer en Chrome, Samsung Internet, Edge o Firefox desde el móvil con el que vas a apuntar a la película, y usa como luz de fondo otro móvil, una tablet o un portátil con la pantalla en blanco. Pulsa Iniciar cámara y permite el acceso; la página pide la cámara trasera.",
+            "Con negativos en color, deja un poco de borde limpio de la película dentro del encuadre: el visor encuentra la base naranja y elimina la dominante automáticamente. Para negativos en blanco y negro o diapositivas, abre Ajustes en el visor y, en Película, elige Negativo B/N o Positivo (diapositiva).",
+            "Pulsa Capturar para conservar un fotograma y luego guárdalo como PNG o compártelo. Si el navegador lo admite, como ocurre con Chrome en Android, Capturar toma una foto a resolución completa con la cámara en lugar del fotograma de video."
+          ]
+        },
+        {
+          "title": "Usa la inversión de colores de Android",
+          "paragraphs": [
+            "Android puede invertir toda la pantalla, incluido el visor de la app Cámara. En los Pixel y en la mayoría de los móviles con Android puro, ve a Ajustes (o Configuración) → Accesibilidad → Color y movimiento → Inversión de colores. En los Samsung Galaxy, la ruta es Ajustes → Accesibilidad → Mejoras de visión → Inversión de colores (Mejoras de visibilidad en algunas versiones). Los nombres de los menús varían un poco según la marca y la versión de Android. En otras marcas, como Xiaomi, OPPO o vivo, busca «inversión de colores» en los ajustes.",
+            "Para activar y desactivar la inversión rápidamente, añade el botón Inversión de colores a Ajustes rápidos (Configuración rápida en Latinoamérica): abre el panel, toca Editar y arrastra el botón dentro. También puedes activar su acceso directo de accesibilidad.",
+            "Igual que la inversión clásica del iPhone, solo cambia lo que se ve en pantalla. Los negativos en color muestran una fuerte dominante azul cian porque la base naranja también se invierte, las fotos que tomes siguen siendo negativos y las capturas de pantalla suelen guardarse sin la inversión."
+          ]
+        },
+        {
+          "title": "Inversión de colores vs. Negative Viewer",
+          "table": {
+            "headers": [
+              "Tarea",
+              "Inversión de colores (Android)",
+              "Negative Viewer"
+            ],
+            "rows": [
+              [
+                "Eliminar la dominante naranja",
+                "No, los negativos en color se ven azules",
+                "Sí, automáticamente a partir de un borde limpio de la película"
+              ],
+              [
+                "Negativos en blanco y negro",
+                "Sí",
+                "Sí, con un modo en escala de grises"
+              ],
+              [
+                "Diapositivas",
+                "Las invierte por error",
+                "El modo Positivo (diapositiva) las muestra tal cual"
+              ],
+              [
+                "Conservar un positivo",
+                "No, las fotos siguen en negativo",
+                "Capturar y luego guardar como PNG o compartir"
+              ],
+              [
+                "Brillo y contraste",
+                "No",
+                "Sí, además de zoom y guías de encuadre"
+              ],
+              [
+                "Instalación",
+                "Integrada en Android",
+                "Se abre en Chrome, sin instalar nada"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "Resultados más nítidos en Android",
+          "list": [
+            "Apoya el móvil sobre una pila de libros o un soporte pequeño, paralelo a la película.",
+            "Si de cerca la imagen sigue borrosa, aleja el móvil hasta que se vea nítida y usa el zoom del visor para llenar el encuadre.",
+            "Pon al máximo el brillo de la pantalla que hace de luz de fondo y evita que la luz de la habitación caiga sobre la película, para que no haya reflejos.",
+            "Si la cámara no arranca, abre el enlace en Chrome en lugar del navegador integrado de una app y comprueba que el sitio tiene permiso para usar la cámara (toca el icono a la izquierda de la dirección y luego Permisos)."
+          ]
+        }
+      ],
+      "faqs": [
+        {
+          "q": "¿Hay alguna app para ver negativos en Android?",
+          "a": "No te hace falta. Negative Viewer funciona en Chrome, elimina la dominante naranja automáticamente y se puede añadir a la pantalla de inicio como si fuera una app. Las apps de Play Store también sirven, pero aquí no hace falta instalar nada ni crear una cuenta."
+        },
+        {
+          "q": "¿Puedo usar la inversión de colores de Android para ver negativos?",
+          "a": "Sí, para echar un vistazo: activa Inversión de colores (Ajustes o Configuración → Accesibilidad → Color y movimiento en los Pixel, o Mejoras de visión en los Samsung) y apunta la app Cámara al negativo. Los negativos en color se verán azules porque la base naranja también se invierte, y no podrás guardar el positivo."
+        },
+        {
+          "q": "¿Por qué la vista previa sale borrosa si acerco mucho el móvil?",
+          "a": "Todas las cámaras de móvil tienen una distancia mínima de enfoque. Aleja el móvil hasta que la imagen se vea nítida y luego usa el zoom del visor para que un solo negativo llene el encuadre."
+        },
+        {
+          "q": "¿Se sube la imagen de la cámara?",
+          "a": "No. Negative Viewer procesa cada fotograma localmente, en el navegador, y las capturas se crean en tu móvil."
+        }
+      ],
+      "cardText": "Positivo en directo en Chrome, sin instalar nada, y los límites de la inversión de colores de Android.",
+      "cta": {
+        "text": "¿Quieres probar ahora con un negativo de verdad?",
+        "link": "Abrir Negative Viewer"
+      },
+      "dates": {
+        "published": "2026-10-31",
+        "modified": "2026-10-31"
+      }
+    },
+    "/guides/orange-mask-removal": {
+      "title": "Cómo quitar la máscara naranja de los negativos en color",
+      "description": "Por qué los negativos en color tienen una máscara naranja, por qué los escaneos invertidos salen azules y cómo corregir esa dominante tras la conversión.",
+      "displayReadTime": "6 minutos de lectura",
+      "keywords": [
+        "quitar máscara naranja negativo",
+        "máscara naranja negativo color",
+        "quitar el naranja de un negativo",
+        "negativo invertido azul",
+        "invertir negativos en color"
+      ],
+      "about": [
+        "máscara naranja",
+        "película negativa en color",
+        "escaneo de película"
+      ],
+      "lede": "Los negativos en color tienen una máscara naranja porque las capas de colorante no son perfectamente puras. Al invertir la película digitalmente, la base naranja se convierte en una dominante azul o cian. La solución práctica es muestrear la base de la película o corregir el balance de blancos después de invertir.",
+      "converterCta": {
+        "eyebrow": "Eliminación de la máscara naranja",
+        "title": "Usa Negative Converter con negativos en color ya guardados",
+        "text": "Negative Converter está pensado para archivos de negativos fotografiados o escaneados, con corrección de la máscara naranja y exportación a positivo en el navegador.",
+        "linkText": "Abrir Negative Converter"
+      },
+      "sections": [
+        {
+          "title": "Para qué sirve la máscara naranja",
+          "paragraphs": [
+            "La base naranja es parte del sistema del negativo en color, no una señal de deterioro. Ayuda a compensar en el copiado la absorción no deseada de los colorantes. Los negativos en blanco y negro y las diapositivas no suelen tener esa base naranja.",
+            "Una simple inversión RGB pasa la escena a positivo, pero también convierte la base naranja en su color opuesto. Por eso una primera vista técnicamente correcta puede seguir viéndose demasiado azul."
+          ]
+        },
+        {
+          "title": "Opciones de corrección",
+          "table": {
+            "headers": [
+              "Método",
+              "Cuándo usarlo",
+              "Resultado"
+            ],
+            "rows": [
+              [
+                "Muestrear la base de la película",
+                "Se ve un borde naranja limpio de la película en el encuadre",
+                "Automático en la vista en vivo de Negative Viewer"
+              ],
+              [
+                "Balance de blancos tras guardar",
+                "Ya tienes una foto",
+                "Más control"
+              ],
+              [
+                "Software específico para negativos",
+                "Procesas muchos rollos",
+                "Resultados más constantes"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "En qué orden corregir",
+          "list": [
+            "Primero, invierte el negativo.",
+            "Neutraliza la dominante azul o cian que deja la base de la película.",
+            "Ajusta la exposición y el contraste.",
+            "Afina los tonos de piel o los objetos que sabes que son neutros."
+          ]
+        }
+      ],
+      "faqs": [
+        {
+          "q": "¿La máscara naranja es un defecto de la película?",
+          "a": "No. Es una parte normal de la película negativa en color y ayuda a que el color se reproduzca con más precisión en la copia. Solo salta a la vista al hacer una inversión digital directa."
+        },
+        {
+          "q": "¿Puede un visor en el navegador eliminar la máscara naranja?",
+          "a": "Sí. Al iniciar la cámara, Negative Viewer localiza un borde limpio de la película, estima la base y la elimina dividiendo en luz lineal antes de invertir, de modo que la vista en vivo sale sin la dominante azul. Aun así, a las imágenes importantes les viene bien un retoque final del color en un editor o en Negative Converter."
+        },
+        {
+          "q": "¿Los negativos en blanco y negro necesitan corregir la máscara naranja?",
+          "a": "No. Los negativos tradicionales en blanco y negro no tienen la máscara de color naranja, así que una inversión directa suele dar un resultado neutro."
+        }
+      ],
+      "cardText": "Por qué los negativos en color son naranjas, por qué salen azules al invertirlos y cómo corregirlo.",
+      "cta": {
+        "text": "¿Quieres probar ahora con un negativo de verdad?",
+        "link": "Abrir Negative Viewer"
+      },
+      "dates": {
+        "published": "2026-10-31",
+        "modified": "2026-10-31"
+      }
+    }
+  }
+}
