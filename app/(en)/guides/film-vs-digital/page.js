@@ -131,7 +131,7 @@ export default function FilmVsDigitalGuide() {
               <tr>
                 <td>Long-term family archive</td>
                 <td>Film negatives + digital scans</td>
-                <td>Negatives last a century; digital backups are easier to share</td>
+                <td>Well-stored negatives last for decades; digital backups are easier to share</td>
               </tr>
             </tbody>
           </table>
@@ -139,7 +139,7 @@ export default function FilmVsDigitalGuide() {
           <h2 id="resolution">Resolution: how much detail each captures</h2>
           <p>
             "Resolution" in film is fuzzy because it depends on the film stock, the
-            lens, the scanner, and the capture target. Treat the following as
+            lens, the scanner, and the scanning resolution. Treat the following as
             workflow estimates, not manufacturer guarantees:
           </p>
           <ul>
@@ -243,7 +243,7 @@ export default function FilmVsDigitalGuide() {
               uniform.
             </li>
             <li>
-              <strong>Color cross-processing.</strong> Each film stock has a unique
+              <strong>Color rendering.</strong> Each film stock has a unique
               dye response. Kodak Portra renders skin tones differently from Fuji
               Pro 400H. Digital film-emulation profiles get close but rarely identical.
             </li>
@@ -263,7 +263,7 @@ export default function FilmVsDigitalGuide() {
           <ul>
             <li><strong>Digital:</strong> shoot, import to Lightroom, edit, export. Same day.</li>
             <li><strong>Film, lab-developed:</strong> shoot, mail or drop off the roll, wait 3–10 days for scans, edit, export.</li>
-            <li><strong>Film, home-developed:</strong> shoot, develop (~30–60 min), dry (1–2 hours), scan or photograph each frame (~1 minute on a flatbed, ~15 seconds with{" "}
+            <li><strong>Film, home-developed:</strong> shoot, develop (~30–60 min), dry (1–2 hours), scan or photograph each frame (about 3 minutes per frame on a flatbed, a few seconds with{" "}
               <Link href="/">Negative Viewer</Link> for triage), edit, export.</li>
           </ul>
 

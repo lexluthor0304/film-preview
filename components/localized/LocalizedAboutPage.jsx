@@ -6,7 +6,7 @@ import { getPageDates } from "@/lib/page-dates";
 import { siteConfig } from "@/lib/site-config";
 
 export default function LocalizedAboutPage({ locale, content }) {
-  const dates = getPageDates("/about");
+  const dates = getPageDates("/about", locale);
 
   return (
     <>

@@ -8,7 +8,7 @@ import { siteConfig } from "@/lib/site-config";
 
 export default function LocalizedFaqPage({ locale, content }) {
   const dictionary = getDictionary(locale);
-  const dates = getPageDates("/faq");
+  const dates = getPageDates("/faq", locale);
 
   return (
     <>

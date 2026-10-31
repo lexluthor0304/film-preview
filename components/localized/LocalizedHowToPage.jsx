@@ -8,7 +8,7 @@ import { siteConfig } from "@/lib/site-config";
 
 export default function LocalizedHowToPage({ locale, content }) {
   const dictionary = getDictionary(locale);
-  const dates = getPageDates("/how-to-use");
+  const dates = getPageDates("/how-to-use", locale);
 
   return (
     <>
