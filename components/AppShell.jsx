@@ -1,5 +1,6 @@
 import Script from "next/script";
 import { SerwistProvider } from "@serwist/next/react";
+import GoogleAnalytics from "@/components/GoogleAnalytics";
 import JsonLd from "@/components/JsonLd";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
@@ -39,22 +40,7 @@ export default function AppShell({ children, locale }) {
           <SiteFooter locale={locale} />
         </SerwistProvider>
 
-        {gaTrackingId && (
-          <>
-            <Script
-              src={`https://www.googletagmanager.com/gtag/js?id=${gaTrackingId}`}
-              strategy="afterInteractive"
-            />
-            <Script id="ga4-init" strategy="afterInteractive">
-              {`
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-                gtag('config', '${gaTrackingId}');
-              `}
-            </Script>
-          </>
-        )}
+        {gaTrackingId && <GoogleAnalytics trackingId={gaTrackingId} />}
 
         {adsenseClient && (
           <>
