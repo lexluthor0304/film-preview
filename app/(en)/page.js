@@ -272,6 +272,14 @@ export default function HomePage() {
             </div>
             <div className="feature-card">
               <h3>
+                <Link href="/guides/view-negatives-android">
+                  View negatives on Android
+                </Link>
+              </h3>
+              <p>Live preview in Chrome, plus what Android's color inversion can and can't do.</p>
+            </div>
+            <div className="feature-card">
+              <h3>
                 <Link href="/guides/orange-mask-removal">
                   Orange mask removal
                 </Link>
