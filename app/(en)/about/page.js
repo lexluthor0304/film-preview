@@ -42,13 +42,22 @@ export default function AboutPage() {
 
           <h2>How it works</h2>
           <p>
-            The tool requests permission to use your device camera through the
-            standard Web <code>getUserMedia</code> API. Each video frame is drawn to
-            an HTML Canvas, every pixel's red, green, and blue channels are subtracted
-            from 255 (a standard color inversion), and the result is drawn back to
-            the screen at the camera's native frame rate. There is no neural network,
-            no cloud processing, and no upload. The full source is small and lives in
-            this site's repository.
+            The page asks for your camera through the standard Web{" "}
+            <code>getUserMedia</code> API and draws every frame with a WebGL2 shader
+            (Canvas 2D on older browsers).
+          </p>
+          <p>
+            For color negatives it measures the film-base color on a clear film edge,
+            divides it out to remove the orange mask, and inverts the result as
+            density with a print-like contrast curve, so the clear base turns black
+            and the image tones fall into place. Black-and-white negatives use the
+            same math and end in grayscale; slides are shown without inversion. Where
+            the browser allows it, camera exposure and white balance are locked after
+            calibration so the colors stay put.
+          </p>
+          <p>
+            There is no neural network, no cloud processing, and no upload. The full
+            source is small and lives in this site's repository.
           </p>
 
           <h2>Privacy commitments</h2>
@@ -59,9 +68,10 @@ export default function AboutPage() {
               or photo data.
             </li>
             <li>
-              <strong>No account, no email, no fingerprinting.</strong> The only
-              first-party data we collect is anonymous Google Analytics page-view
-              counts, which we use to decide what to improve.
+              <strong>No account, no email, no fingerprinting.</strong> Google
+              Analytics records anonymous page views and feature use (for example,
+              that the camera started or a frame was captured) so we can see what to
+              improve. It never receives images or video.
             </li>
             <li>
               <strong>Ads, declared.</strong> The site shows Google AdSense ads.
@@ -86,9 +96,14 @@ export default function AboutPage() {
               <strong>React 19</strong> for the UI.
             </li>
             <li>
-              <strong>Web APIs</strong>: <code>getUserMedia</code> for camera access,{" "}
-              <code>Canvas 2D</code> for pixel-level inversion,{" "}
-              <code>requestAnimationFrame</code> for the render loop.
+              <strong>Web APIs</strong>: <code>getUserMedia</code> for camera access,
+              a <code>WebGL2</code> shader (with a <code>Canvas 2D</code> fallback) for
+              live processing, and <code>ImageCapture</code> for full-resolution stills
+              where supported.
+            </li>
+            <li>
+              <strong>Serwist</strong> service worker, so the viewer installs as an
+              app and keeps working offline.
             </li>
             <li>
               <strong>Vercel</strong> for hosting and edge delivery.
@@ -97,13 +112,30 @@ export default function AboutPage() {
 
           <h2>Who built it</h2>
           <p>
-            Built and maintained by {siteConfig.author.name}, a developer at{" "}
-            <a href={siteConfig.publisher.url} rel="noopener noreferrer">
+            Negative Viewer is built and maintained by {siteConfig.author.name} at{" "}
+            <a href={`${siteConfig.publisher.url}/en/`} rel="noopener noreferrer">
               {siteConfig.publisher.name}
+            </a>{" "}
+            ({siteConfig.publisher.legalName}) in Tokyo, which runs a darkroom that
+            develops and scans film by hand and an{" "}
+            <a href={siteConfig.publisher.shopUrl} rel="noopener noreferrer">
+              online shop
+            </a>{" "}
+            for film, chemistry, and darkroom gear.
+          </p>
+          <p>
+            The same team makes{" "}
+            <a href={siteConfig.negativeConverterUrl} rel="noopener noreferrer">
+              Negative Converter
+            </a>{" "}
+            for saved negative files and{" "}
+            <a href={siteConfig.neoBoxUrl} rel="noopener noreferrer">
+              NeoBox
             </a>
-            . The project started as a tool for sorting through a box of family
-            negatives and grew into a public site after a friend asked, "could you
-            put that online?"
+            , a 3D-printable strobe light box for camera-scanning 35mm and 120 film,
+            released as open hardware. The project started as a tool for sorting
+            through a box of family negatives and grew into a public site after a
+            friend asked, "could you put that online?"
           </p>
 
           <h2>Roadmap</h2>
@@ -119,8 +151,6 @@ export default function AboutPage() {
               </a>{" "}
               for saved-file orange-mask removal.
             </li>
-            <li>Crop and rotate before saving, so the PNG is closer to ready-to-share.</li>
-            <li>An EXIF-stripping export option for sensitive archival work.</li>
           </ul>
 
           <p>
